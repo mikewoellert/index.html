@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leo Chenal · IDP Film Analysis · Tackle Tendency</title>
+<style>
+  :root {
+    --bg:     #070709;
+    --s1:     #111117;
+    --s2:     #17171F;
+    --s3:     #1E1E28;
+    --border: #252530;
+    --bd2:    #2E2E3C;
+    --wlb:    #E8B84B;
+    --lolb:   #5B9BD5;
+    --green:  #4CAF7D;
+    --red:    #D94F4F;
+    --amber:  #D4842A;
+    --white:  #F4F4FA;
+    --light:  #DDDDE8;
+    --mid:    #A8A8C0;
+    --dim:    #6E6E88;
+    --mono:   'IBM Plex Mono', 'Courier New', monospace;
+    --sans:   'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--white); font-family: var(--sans); min-height: 100vh; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 24px 18px; }
+
+  /* ── HEADER ── */
+  .header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+  .header-left { display: flex; gap: 14px; align-items: flex-start; }
+  .accent-bar { width: 3px; height: 56px; background: linear-gradient(180deg, var(--wlb), var(--lolb)); border-radius: 2px; flex-shrink: 0; margin-top: 4px; }
+  .brand-label { font-family: var(--mono); font-size: 8px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--dim); margin-bottom: 5px; }
+  .player-name { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; margin-bottom: 10px; }
+  .tags { display: flex; gap: 7px; flex-wrap: wrap; }
+  .tag { font-family: var(--mono); font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; border: 1px solid; padding: 2px 8px; border-radius: 2px; white-space: nowrap; }
+  .header-scores { display: flex; gap: 2px; flex-shrink: 0; }
+  .score-box { background: var(--s1); border-radius: 8px; padding: 12px 16px; text-align: center; min-width: 85px; }
+  .score-role { font-family: var(--mono); font-size: 8px; letter-spacing: 0.1em; color: var(--dim); margin-bottom: 4px; }
+  .score-val { font-family: var(--mono); font-size: 32px; font-weight: 700; line-height: 1; }
+  .score-sub { font-family: var(--mono); font-size: 7px; color: var(--dim); margin-top: 4px; }
+
+  /* ── THESIS BANNER ── */
+  .thesis { background: linear-gradient(90deg, rgba(232,184,75,0.07), var(--s1), rgba(91,155,213,0.07)); border: 1px solid var(--bd2); border-radius: 8px; padding: 11px 16px; margin-bottom: 18px; display: flex; gap: 12px; align-items: center; }
+  .thesis-label { font-family: var(--mono); font-size: 9px; color: var(--wlb); font-weight: 700; flex-shrink: 0; letter-spacing: 0.06em; }
+  .thesis-text { font-family: var(--mono); font-size: 9px; color: var(--light); line-height: 1.7; }
+
+  /* ── PILLS ── */
+  .pills { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+  .pill { flex: 1 1 88px; background: var(--s1); border: 1px solid var(--border); border-radius: 7px; padding: 9px 11px; }
+  .pill-label { font-family: var(--mono); font-size: 9px; color: var(--mid); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 5px; }
+  .pill-val { font-family: var(--mono); font-size: 20px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+  .pill-sub { font-family: var(--mono); font-size: 9px; color: var(--mid); }
+
+  /* ── TABS ── */
+  .tabs { display: flex; gap: 2px; margin-bottom: 18px; background: var(--s1); padding: 3px; border-radius: 8px; border: 1px solid var(--border); }
+  .tab-btn { flex: 1; padding: 8px 0; border-radius: 6px; border: none; cursor: pointer; background: transparent; color: var(--mid); font-family: var(--mono); font-size: 9px; font-weight: 400; letter-spacing: 0.09em; text-transform: uppercase; border-bottom: 2px solid transparent; transition: all 0.15s; }
+  .tab-btn.active { background: var(--s3); color: var(--white); font-weight: 700; border-bottom: 2px solid var(--wlb); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ── CARDS ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .card { background: var(--s1); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; }
+  .card.span2 { grid-column: 1 / -1; }
+  .card.accent-wlb { border-color: rgba(232,184,75,0.2); }
+  .card.accent-green { border-color: rgba(76,175,125,0.2); }
+  .card.accent-amber { border-color: rgba(212,130,42,0.2); }
+  .card.accent-red { border-color: rgba(217,79,79,0.2); }
+  .section-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); margin-bottom: 12px; }
+
+  /* ── STAT BARS ── */
+  .stat-bar { margin-bottom: 14px; }
+  .stat-bar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+  .stat-bar-label { font-family: var(--mono); font-size: 9px; color: var(--light); }
+  .stat-bar-vals { display: flex; gap: 10px; align-items: center; }
+  .stat-bar-avg { font-family: var(--mono); font-size: 8px; color: var(--dim); }
+  .stat-bar-val { font-family: var(--mono); font-size: 13px; font-weight: 700; }
+  .stat-bar-track { position: relative; height: 4px; background: var(--s3); border-radius: 2px; }
+  .stat-bar-fill { height: 100%; border-radius: 2px; transition: width 1s cubic-bezier(0.16,1,0.3,1); }
+  .stat-bar-marker { position: absolute; top: -5px; height: 14px; width: 1.5px; background: var(--bd2); transform: translateX(-50%); }
+
+  /* ── FPTS CHART ── */
+  .fpts-chart { display: flex; gap: 8px; align-items: flex-end; height: 100px; margin-bottom: 10px; }
+  .fpts-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .fpts-bar-val { font-family: var(--mono); font-size: 10px; font-weight: 700; }
+  .fpts-bar { width: 100%; border-radius: 3px 3px 0 0; transition: height 0.7s cubic-bezier(0.16,1,0.3,1); }
+  .fpts-bar-label { font-family: var(--mono); font-size: 8px; color: var(--mid); text-align: center; line-height: 1.3; }
+  .fpts-dot { width: 7px; height: 7px; border-radius: 50%; opacity: 0.7; }
+  .chart-legend { display: flex; justify-content: center; gap: 16px; margin-top: 4px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-swatch { width: 12px; height: 3px; border-radius: 2px; }
+  .legend-label { font-family: var(--mono); font-size: 8px; color: var(--dim); }
+
+  /* ── BOX% BARS ── */
+  .boxpct-bars { display: flex; gap: 10px; align-items: flex-end; height: 90px; margin-bottom: 12px; }
+  .boxpct-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .boxpct-val { font-family: var(--mono); font-size: 11px; font-weight: 700; }
+  .boxpct-bar { width: 100%; border-radius: 3px 3px 0 0; }
+  .boxpct-lbl { font-family: var(--mono); font-size: 8px; color: var(--mid); text-align: center; line-height: 1.3; }
+  .boxpct-role { font-family: var(--mono); font-size: 7px; }
+
+  /* ── FINDINGS ── */
+  .finding { display: flex; gap: 9px; margin-bottom: 8px; align-items: flex-start; }
+  .finding-icon { font-size: 9px; flex-shrink: 0; margin-top: 3px; }
+  .finding-text { font-size: 11px; color: var(--light); line-height: 1.6; }
+
+  /* ── ROLE SPLIT ── */
+  .role-split-row { margin-bottom: 14px; }
+  .role-split-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
+  .role-split-label { font-family: var(--mono); font-size: 9px; color: var(--light); }
+  .role-split-vals { display: flex; gap: 14px; }
+  .role-split-val { font-family: var(--mono); font-size: 10px; font-weight: 700; }
+  .role-bars { display: flex; flex-direction: column; gap: 3px; }
+  .role-bar-track { height: 4px; background: var(--s3); border-radius: 2px; }
+  .role-bar-fill { height: 100%; border-radius: 2px; transition: width 0.85s cubic-bezier(0.16,1,0.3,1); }
+
+  /* ── HEAD-TO-HEAD TABLE ── */
+  .hth-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 10px; margin-bottom: 14px; }
+  .hth-cell { background: var(--s2); border-radius: 8px; padding: 11px 10px; text-align: center; border: 1px solid var(--border); }
+  .hth-label { font-family: var(--mono); font-size: 8px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .hth-val { font-family: var(--mono); font-size: 14px; font-weight: 700; }
+  .hth-vs { font-family: var(--mono); font-size: 9px; color: var(--dim); margin: 3px 0; }
+
+  /* ── GAME CARDS ── */
+  .game-card { margin-bottom: 10px; background: var(--s2); border-radius: 7px; padding: 10px 12px; }
+  .game-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px; }
+  .game-card-title { font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--white); }
+  .game-card-sub { font-family: var(--mono); font-size: 8px; color: var(--dim); margin-left: 8px; }
+  .game-card-fpts { font-family: var(--mono); font-size: 20px; font-weight: 700; }
+  .game-stats { display: flex; gap: 12px; }
+  .game-stat { text-align: center; }
+  .game-stat-val { font-family: var(--mono); font-size: 12px; font-weight: 700; line-height: 1; }
+  .game-stat-lbl { font-family: var(--mono); font-size: 7px; color: var(--dim); text-transform: uppercase; margin-top: 2px; }
+  .noeff-note { margin-top: 7px; font-family: var(--mono); font-size: 8px; color: var(--red); }
+
+  /* ── TIER CARDS ── */
+  .tier-card { background: var(--s1); border-radius: 10px; padding: 16px 18px; }
+  .tier-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .tier-num { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.05em; }
+  .tier-tag { font-family: var(--mono); font-size: 7px; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid; padding: 1px 7px; border-radius: 2px; }
+  .tier-label { font-size: 12px; font-weight: 600; color: var(--white); margin-bottom: 12px; }
+  .tier-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; margin-bottom: 13px; }
+  .tier-stat { background: var(--s2); border-radius: 6px; padding: 8px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
+  .tier-stat-val { font-family: var(--mono); font-size: 11px; font-weight: 700; }
+  .tier-stat-lbl { font-family: var(--mono); font-size: 7px; color: var(--dim); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.07em; }
+  .tier-why { font-size: 11px; color: var(--light); line-height: 1.7; border-top: 1px solid var(--border); padding-top: 11px; }
+
+  /* ── SCHEME GRID ── */
+  .scheme-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 8px; margin-bottom: 14px; }
+  .scheme-cell { background: var(--s2); border-radius: 7px; padding: 10px 8px; text-align: center; border: 1px solid rgba(255,255,255,0.04); }
+  .scheme-fit { font-family: var(--mono); font-size: 18px; margin-bottom: 6px; }
+  .scheme-name { font-family: var(--mono); font-size: 8px; color: var(--light); line-height: 1.4; }
+
+  /* ── CALLOUT BOXES ── */
+  .callout { border-radius: 7px; padding: 12px 14px; font-family: var(--mono); font-size: 10px; line-height: 1.7; color: var(--light); }
+  .callout-amber { background: rgba(212,130,42,0.06); border: 1px solid rgba(212,130,42,0.2); }
+  .callout-green { background: rgba(76,175,125,0.06); border: 1px solid rgba(76,175,125,0.2); }
+  .callout-verdict { background: #0E0E18; border: 1px solid var(--border); border-left: 3px solid var(--lolb); padding: 14px 16px; border-radius: 0 8px 8px 0; font-size: 11px; }
+
+  /* ── BY GAME ── */
+  .game-nav { display: flex; flex-direction: column; gap: 6px; }
+  .game-nav-btn { background: var(--s1); border: 1px solid var(--border); border-radius: 7px; padding: 9px 11px; cursor: pointer; transition: all 0.15s; text-align: left; width: 100%; }
+  .game-nav-btn.active { background: var(--s3); }
+  .game-nav-week { font-family: var(--mono); font-size: 8px; color: var(--dim); margin-bottom: 2px; }
+  .game-nav-opp { font-size: 13px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+  .game-nav-fpts { font-family: var(--mono); font-size: 20px; font-weight: 700; line-height: 1; }
+  .game-nav-sub { font-family: var(--mono); font-size: 7px; color: var(--dim); margin-top: 3px; }
+  .game-detail-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 7px; margin-bottom: 14px; }
+  .game-detail-cell { background: var(--s2); border-radius: 6px; padding: 9px 6px; border: 1px solid var(--bd2); text-align: center; }
+  .game-detail-val { font-family: var(--mono); font-size: 16px; font-weight: 700; color: var(--white); line-height: 1; }
+  .game-detail-lbl { font-family: var(--mono); font-size: 7px; color: var(--dim); text-transform: uppercase; margin-top: 3px; }
+  .game-layout { display: grid; grid-template-columns: 120px 1fr; gap: 14px; }
+  .game-efficiency { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .eff-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 11px; background: var(--s2); border-radius: 6px; border: 1px solid var(--border); }
+  .eff-label { font-family: var(--mono); font-size: 9px; color: var(--mid); }
+  .eff-right { display: flex; gap: 8px; align-items: center; }
+  .eff-avg { font-family: var(--mono); font-size: 8px; color: var(--dim); }
+  .eff-val { font-family: var(--mono); font-size: 12px; font-weight: 700; }
+  .box-callout { border-radius: 7px; padding: 10px 14px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+  .box-callout-info { }
+  .box-callout-role { font-family: var(--mono); font-size: 8px; color: var(--dim); margin-bottom: 3px; }
+  .box-callout-text { font-size: 11px; color: var(--light); }
+  .box-callout-pct { font-family: var(--mono); font-size: 34px; font-weight: 700; }
+
+  /* ── FOOTER ── */
+  .footer { margin-top: 20px; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; }
+  .footer span { font-family: var(--mono); font-size: 7px; color: var(--dim); }
+
+  @media (max-width: 640px) {
+    .grid2 { grid-template-columns: 1fr; }
+    .grid2 .card.span2 { grid-column: 1; }
+    .hth-grid { grid-template-columns: repeat(3,1fr); }
+    .scheme-grid { grid-template-columns: repeat(3,1fr); }
+    .game-layout { grid-template-columns: 1fr; }
+    .game-nav { flex-direction: row; overflow-x: auto; }
+    .game-nav-btn { min-width: 80px; }
+    .header { flex-direction: column; }
+    .header-scores { align-self: stretch; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="accent-bar"></div>
+      <div>
+        <div class="brand-label">Tackle Tendency · IDP Film Analysis</div>
+        <div class="player-name">Leo Chenal</div>
+        <div class="tags">
+          <span class="tag" style="color:var(--mid);border-color:rgba(168,168,192,0.3)">KC Chiefs 2025</span>
+          <span class="tag" style="color:var(--wlb);border-color:rgba(232,184,75,0.3)">WLB / LOLB</span>
+          <span class="tag" style="color:var(--amber);border-color:rgba(212,130,42,0.3)">Free Agent · 2026</span>
+          <span class="tag" style="color:var(--green);border-color:rgba(76,175,125,0.3)">7 Games Charted</span>
+          <span class="tag" style="color:var(--dim);border-color:rgba(110,110,136,0.3)">Year 4</span>
+        </div>
+      </div>
+    </div>
+    <div class="header-scores">
+      <div class="score-box" style="border:1px solid rgba(232,184,75,0.17)">
+        <div class="score-role" style="color:var(--dim)">WLB</div>
+        <div class="score-val" style="color:var(--wlb)">9.2</div>
+        <div class="score-sub">fpts/gm · 4 games</div>
+      </div>
+      <div class="score-box" style="border:1px solid rgba(91,155,213,0.17)">
+        <div class="score-role" style="color:var(--dim)">LOLB</div>
+        <div class="score-val" style="color:var(--lolb)">3.0</div>
+        <div class="score-sub">fpts/gm · 3 games</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THESIS -->
+  <div class="thesis">
+    <div class="thesis-label">◆ FREE AGENT THESIS</div>
+    <div class="thesis-text">Every big play in this sample — all 3 TFLs and both sacks — came in the <span style="color:var(--wlb)">WLB role</span>. The <span style="color:var(--lolb)">LOLB role</span> produced 0 big plays across 3 games. His landing spot is not a footnote. It is the entire IDP case.</div>
+  </div>
+
+  <!-- PILLS -->
+  <div class="pills" id="pills"></div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+    <button class="tab-btn" onclick="switchTab('idp')">IDP Outlook</button>
+    <button class="tab-btn" onclick="switchTab('role')">Role Split</button>
+    <button class="tab-btn" onclick="switchTab('efficiency')">Efficiency</button>
+    <button class="tab-btn" onclick="switchTab('game')">By Game</button>
+  </div>
+
+  <!-- TAB: OVERVIEW -->
+  <div class="tab-content active" id="tab-overview">
+    <div class="grid2">
+      <div class="card">
+        <div class="section-label">Role Split · WLB vs LOLB</div>
+        <div id="role-split-bars"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card">
+          <div class="section-label">Film Findings · 7 Games</div>
+          <div id="findings"></div>
+        </div>
+        <div class="card">
+          <div class="section-label">Fantasy Points · All 7 Games</div>
+          <div class="fpts-chart" id="fpts-chart"></div>
+          <div class="chart-legend">
+            <div class="legend-item"><div class="legend-swatch" style="background:var(--wlb)"></div><span class="legend-label">WLB games</span></div>
+            <div class="legend-item"><div class="legend-swatch" style="background:var(--lolb)"></div><span class="legend-label">LOLB games</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="card span2">
+        <div class="section-label">Box Alignment % by Game — Role Highlighted</div>
+        <div class="boxpct-bars" id="boxpct-bars"></div>
+        <div class="callout callout-amber">
+          <strong style="color:var(--amber)">The LOLB Paradox:</strong> His LOLB box rate (57%) is actually higher than his WLB box rate (45%) — yet LOLB produces 3× less output. In the LOLB role, KC deployed him as a pass rusher and zone coverage player. Neither plays to his strengths. The WLB role keeps him in run fits where his tackling instincts operate.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: IDP OUTLOOK -->
+  <div class="tab-content" id="tab-idp">
+    <div class="grid2" id="tier-cards"></div>
+  </div>
+
+  <!-- TAB: ROLE SPLIT -->
+  <div class="tab-content" id="tab-role">
+    <div class="grid2">
+      <div class="card span2">
+        <div class="section-label">WLB vs LOLB — Head to Head</div>
+        <div class="hth-grid" id="hth-grid"></div>
+        <div class="callout callout-amber">
+          <strong style="color:var(--amber)">The LOLB box% (57%) is higher than his WLB box% (45%)</strong> — yet LOLB produces 3× less output. In the LOLB role KC deployed him as a pass rusher (15 snaps, 1 pressure) and into zone coverage against skill players. Neither plays to his strengths. The WLB role keeps him in the run game where his tackling and big-play recognition operate effectively.
+        </div>
+      </div>
+      <div class="card">
+        <div class="section-label">WLB Games</div>
+        <div id="wlb-game-cards"></div>
+      </div>
+      <div class="card">
+        <div class="section-label">LOLB Games</div>
+        <div id="lolb-game-cards"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: EFFICIENCY -->
+  <div class="tab-content" id="tab-efficiency">
+    <div class="grid2">
+      <div class="card">
+        <div class="section-label">Tackle Efficiency · 7-Game Season</div>
+        <div id="tackle-bars"></div>
+      </div>
+      <div class="card">
+        <div class="section-label">Coverage &amp; Pass Rush · 7-Game Season</div>
+        <div id="coverage-bars"></div>
+      </div>
+      <div class="card span2">
+        <div class="section-label">All 7 Games — Production Grid</div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px" id="prod-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: BY GAME -->
+  <div class="tab-content" id="tab-game">
+    <div class="game-layout">
+      <div class="game-nav" id="game-nav"></div>
+      <div class="card" id="game-detail"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>TACKLE TENDENCY · LEO CHENAL · WK 2,4,9,11,12,13,14 · 2025 · FREE AGENT 2026</span>
+    <span>7 GAMES CHARTED · FILM-BASED ANALYSIS</span>
+  </div>
+</div>
+
+<script>
+const GAMES = [
+  {wk:2,  opp:"PHI",full:"Eagles",  role:"WLB", snaps:37,box:17,boxPct:46,run:25,pas:12,opps:10,solo:2,ast:2,tfl:1,sk:1,ff:1,int:0,miss:1,fpts:11.0,cov:4, tgt:0,catches:0,yds:0, rush:8, pres:1,noeff:7 },
+  {wk:4,  opp:"BAL",full:"Ravens",  role:"WLB", snaps:38,box:15,boxPct:39,run:9, pas:29,opps:9, solo:4,ast:0,tfl:0,sk:0,ff:0,int:1,miss:0,fpts:10.0,cov:15,tgt:4,catches:3,yds:10,rush:14,pres:0,noeff:14},
+  {wk:9,  opp:"BUF",full:"Bills",   role:"WLB", snaps:32,box:22,boxPct:69,run:21,pas:11,opps:11,solo:3,ast:4,tfl:1,sk:1,ff:0,int:0,miss:1,fpts:11.0,cov:8, tgt:1,catches:1,yds:5, rush:3, pres:1,noeff:2 },
+  {wk:11, opp:"DEN",full:"Broncos", role:"WLB", snaps:30,box:8, boxPct:27,run:13,pas:17,opps:6, solo:2,ast:2,tfl:1,sk:0,ff:0,int:0,miss:1,fpts:5.0, cov:3, tgt:0,catches:0,yds:0, rush:14,pres:0,noeff:13},
+  {wk:12, opp:"IND",full:"Colts",   role:"LOLB",snaps:27,box:15,boxPct:56,run:10,pas:17,opps:5, solo:2,ast:3,tfl:0,sk:0,ff:0,int:0,miss:0,fpts:3.5, cov:11,tgt:1,catches:1,yds:12,rush:6, pres:1,noeff:5 },
+  {wk:13, opp:"DAL",full:"Cowboys", role:"LOLB",snaps:33,box:17,boxPct:52,run:15,pas:18,opps:6, solo:1,ast:3,tfl:0,sk:0,ff:0,int:0,miss:0,fpts:2.5, cov:14,tgt:1,catches:1,yds:4, rush:4, pres:0,noeff:4 },
+  {wk:14, opp:"HST",full:"Texans",  role:"LOLB",snaps:26,box:17,boxPct:65,run:18,pas:8, opps:9, solo:2,ast:2,tfl:0,sk:0,ff:0,int:0,miss:0,fpts:3.0, cov:3, tgt:0,catches:0,yds:0, rush:5, pres:0,noeff:5 },
+];
+const POS={tklPg:6.8,fpts:8.2,boxPct:61,comp:71,missRate:18,soloRatio:1.4,tgtRate:16,catchRate:58,yps:0.42,pressRate:22,sackRate:8};
+const WLB_G=GAMES.filter(g=>g.role==="WLB"), LOLB_G=GAMES.filter(g=>g.role==="LOLB");
+const C={wlb:"var(--wlb)",lolb:"var(--lolb)",green:"var(--green)",red:"var(--red)",amber:"var(--amber)",white:"var(--white)",light:"var(--light)",mid:"var(--mid)",dim:"var(--dim)"};
+
+let activeGame = 0;
+
+// ── TAB SWITCHING ─────────────────────────────────────────────────────────────
+function switchTab(id) {
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    const ids=['overview','idp','role','efficiency','game'];
+    b.classList.toggle('active', ids[i]===id);
+  });
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  setTimeout(()=>animateBars(),50);
+}
+
+// ── PILLS ─────────────────────────────────────────────────────────────────────
+const pillData = [
+  {label:"WLB fpts/gm", val:"9.2",  sub:"pos avg 8.2",  color:"var(--wlb)", good:true},
+  {label:"LOLB fpts/gm",val:"3.0",  sub:"pos avg 8.2",  color:"var(--red)",  good:false},
+  {label:"Miss Rate",   val:"5%",   sub:"pos avg 18%",  color:"var(--green)",good:true},
+  {label:"WLB Big Plays",val:"5",   sub:"0 in LOLB",    color:"var(--wlb)", good:true},
+  {label:"Tkl Comp %",  val:"57%",  sub:"pos avg 71%",  color:"var(--red)",  good:false},
+  {label:"Catch Allow", val:"86%",  sub:"pos avg 58%",  color:"var(--red)",  good:false},
+  {label:"Press Rate",  val:"6%",   sub:"pos avg 22%",  color:"var(--red)",  good:false},
+  {label:"Avg Snaps",   val:"31.9", sub:"7 games",      color:"var(--mid)",  good:null},
+];
+document.getElementById('pills').innerHTML = pillData.map(p=>`
+  <div class="pill" style="border-color:${p.good===true?p.color.replace('var(','').replace(')','')+'28':'var(--border)'}">
+    <div class="pill-label">${p.label}</div>
+    <div class="pill-val" style="color:${p.color}">${p.val}</div>
+    <div class="pill-sub">${p.sub}</div>
+  </div>`).join('');
+
+// ── FINDINGS ──────────────────────────────────────────────────────────────────
+const findingsData = [
+  ["var(--green)","▲","5% missed tackle rate vs 18% position average — one of the cleanest tacklers in this sample."],
+  ["var(--green)","▲","5 big plays (3 TFL + 2 SK) in just 4 WLB games. The big-play instinct is genuine."],
+  ["var(--green)","▲","WLB fpts avg of 9.2 already exceeds the position average of 8.2 from a part-time role."],
+  ["var(--green)","▲","Wk9 at Buffalo: 69% box, 7 tackles, 1 TFL, 1 sack — the full-time role blueprint on film."],
+  ["var(--red)",  "▼","LOLB role: 3.0 fpts/gm, 0 big plays, 13 of 15 rush snaps with zero pressure."],
+  ["var(--red)",  "▼","86% catch rate allowed — a coverage liability that will be schemed against in any new system."],
+  ["var(--red)",  "▼","Tackle completion 57% vs 71% position average — overly assist-dependent."],
+  ["var(--red)",  "▼","Wk11 vs DEN (27% box, 14 rush snaps, 0 pressures): the floor in a pass-rush-only role."],
+  ["var(--amber)","◆","Landing spot determines 2026 IDP value entirely. This is a role question, not a talent question."],
+];
+document.getElementById('findings').innerHTML = findingsData.map(([c,i,t])=>`
+  <div class="finding"><span class="finding-icon" style="color:${c}">${i}</span><span class="finding-text">${t}</span></div>`).join('');
+
+// ── FPTS CHART ────────────────────────────────────────────────────────────────
+const mx=12;
+document.getElementById('fpts-chart').innerHTML = GAMES.map((g,i)=>{
+  const col=g.role==="WLB"?"var(--wlb)":"var(--lolb)";
+  const h=Math.max((g.fpts/mx)*82,3);
+  return `<div class="fpts-bar-wrap">
+    <span class="fpts-bar-val" style="color:${col}">${g.fpts}</span>
+    <div class="fpts-bar" data-h="${h}" style="height:0;background:linear-gradient(180deg,${col},${col.replace(')','')}88)"></div>
+    <span class="fpts-bar-label" style="color:var(--mid)">W${g.wk}<br>${g.opp}</span>
+    <div class="fpts-dot" style="background:${col}"></div>
+  </div>`;
+}).join('') + `<div class="fpts-bar-wrap">
+  <span class="fpts-bar-val" style="color:var(--dim)">avg</span>
+  <div style="width:100%;height:${(POS.fpts/mx)*82}px;border-radius:3px 3px 0 0;background:transparent;border:1px dashed var(--bd2);border-bottom:none"></div>
+  <span class="fpts-bar-label" style="color:var(--dim)">${POS.fpts}</span>
+</div>`;
+
+// ── BOX% BARS ─────────────────────────────────────────────────────────────────
+document.getElementById('boxpct-bars').innerHTML = GAMES.map(g=>{
+  const col=g.role==="WLB"?"var(--wlb)":"var(--lolb)";
+  const h=Math.max((g.boxPct/100)*72,4);
+  return `<div class="boxpct-wrap">
+    <span class="boxpct-val" style="color:${col}">${g.boxPct}%</span>
+    <div class="boxpct-bar" style="height:${h}px;background:linear-gradient(180deg,${col},${col.replace(')','')}55)"></div>
+    <span class="boxpct-lbl">W${g.wk} ${g.opp}</span>
+    <span class="boxpct-role" style="color:${col}">${g.role}</span>
+  </div>`;
+}).join('') + `<div class="boxpct-wrap">
+  <span style="font-family:var(--mono);font-size:9px;color:var(--dim)">pos avg</span>
+  <div style="width:100%;height:${(POS.boxPct/100)*72}px;border:1px dashed var(--bd2);border-bottom:none;border-radius:3px 3px 0 0"></div>
+  <span class="boxpct-lbl">${POS.boxPct}%</span>
+</div>`;
+
+// ── ROLE SPLIT BARS ───────────────────────────────────────────────────────────
+const rsData=[
+  {label:"Fpts / Game",wlb:9.2,lolb:3.0,max:12,fmt:"dec"},
+  {label:"Tkls / Game",wlb:4.8,lolb:4.3,max:10,fmt:"dec"},
+  {label:"Box %",      wlb:45, lolb:57, max:100,fmt:"pct"},
+  {label:"Big Plays",  wlb:5,  lolb:0,  max:6,  fmt:"raw"},
+  {label:"Snaps / Gm", wlb:34.2,lolb:28.7,max:50,fmt:"dec"},
+  {label:"Miss Rate",  wlb:8,  lolb:0,  max:25, fmt:"pct"},
+];
+const fmtV=(v,t)=>t==="pct"?`${Math.round(v)}%`:t==="dec"?v.toFixed(1):`${v}`;
+document.getElementById('role-split-bars').innerHTML = rsData.map(m=>`
+  <div class="role-split-row">
+    <div class="role-split-header">
+      <span class="role-split-label">${m.label}</span>
+      <div class="role-split-vals">
+        <span class="role-split-val" style="color:var(--wlb)">${fmtV(m.wlb,m.fmt)}</span>
+        <span class="role-split-val" style="color:var(--lolb)">${fmtV(m.lolb,m.fmt)}</span>
+      </div>
+    </div>
+    <div class="role-bars">
+      <div class="role-bar-track"><div class="role-bar-fill" data-w="${(m.wlb/m.max)*100}" style="width:0%;background:linear-gradient(90deg,rgba(232,184,75,0.4),var(--wlb))"></div></div>
+      <div class="role-bar-track"><div class="role-bar-fill" data-w="${(m.lolb/m.max)*100}" style="width:0%;background:linear-gradient(90deg,rgba(91,155,213,0.4),var(--lolb))"></div></div>
+    </div>
+  </div>`).join('') + `<div style="display:flex;gap:16px;margin-top:4px">
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--wlb)"></div><span class="legend-label">WLB (4 games)</span></div>
+  <div class="legend-item"><div class="legend-swatch" style="background:var(--lolb)"></div><span class="legend-label">LOLB (3 games)</span></div>
+</div>`;
+
+// ── TIER CARDS ────────────────────────────────────────────────────────────────
+const tiers=[
+  {rank:1,label:"4-3 MIKE / WLB Starter",     color:"var(--green)", tag:"LB1 Upside",     box:"85–90%",tklPg:"9–10/gm",fpts:"13–15/gm",
+   why:"Full three-down MIKE in a run-first 4-3 scheme. Wk9 at Buffalo (69% box, 7 tackles, 1 TFL, 1 SK) is the exact preview. Clean tackling (5% miss rate) and big-play instincts (5 big plays from part-time WLB work) project well at full deployment."},
+  {rank:2,label:"WLB Starter · Balanced Scheme",color:"var(--wlb)", tag:"Solid LB2",      box:"65–75%",tklPg:"7–8/gm", fpts:"9–11/gm",
+   why:"Reliable floor with tackle volume above position average. His 9.2 fpts/gm WLB average in a limited role already clears the position average. Coverage exposure keeps the ceiling capped — watch target rate in year one of a new scheme."},
+  {rank:3,label:"Rotational WLB / Two-Down",  color:"var(--amber)",  tag:"Matchup Streamer",box:"50–60%",tklPg:"5–6/gm", fpts:"6–8/gm",
+   why:"Replicates his 2025 KC overall average (6.6 fpts/gm). Viable as a streaming option in run-heavy matchups. Unrosterable as a core asset. Only worth holding if the role trends toward full-time."},
+  {rank:4,label:"LOLB / Coverage Specialist", color:"var(--red)",    tag:"Do Not Roster",  box:"&lt;50%",tklPg:"&lt;5/gm",fpts:"2–4/gm",
+   why:"His 3-game LOLB average was 3.0 fpts and 0 big plays. 86% catch rate allowed confirms coverage is a liability. 54 rush snaps produced only 3 pressures. The film is emphatic — this role has no IDP value."},
+];
+
+const schemeData=[
+  {s:"4-3 MIKE",fit:"★★★",col:"var(--green)"},
+  {s:"4-3 WLB",fit:"★★★",col:"var(--green)"},
+  {s:"3-4 ILB",fit:"★★",col:"var(--wlb)"},
+  {s:"3-4 OLB",fit:"★",col:"var(--amber)"},
+  {s:"Nickel-heavy",fit:"✗",col:"var(--red)"},
+  {s:"Pass-rush spec.",fit:"✗",col:"var(--red)"},
+];
+
+document.getElementById('tier-cards').innerHTML =
+  `<div class="grid2" style="display:contents">` +
+  tiers.map(t=>`
+  <div class="tier-card" style="border:1px solid ${t.color.replace('var(','').replace(')','').replace('--','').includes('wlb')?'rgba(232,184,75,0.2)':t.color.includes('green')?'rgba(76,175,125,0.2)':t.color.includes('amber')?'rgba(212,130,42,0.2)':'rgba(217,79,79,0.2)'}">
+    <div class="tier-header">
+      <span class="tier-num" style="color:${t.color}">Tier ${t.rank}</span>
+      <span class="tier-tag" style="color:${t.color};border-color:${t.color}60">${t.tag}</span>
+    </div>
+    <div class="tier-label">${t.label}</div>
+    <div class="tier-stats">
+      ${[["Box %",t.box],["Tackles",t.tklPg],["Fantasy",t.fpts]].map(([k,v])=>`
+      <div class="tier-stat" style="border-color:${t.color}20">
+        <div class="tier-stat-val" style="color:${t.color}">${v}</div>
+        <div class="tier-stat-lbl">${k}</div>
+      </div>`).join('')}
+    </div>
+    <div class="tier-why">${t.why}</div>
+  </div>`).join('') +
+  `<div class="card span2">
+    <div class="section-label">Scheme Fit Matrix</div>
+    <div class="scheme-grid">${schemeData.map(s=>`
+      <div class="scheme-cell">
+        <div class="scheme-fit" style="color:${s.col}">${s.fit}</div>
+        <div class="scheme-name">${s.s}</div>
+      </div>`).join('')}</div>
+    <div class="callout callout-green">
+      <strong style="color:var(--green)">◆ DRAFT STRATEGY:</strong>  Do not draft Chenal until the landing spot is confirmed. Current ADP blends his 6.6 overall average, obscuring the <span style="color:var(--wlb)">9.2 WLB ceiling</span> and <span style="color:var(--lolb)">3.0 LOLB floor</span>. The moment he signs a starting WLB or MIKE role with a run-first 4-3 team, act immediately. If he re-signs with KC in any part-time capacity, pass entirely.
+    </div>
+  </div>` +
+  `</div>`;
+
+// ── H2H TABLE ─────────────────────────────────────────────────────────────────
+const hthData=[["Games","4","3"],["Avg Snaps","34.2","28.7"],["Box %","45%","57%"],["Fpts/Gm","9.2","3.0"],["Big Plays","5","0"]];
+document.getElementById('hth-grid').innerHTML = hthData.map(([l,w,lo])=>`
+  <div class="hth-cell">
+    <div class="hth-label">${l}</div>
+    <div class="hth-val" style="color:var(--wlb)">${w}</div>
+    <div class="hth-vs">vs</div>
+    <div class="hth-val" style="color:var(--lolb)">${lo}</div>
+  </div>`).join('');
+
+// ── ROLE GAME CARDS ───────────────────────────────────────────────────────────
+function buildRoleCard(g, role) {
+  const col = role==="WLB"?"var(--wlb)":"var(--lolb)";
+  const statFields = role==="WLB"
+    ? [["Tkl",g.solo+g.ast],["TFL",g.tfl],["SK",g.sk||0],["INT",g.int],["FF",g.ff],["Miss",g.miss]]
+    : [["Tkl",g.solo+g.ast],["CovSnp",g.cov],["Rush",g.rush],["NoEff",g.noeff],["Miss",g.miss]];
+  return `<div class="game-card" style="border:1px solid ${role==="WLB"?"rgba(232,184,75,0.13)":"rgba(91,155,213,0.13)"}">
+    <div class="game-card-header">
+      <div><span class="game-card-title">Wk${g.wk} vs ${g.full}</span><span class="game-card-sub">${g.snaps} snaps · ${g.boxPct}% box</span></div>
+      <span class="game-card-fpts" style="color:${col}">${g.fpts}</span>
+    </div>
+    <div class="game-stats">${statFields.map(([l,v])=>`
+      <div class="game-stat">
+        <div class="game-stat-val" style="color:${l==="Miss"&&v>0?"var(--red)":l==="NoEff"&&v>0?"var(--red)":v>0?col:"var(--dim)"}">${v}</div>
+        <div class="game-stat-lbl">${l}</div>
+      </div>`).join('')}
+    </div>
+    ${g.noeff>0&&role==="LOLB"?`<div class="noeff-note">${g.noeff} of ${g.rush} rush snaps with zero impact</div>`:""}
+  </div>`;
+}
+document.getElementById('wlb-game-cards').innerHTML  = WLB_G.map(g=>buildRoleCard(g,"WLB")).join('');
+document.getElementById('lolb-game-cards').innerHTML = LOLB_G.map(g=>buildRoleCard(g,"LOLB")).join('');
+
+// ── EFFICIENCY BARS ───────────────────────────────────────────────────────────
+function buildStatBar(label, val, posAvg, max, invert, fmt, delay) {
+  const n=parseFloat(val)||0, a=parseFloat(posAvg)||0;
+  const pct=Math.min((n/max)*100,100), apct=Math.min((a/max)*100,100);
+  const good=invert?n<=a:n>=a, col=good?"var(--green)":"var(--red)";
+  const f=v=>fmt==="pct"?`${Math.round(v)}%`:fmt==="dec"?v.toFixed(2):fmt==="ratio"?v.toFixed(1)+"x":v.toFixed(1);
+  return `<div class="stat-bar">
+    <div class="stat-bar-header">
+      <span class="stat-bar-label">${label}</span>
+      <div class="stat-bar-vals">
+        <span class="stat-bar-avg">pos ${f(a)}</span>
+        <span class="stat-bar-val" style="color:${col}">${f(n)}</span>
+      </div>
+    </div>
+    <div class="stat-bar-track">
+      <div class="stat-bar-fill" data-w="${pct}" style="width:0%;background:linear-gradient(90deg,${col.replace(')','')}60,${col})" data-delay="${delay}"></div>
+      <div class="stat-bar-marker" style="left:${apct}%"></div>
+    </div>
+  </div>`;
+}
+
+document.getElementById('tackle-bars').innerHTML =
+  buildStatBar("Box Alignment %",     50,  POS.boxPct,  100,false,"pct",0)+
+  buildStatBar("Tackles Per Game",    4.6, POS.tklPg,   14, false,"dec",80)+
+  buildStatBar("Tackle Completion %", 57,  POS.comp,    100,false,"pct",160)+
+  buildStatBar("Missed Tackle Rate",  5,   POS.missRate, 30, true, "pct",240)+
+  buildStatBar("Solo / Assist Ratio", 1.0, POS.soloRatio,4, false,"ratio",320);
+
+document.getElementById('coverage-bars').innerHTML =
+  buildStatBar("Coverage Target Rate",12,  POS.tgtRate,  40, true, "pct",0)+
+  buildStatBar("Catch Rate Allowed",  86,  POS.catchRate,100,true, "pct",80)+
+  buildStatBar("Yards / Cov Snap",    0.53,POS.yps,      1.5,true, "dec",160)+
+  buildStatBar("Pressure Rate",       6,   POS.pressRate, 60,false,"pct",240)+
+  buildStatBar("Sack Rate on Rush",   2,   POS.sackRate,  20,false,"pct",320);
+
+// ── PRODUCTION GRID ───────────────────────────────────────────────────────────
+document.getElementById('prod-grid').innerHTML = GAMES.map(g=>{
+  const col=g.role==="WLB"?"var(--wlb)":"var(--lolb)";
+  const big=g.tfl+(g.sk||0);
+  return `<div style="background:var(--s2);border-radius:7px;padding:10px 8px;border:1px solid ${g.role==="WLB"?"rgba(232,184,75,0.15)":"rgba(91,155,213,0.15)"};text-align:center">
+    <div style="font-family:var(--mono);font-size:8px;color:${col};font-weight:700;margin-bottom:1px">${g.role}</div>
+    <div style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-bottom:6px">W${g.wk} ${g.opp}</div>
+    <div style="font-family:var(--mono);font-size:22px;font-weight:700;color:${col};line-height:1">${g.fpts}</div>
+    <div style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-bottom:6px">fpts</div>
+    ${[["tkl",g.solo+g.ast],["%box",g.boxPct+"%"],["miss",g.miss]].map(([l,v])=>`
+    <div style="display:flex;justify-content:space-between">
+      <span style="font-family:var(--mono);font-size:7px;color:var(--dim)">${l}</span>
+      <span style="font-family:var(--mono);font-size:7px;color:${l==="miss"&&v>0?"var(--red)":"var(--light)"};font-weight:700">${v}</span>
+    </div>`).join('')}
+    ${big>0?`<div style="margin-top:6px;font-family:var(--mono);font-size:8px;color:${col};font-weight:700">${big} big</div>`:""}
+  </div>`;
+}).join('');
+
+// ── GAME NAV + DETAIL ─────────────────────────────────────────────────────────
+function renderGameNav() {
+  document.getElementById('game-nav').innerHTML = GAMES.map((g,i)=>{
+    const col=g.role==="WLB"?"var(--wlb)":"var(--lolb)";
+    return `<button class="game-nav-btn${i===activeGame?" active":""}" onclick="setGame(${i})" style="border-color:${i===activeGame?col:"var(--border)"}">
+      <div style="display:flex;justify-content:space-between;margin-bottom:2px">
+        <span class="game-nav-week">WK ${g.wk}</span>
+        <span style="font-family:var(--mono);font-size:7px;color:${col};font-weight:700">${g.role}</span>
+      </div>
+      <div class="game-nav-opp">${g.opp}</div>
+      <div class="game-nav-fpts" style="color:${col}">${g.fpts}</div>
+      <div class="game-nav-sub">${g.solo+g.ast} tkl · ${g.boxPct}%</div>
+    </button>`;
+  }).join('');
+}
+
+function renderGameDetail() {
+  const g = GAMES[activeGame];
+  const col = g.role==="WLB"?"var(--wlb)":"var(--lolb)";
+  const bpCol = g.boxPct>=61?"var(--green)":g.boxPct>=50?"var(--amber)":"var(--red)";
+  const bpBg  = g.boxPct>=61?"rgba(76,175,125,0.06)":g.boxPct>=50?"rgba(212,130,42,0.06)":"rgba(217,79,79,0.06)";
+  const bpBd  = g.boxPct>=61?"rgba(76,175,125,0.2)":g.boxPct>=50?"rgba(212,130,42,0.2)":"rgba(217,79,79,0.2)";
+  const bpTxt = g.boxPct>=61?"Above pos avg — IDP-viable":g.boxPct>=50?"Near pos avg — borderline floor":"Below pos avg — IDP floor compromised";
+  const comp  = g.opps>0?Math.round((g.solo+g.ast)/g.opps*100):0;
+  const missR = g.opps>0?Math.round(g.miss/g.opps*100):0;
+  const tgtR  = g.cov>0?Math.round(g.tgt/g.cov*100):null;
+  const catchR= g.tgt>0?Math.round(g.catches/g.tgt*100):null;
+  const yps   = g.cov>0?(g.yds/g.cov).toFixed(2):null;
+  const pressR= g.rush>0?Math.round(g.pres/g.rush*100):null;
+  const effRows=[
+    ["Tkl Comp", comp+"%",   "pos "+POS.comp+"%",     comp>=POS.comp],
+    ["Miss Rate",missR+"%",  "pos "+POS.missRate+"%",  missR<=POS.missRate],
+    ["Cov Tgt%", tgtR!==null?tgtR+"%":"—", "pos "+POS.tgtRate+"%",  tgtR===null||tgtR<=POS.tgtRate],
+    ["Catch Allow",catchR!==null?catchR+"%":"—","pos "+POS.catchRate+"%",catchR===null||catchR<=POS.catchRate],
+    ["Yds/Cov",  yps!==null?yps:"—",    "pos "+POS.yps,           yps===null||parseFloat(yps)<=POS.yps],
+    ["Press Rate",pressR!==null?pressR+"%":"—","pos "+POS.pressRate+"%",pressR===null||pressR>=POS.pressRate],
+  ];
+  document.getElementById('game-detail').innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
+      <div>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:5px">
+          <span style="font-family:var(--mono);font-size:9px;color:var(--dim)">WEEK ${g.wk} · ${g.snaps} SNAPS</span>
+          <span style="font-family:var(--mono);font-size:8px;font-weight:700;color:${col};border:1px solid ${col}50;padding:1px 7px;border-radius:2px">${g.role}</span>
+        </div>
+        <div style="font-size:18px;font-weight:700">vs ${g.full}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-bottom:2px">FANTASY</div>
+        <div style="font-family:var(--mono);font-size:38px;font-weight:700;color:${col};line-height:1">${g.fpts}</div>
+      </div>
+    </div>
+    <div class="game-detail-grid">
+      ${[["Solo",g.solo],["Assist",g.ast],["TFL",g.tfl],["Sacks",g.sk||0],["INT",g.int],
+         ["FF",g.ff],["Missed",g.miss],["Opps",g.opps],["CovSnps",g.cov],["Rush",g.rush]
+        ].map(([l,v])=>`
+      <div class="game-detail-cell">
+        <div class="game-detail-val">${v}</div>
+        <div class="game-detail-lbl">${l}</div>
+      </div>`).join('')}
+    </div>
+    <div class="box-callout" style="background:${bpBg};border:1px solid ${bpBd};margin-bottom:12px">
+      <div class="box-callout-info">
+        <div class="box-callout-role" style="font-family:var(--mono);font-size:8px;color:var(--dim)">BOX ALIGNMENT · ${g.role}</div>
+        <div class="box-callout-text">${bpTxt}</div>
+      </div>
+      <div class="box-callout-pct" style="color:${bpCol}">${g.boxPct}%</div>
+    </div>
+    <div class="game-efficiency">
+      ${effRows.map(([l,v,pv,good])=>`
+      <div class="eff-row">
+        <span class="eff-label">${l}</span>
+        <div class="eff-right">
+          <span class="eff-avg">${pv}</span>
+          <span class="eff-val" style="color:${good?"var(--green)":"var(--red)"}">${v}</span>
+        </div>
+      </div>`).join('')}
+    </div>`;
+}
+
+function setGame(i) {
+  activeGame = i;
+  renderGameNav();
+  renderGameDetail();
+}
+
+renderGameNav();
+renderGameDetail();
+
+// ── ANIMATIONS ────────────────────────────────────────────────────────────────
+function animateBars() {
+  document.querySelectorAll('.stat-bar-fill[data-w]').forEach(el=>{
+    const delay = parseInt(el.dataset.delay)||0;
+    setTimeout(()=>{ el.style.width = el.dataset.w + "%"; }, delay);
+  });
+  document.querySelectorAll('.role-bar-fill[data-w]').forEach(el=>{
+    el.style.width = el.dataset.w + "%";
+  });
+  document.querySelectorAll('.fpts-bar[data-h]').forEach((el,i)=>{
+    setTimeout(()=>{ el.style.height = el.dataset.h + "px"; }, i*70);
+  });
+}
+setTimeout(animateBars, 100);
+</script>
+</body>
+</html>
