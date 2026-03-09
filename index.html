@@ -181,7 +181,7 @@ body{background:var(--bg);color:var(--white);font-family:var(--sans);min-height:
     <div class="card">
       <div class="lbl">Scheme Fit · WLB vs LOLB</div>
       <div style="display:flex;align-items:flex-start;gap:14px">
-        <svg id="radar-svg" width="226" height="226" style="flex-shrink:0"></svg>
+        <svg id="radar-svg" width="264" height="272" style="flex-shrink:0;overflow:visible"></svg>
         <div style="flex:1;display:flex;flex-direction:column;gap:5px;padding-top:2px" id="radar-table"></div>
       </div>
     </div>
@@ -304,11 +304,13 @@ const AXES=[
   {label:"Pass Rush",  sub:"pressure%, sack rate",  wlb:4.5,lolb:2.0,pos:5.0},
   {label:"Snap Vol",   sub:"snaps/gm, role depth",  wlb:7.0,lolb:5.0,pos:7.5},
 ];
-const N=6,CX=113,CY=113,R=80;
+const N=6,CX=132,CY=134,R=82;
 const rPt=(s,i)=>{const a=(Math.PI*2*i/N)-Math.PI/2,r=(s/10)*R;return{x:CX+r*Math.cos(a),y:CY+r*Math.sin(a)};};
 const poly=sc=>sc.map((s,i)=>{const p=rPt(s,i);return p.x+","+p.y;}).join(" ");
-const lPt=(i,o=20)=>{const a=(Math.PI*2*i/N)-Math.PI/2,r=R+o;return{x:CX+r*Math.cos(a),y:CY+r*Math.sin(a)};};
-const ta=i=>{const x=Math.cos((Math.PI*2*i/N)-Math.PI/2);return x>.3?"start":x<-.3?"end":"middle";};
+// Per-axis label offset — tuned so no label clips against the SVG edge
+const LABEL_OFF=[28,26,28,28,26,28]; // top, top-right, bottom-right, bottom, bottom-left, top-left
+const lPt=(i)=>{const a=(Math.PI*2*i/N)-Math.PI/2,r=R+LABEL_OFF[i];return{x:CX+r*Math.cos(a),y:CY+r*Math.sin(a)};};
+const ta=i=>{const x=Math.cos((Math.PI*2*i/N)-Math.PI/2);return x>.25?"start":x<-.25?"end":"middle";};
 let s="";
 [2,4,6,8,10].forEach(r=>{const pts=Array.from({length:N},(_,i)=>{const p=rPt(r,i);return p.x+","+p.y;}).join(" ");s+=`<polygon points="${pts}" fill="none" stroke="${C.bdr}" stroke-width="${r===10?.8:.5}" opacity=".7"/>`;});
 AXES.forEach((_,i)=>{const p=rPt(10,i);s+=`<line x1="${CX}" y1="${CY}" x2="${p.x}" y2="${p.y}" stroke="${C.bdr2}" stroke-width=".8" opacity=".6"/>`;});
@@ -318,10 +320,13 @@ s+=`<polygon id="poly-wlb" points="${poly(AXES.map(a=>a.wlb))}" fill="${C.wlb}22
 AXES.forEach((a,i)=>{const pw=rPt(a.wlb,i),pl=rPt(a.lolb,i);s+=`<circle class="rdot-w" cx="${pw.x}" cy="${pw.y}" r="3.5" fill="${C.wlb}" stroke="${C.bg}" stroke-width="1.5" opacity="0"/><circle class="rdot-l" cx="${pl.x}" cy="${pl.y}" r="3" fill="${C.lolb}" stroke="${C.bg}" stroke-width="1.5" opacity="0"/>`;});
 [2,4,8].forEach(r=>{const p=rPt(r,0);s+=`<text x="${p.x+3}" y="${p.y}" font-size="6" fill="${C.dim}" font-family="monospace">${r}</text>`;});
 AXES.forEach((a,i)=>{
-  const lp=lPt(i,i===0||i===3?13:19),anchor=ta(i);
-  const ang=(Math.PI*2*i/N)-Math.PI/2,isTop=Math.sin(ang)<-.5;
-  s+=`<text x="${lp.x}" y="${isTop?lp.y-5:lp.y}" text-anchor="${anchor}" font-size="8" font-weight="700" fill="${C.light}" font-family="monospace">${a.label}</text>`;
-  s+=`<text x="${lp.x}" y="${isTop?lp.y+5:lp.y+9}" text-anchor="${anchor}" font-size="6" fill="${C.dim}" font-family="monospace">${a.sub}</text>`;
+  const lp=lPt(i),anchor=ta(i);
+  const ang=(Math.PI*2*i/N)-Math.PI/2;
+  const isTop=Math.sin(ang)<-.5, isBot=Math.sin(ang)>.5;
+  // For top axis: main label above, sub below; for others: main then sub downward
+  const y1=isTop?lp.y-8:lp.y+1, y2=isTop?lp.y+3:lp.y+11;
+  s+=`<text x="${lp.x}" y="${y1}" text-anchor="${anchor}" font-size="8.5" font-weight="700" fill="${C.light}" font-family="monospace">${a.label}</text>`;
+  s+=`<text x="${lp.x}" y="${y2}" text-anchor="${anchor}" font-size="6.5" fill="${C.dim}" font-family="monospace">${a.sub}</text>`;
 });
 document.getElementById('radar-svg').innerHTML=s;
 document.getElementById('radar-table').innerHTML=
