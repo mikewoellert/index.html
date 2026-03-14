@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mike Woellert — Demand Generation Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0a1628;
+    --deep-blue: #0d2144;
+    --blue: #1a4080;
+    --mid-blue: #2563b0;
+    --sky: #4a9fd4;
+    --light-blue: #a8d4f0;
+    --pale-blue: #d6eaf8;
+    --cream: #faf8f3;
+    --warm-white: #f5f0e8;
+    --gold: #c9a84c;
+    --highlight: rgba(74, 159, 212, 0.25);
+  }
+
+  body {
+    background: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    cursor: default;
+    user-select: none;
+  }
+
+  /* ─── CANVAS LAYER ─── */
+  #bgCanvas {
+    position: fixed; inset: 0; z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ─── FILM STRIP ─── */
+  .film-strip {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 28px;
+    background: rgba(10,22,40,0.95);
+    display: flex; align-items: center;
+    z-index: 50;
+    border-bottom: 1px solid rgba(74,159,212,0.3);
+  }
+  .film-strip-bottom {
+    top: auto; bottom: 0;
+    border-top: 1px solid rgba(74,159,212,0.3);
+    border-bottom: none;
+  }
+  .film-holes {
+    display: flex; gap: 8px; padding: 0 12px;
+    flex: 1;
+  }
+  .film-hole {
+    width: 14px; height: 10px;
+    border: 1.5px solid rgba(74,159,212,0.5);
+    border-radius: 2px;
+    background: var(--navy);
+    flex-shrink: 0;
+  }
+
+  /* ─── SLIDES CONTAINER ─── */
+  #slides {
+    position: fixed;
+    inset: 28px;
+    z-index: 10;
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 40px 60px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .slide.active { opacity: 1; pointer-events: all; }
+
+  /* Slide-specific backgrounds */
+  .slide-0 { background: radial-gradient(ellipse at 30% 40%, rgba(37,99,176,0.25) 0%, transparent 60%), radial-gradient(ellipse at 70% 70%, rgba(74,159,212,0.15) 0%, transparent 50%); }
+  .slide-1 { background: radial-gradient(ellipse at 60% 30%, rgba(13,33,68,0.8) 0%, transparent 70%); }
+  .slide-2 { background: radial-gradient(ellipse at 20% 60%, rgba(26,64,128,0.3) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(74,159,212,0.2) 0%, transparent 50%); }
+  .slide-3 { background: radial-gradient(ellipse at 50% 50%, rgba(10,22,40,0.6) 0%, transparent 80%); }
+  .slide-4 { background: radial-gradient(ellipse at 30% 70%, rgba(37,99,176,0.25) 0%, transparent 60%); }
+  .slide-5 { background: radial-gradient(ellipse at 70% 40%, rgba(74,159,212,0.2) 0%, transparent 60%); }
+  .slide-6 { background: radial-gradient(ellipse at 50% 50%, rgba(13,33,68,0.4) 0%, transparent 70%); }
+
+  /* ─── TYPOGRAPHY ─── */
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 16px;
+  }
+
+  h1.display {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 800;
+    line-height: 1.0;
+    color: var(--cream);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  h2.display {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 68px);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--cream);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  h3.display {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--cream);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .italic-display {
+    font-style: italic;
+    color: var(--light-blue);
+  }
+
+  .body-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(15px, 1.8vw, 19px);
+    font-weight: 400;
+    line-height: 1.7;
+    color: rgba(214,234,248,0.85);
+    text-align: center;
+    max-width: 680px;
+  }
+
+  .highlight-ribbon {
+    display: inline;
+    background: linear-gradient(135deg, rgba(74,159,212,0.35) 0%, rgba(37,99,176,0.3) 100%);
+    padding: 2px 12px 4px;
+    border-radius: 3px;
+    color: var(--cream);
+    font-weight: 700;
+  }
+  .highlight-gold {
+    background: linear-gradient(135deg, rgba(201,168,76,0.3) 0%, rgba(201,168,76,0.2) 100%);
+    color: #f0d080;
+  }
+
+  /* ─── STAT BLOCKS ─── */
+  .stats-row {
+    display: flex; gap: 32px; justify-content: center;
+    flex-wrap: wrap; margin-top: 12px;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(74,159,212,0.25);
+    border-radius: 12px;
+    padding: 20px 28px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    min-width: 150px;
+  }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 800;
+    color: var(--sky);
+    line-height: 1;
+    display: block;
+  }
+  .stat-label {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(168,212,240,0.7);
+    margin-top: 6px;
+    display: block;
+  }
+
+  /* ─── TECH PILLS ─── */
+  .pills-wrap {
+    display: flex; flex-wrap: wrap;
+    gap: 10px; justify-content: center;
+    max-width: 780px; margin-top: 20px;
+  }
+  .pill {
+    background: rgba(37,99,176,0.2);
+    border: 1px solid rgba(74,159,212,0.35);
+    border-radius: 50px;
+    padding: 8px 18px;
+    font-size: 13px; font-weight: 500;
+    color: var(--light-blue);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .pill.primary {
+    background: rgba(74,159,212,0.2);
+    border-color: rgba(74,159,212,0.5);
+    color: var(--cream);
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--sky), transparent);
+    margin: 20px auto;
+  }
+
+  /* ─── FLOATING SYMBOLS ─── */
+  #floaters {
+    position: fixed; inset: 0;
+    z-index: 5; pointer-events: none;
+    overflow: hidden;
+  }
+  .floater {
+    position: absolute;
+    font-size: 18px;
+    opacity: 0;
+    animation: floatUp linear infinite;
+    color: rgba(74,159,212,0.35);
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.4; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* ─── PARTICLES ─── */
+  #particleCanvas {
+    position: fixed; inset: 0; z-index: 3; pointer-events: none;
+  }
+
+  /* ─── ANIMATE STATES ─── */
+  .anim-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .anim-item.from-left {
+    transform: translateX(-40px);
+  }
+  .anim-item.from-right {
+    transform: translateX(40px);
+  }
+  .anim-item.scale-in {
+    transform: scale(0.85);
+  }
+  .anim-item.revealed {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ─── HUD ─── */
+  #hud {
+    position: fixed;
+    bottom: 42px; left: 0; right: 0;
+    z-index: 60;
+    padding: 0 24px;
+    display: flex; flex-direction: column; gap: 8px;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  #hud.visible { opacity: 1; }
+
+  #progress-bar {
+    width: 100%; height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  #progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--mid-blue), var(--sky));
+    border-radius: 99px;
+    width: 0%;
+    transition: width 0.3s linear;
+  }
+
+  .hud-row {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .hud-controls {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hud-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(74,159,212,0.3);
+    border-radius: 8px;
+    color: var(--light-blue);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 500;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .hud-btn:hover {
+    background: rgba(74,159,212,0.2);
+    border-color: var(--sky);
+    color: var(--cream);
+  }
+  .hud-btn.icon-btn {
+    padding: 6px 10px; font-size: 14px;
+  }
+  .hud-btn.active {
+    background: rgba(74,159,212,0.25);
+    border-color: var(--sky);
+    color: var(--cream);
+  }
+  #timestamp {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 2px;
+    color: rgba(168,212,240,0.6);
+  }
+  .slide-dots {
+    display: flex; gap: 6px; align-items: center;
+  }
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .dot.active {
+    background: var(--sky);
+    transform: scale(1.4);
+  }
+
+  /* ─── SPLASH / PLAY SCREEN ─── */
+  #splash {
+    position: fixed; inset: 0;
+    z-index: 100;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    background: radial-gradient(ellipse at 40% 40%, rgba(13,33,68,0.9) 0%, var(--navy) 70%);
+    transition: opacity 1.2s ease;
+  }
+  #splash.hiding { opacity: 0; pointer-events: none; }
+  .splash-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 800;
+    color: var(--cream);
+    text-align: center;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .splash-sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 400;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--sky);
+    margin-bottom: 48px;
+  }
+  #playBtn {
+    background: linear-gradient(135deg, var(--mid-blue), var(--sky));
+    border: none;
+    border-radius: 50%;
+    width: 80px; height: 80px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 0 0 rgba(74,159,212,0.4);
+    animation: pulse-ring 2s infinite;
+  }
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(74,159,212,0.5); }
+    70% { box-shadow: 0 0 0 20px rgba(74,159,212,0); }
+    100% { box-shadow: 0 0 0 0 rgba(74,159,212,0); }
+  }
+  #playBtn:hover { transform: scale(1.08); }
+  #playBtn svg { width: 28px; height: 28px; fill: white; margin-left: 4px; }
+  .splash-hint {
+    margin-top: 24px;
+    font-size: 12px; color: rgba(168,212,240,0.5);
+    letter-spacing: 2px; text-transform: uppercase;
+  }
+
+  /* ─── SLIDE 0: INTRO ─── */
+  .intro-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(64px, 9vw, 120px);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 0.95;
+    text-align: center;
+    letter-spacing: -1px;
+  }
+  .intro-title-line {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(13px, 1.4vw, 17px);
+    font-weight: 500;
+    letter-spacing: 6px; text-transform: uppercase;
+    color: var(--sky);
+    text-align: center;
+    margin-top: 18px;
+  }
+
+  /* ─── SLIDE 6: CLOSING ─── */
+  .cta-link {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--mid-blue), var(--sky));
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 14px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    margin-top: 28px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px rgba(74,159,212,0.3);
+  }
+  .cta-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(74,159,212,0.5);
+  }
+
+  /* ─── GRID LAYOUT FOR SLIDE 3 ─── */
+  .industry-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 800px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .industry-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(74,159,212,0.2);
+    border-radius: 14px;
+    padding: 24px 20px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+  }
+  .industry-icon {
+    font-size: 28px; margin-bottom: 10px;
+  }
+  .industry-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+  .industry-detail {
+    font-size: 12px; color: rgba(168,212,240,0.65);
+    line-height: 1.5;
+  }
+
+  /* ─── GRADIENT BLOBS ─── */
+  #blobs {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.12;
+    animation: blobFloat ease-in-out infinite alternate;
+  }
+  @keyframes blobFloat {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(30px, -20px) scale(1.05); }
+  }
+
+  /* ─── SCANLINE EFFECT ─── */
+  .scanlines {
+    position: fixed; inset: 0; z-index: 8; pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0,0,0,0.04) 3px,
+      rgba(0,0,0,0.04) 4px
+    );
+    opacity: 0.5;
+  }
+
+  @media (max-width: 600px) {
+    .slide { padding: 20px 24px; }
+    .stats-row { gap: 12px; }
+    .stat-card { padding: 14px 16px; min-width: 110px; }
+    .industry-grid { grid-template-columns: 1fr; gap: 10px; max-width: 320px; }
+    .pills-wrap { gap: 7px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND LAYERS -->
+<canvas id="bgCanvas"></canvas>
+<canvas id="particleCanvas"></canvas>
+<div id="blobs">
+  <div class="blob" style="width:500px;height:500px;background:var(--mid-blue);left:-100px;top:-100px;animation-duration:8s;"></div>
+  <div class="blob" style="width:400px;height:400px;background:var(--sky);right:-80px;top:30%;animation-duration:11s;animation-delay:2s;"></div>
+  <div class="blob" style="width:350px;height:350px;background:var(--blue);left:30%;bottom:-80px;animation-duration:9s;animation-delay:4s;"></div>
+</div>
+<div id="floaters"></div>
+<div class="scanlines"></div>
+
+<!-- FILM STRIPS -->
+<div class="film-strip">
+  <div class="film-holes" id="topHoles"></div>
+</div>
+<div class="film-strip film-strip-bottom">
+  <div class="film-holes" id="bottomHoles"></div>
+</div>
+
+<!-- SLIDES -->
+<div id="slides">
+
+  <!-- SLIDE 0: OPENING TITLE -->
+  <div class="slide slide-0" data-slide="0">
+    <div class="anim-item" style="transition-delay:0.1s">
+      <p class="eyebrow">A Cinematic Portfolio</p>
+    </div>
+    <div class="anim-item scale-in" style="transition-delay:0.3s">
+      <div class="intro-name">Mike<br><span style="color:var(--sky)">Woellert</span></div>
+    </div>
+    <div class="anim-item" style="transition-delay:0.6s">
+      <p class="intro-title-line">Senior Demand Generation Manager</p>
+    </div>
+    <div class="anim-item" style="transition-delay:0.9s">
+      <div class="divider" style="margin-top:28px"></div>
+    </div>
+    <div class="anim-item" style="transition-delay:1.1s">
+      <p class="body-text" style="margin-top:8px">Ten years of building pipelines.<br>One story worth watching.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 1: THE STORY SO FAR -->
+  <div class="slide slide-1" data-slide="1">
+    <div class="anim-item" style="transition-delay:0.1s">
+      <p class="eyebrow">Chapter One</p>
+    </div>
+    <div class="anim-item from-left" style="transition-delay:0.3s">
+      <h2 class="display">A decade of<br><span class="italic-display">full-funnel craft</span></h2>
+    </div>
+    <div class="anim-item" style="transition-delay:0.6s">
+      <p class="body-text">
+        From early-stage startups to scaling SaaS—<br>
+        <span class="highlight-ribbon">10+ years</span> turning strategy into pipeline,<br>
+        and pipeline into revenue.
+      </p>
+    </div>
+    <div class="anim-item from-right" style="transition-delay:0.9s; margin-top: 28px;">
+      <p class="body-text">
+        Demand gen isn't just campaigns.<br>
+        It's <span class="highlight-ribbon">systems thinking</span> with a creative soul.
+      </p>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: INDUSTRIES -->
+  <div class="slide slide-2" data-slide="2">
+    <div class="anim-item" style="transition-delay:0.1s">
+      <p class="eyebrow">Chapter Two</p>
+    </div>
+    <div class="anim-item scale-in" style="transition-delay:0.3s">
+      <h2 class="display">Across <span class="italic-display">three worlds</span></h2>
+    </div>
+    <div class="industry-grid">
+      <div class="anim-item from-left" style="transition-delay:0.4s">
+        <div class="industry-card">
+          <div class="industry-icon">⚡</div>
+          <div class="industry-name">SaaS</div>
+          <div class="industry-detail">Circuitry.ai · Pitchly<br>OnShift · High-growth</div>
+        </div>
+      </div>
+      <div class="anim-item scale-in" style="transition-delay:0.6s">
+        <div class="industry-card">
+          <div class="industry-icon">🏥</div>
+          <div class="industry-name">Healthcare</div>
+          <div class="industry-detail">Health Carousel<br>Staffing & Services SaaS</div>
+        </div>
+      </div>
+      <div class="anim-item from-right" style="transition-delay:0.8s">
+        <div class="industry-card">
+          <div class="industry-icon">📡</div>
+          <div class="industry-name">Telecom</div>
+          <div class="industry-detail">Enterprise accounts<br>Mid-market motion</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: RESULTS -->
+  <div class="slide slide-3" data-slide="3">
+    <div class="anim-item" style="transition-delay:0.1s">
+      <p class="eyebrow">Chapter Three — The Numbers</p>
+    </div>
+    <div class="anim-item from-left" style="transition-delay:0.3s">
+      <h2 class="display">Pipeline.<br><span class="italic-display">Proof.</span></h2>
+    </div>
+    <div class="stats-row" style="margin-top:28px">
+      <div class="anim-item scale-in" style="transition-delay:0.4s">
+        <div class="stat-card">
+          <span class="stat-number">$3.8M+</span>
+          <span class="stat-label">Pipeline · Circuitry.ai</span>
+        </div>
+      </div>
+      <div class="anim-item scale-in" style="transition-delay:0.55s">
+        <div class="stat-card">
+          <span class="stat-number">$1.1M</span>
+          <span class="stat-label">ARR Influenced · Pitchly</span>
+        </div>
+      </div>
+      <div class="anim-item scale-in" style="transition-delay:0.7s">
+        <div class="stat-card">
+          <span class="stat-number">315</span>
+          <span class="stat-label">MQLs Generated</span>
+        </div>
+      </div>
+      <div class="anim-item scale-in" style="transition-delay:0.85s">
+        <div class="stat-card">
+          <span class="stat-number">+22%</span>
+          <span class="stat-label">MQL→SQL Conversion</span>
+        </div>
+      </div>
+    </div>
+    <div class="anim-item" style="transition-delay:1.1s; margin-top: 20px">
+      <p class="body-text" style="font-size: 14px; opacity: 0.7">$5.3M pipeline at OnShift · 18% lead conversion lift at Circuitry.ai</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: TECH STACK -->
+  <div class="slide slide-4" data-slide="4">
+    <div class="anim-item" style="transition-delay:0.1s">
+      <p class="eyebrow">Chapter Four</p>
+    </div>
+    <div class="anim-item from-left" style="transition-delay:0.3s">
+      <h2 class="display">The <span class="italic-display">stack</span><br>behind the magic</h2>
+    </div>
+    <div class="pills-wrap">
+      <div class="anim-item scale-in" style="transition-delay:0.4s"><div class="pill primary">HubSpot</div></div>
+      <div class="anim-item scale-in" style="transition-delay:0.45s"><div class="pill primary">Salesforce</div></div>
+      <div class="anim-item scale-in" style="transition-delay:0.5s"><div class="pill primary">ZoomInfo</div></div>
+      <div class="anim-item scale-in" style="transition-delay:0.55s"><div class="pill">Google Ads</div></div>
+      <div class="anim-item scale-in" style="transition-delay:0.6s"><div class="pill">LinkedIn Ads</div></div>
+      <div class="anim-item scale-in" style="transition-delay:0.65s"><div class="pill">GA4</div></div>
+      <div class="anim-item scale-in" style="transition-delay:0.7s"><div class="pill">SEMrush</div></div>
+      <div class="anim-item scale-in" style="transition-delay:0.75s"><div class="pill">Apollo</div></div>
+      <div class="anim-item scale-in" style="transition-delay:0.8s"><div class="pill">Metadata.io</div></div>
+      <div class="anim-item scale-in" style="transition-delay:0.85s"><div class="pill">Storylane</div></div>
+      <div class="anim-item scale-in" style="transition-delay:0.9s"><div class="pill">Canva</div></div>
+      <div class="anim-item scale-in" style="transition-delay:0.95s"><div class="pill primary">Claude AI</div></div>
+      <div class="anim-item scale-in" style="transition-delay:1.0s"><div class="pill primary">ChatGPT</div></div>
+      <div class="anim-item scale-in" style="transition-delay:1.05s"><div class="pill primary">n8n</div></div>
+    </div>
+    <div class="anim-item" style="transition-delay:1.2s; margin-top: 20px">
+      <p class="body-text" style="font-size:14px">Now building AI-augmented workflows that outpace the old playbook.</p>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: HOW I WORK -->
+  <div class="slide slide-5" data-slide="5">
+    <div class="anim-item" style="transition-delay:0.1s">
+      <p class="eyebrow">Chapter Five</p>
+    </div>
+    <div class="anim-item scale-in" style="transition-delay:0.3s">
+      <h2 class="display">Strategy meets<br><span class="italic-display">execution</span></h2>
+    </div>
+    <div class="anim-item from-left" style="transition-delay:0.5s">
+      <p class="body-text">
+        <span class="highlight-ribbon">ABM campaigns</span> for enterprise &amp; mid-market.
+        Multi-touch email, paid social, webinars—<br>
+        all wired into HubSpot &amp; Salesforce.
+      </p>
+    </div>
+    <div class="divider" style="margin-top:24px"></div>
+    <div class="anim-item from-right" style="transition-delay:0.8s; margin-top:8px">
+      <p class="body-text">
+        I don't just run campaigns.<br>
+        I <span class="highlight-ribbon">close the loop</span> — from first touch<br>
+        to closed-won, with data at every step.
+      </p>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: CLOSING -->
+  <div class="slide slide-6" data-slide="6">
+    <div class="anim-item scale-in" style="transition-delay:0.1s">
+      <p class="eyebrow">The Final Frame</p>
+    </div>
+    <div class="anim-item from-left" style="transition-delay:0.3s">
+      <div class="intro-name" style="font-size: clamp(44px, 6vw, 80px)">Mike<br>Woellert</div>
+    </div>
+    <div class="anim-item" style="transition-delay:0.55s">
+      <p class="intro-title-line" style="margin-top:14px; font-size:13px">Senior Demand Generation Manager</p>
+    </div>
+    <div class="anim-item" style="transition-delay:0.75s; margin-top: 20px">
+      <p class="body-text" style="font-size:15px">
+        SaaS · Healthcare · Telecom · AI-Augmented<br>
+        <span class="highlight-ribbon">10+ years</span> · <span class="highlight-ribbon highlight-gold">$10M+ pipeline influenced</span>
+      </p>
+    </div>
+    <div class="anim-item scale-in" style="transition-delay:1.0s">
+      <a href="https://linkedin.com/in/mikewoellert" target="_blank" class="cta-link">Connect on LinkedIn →</a>
+    </div>
+    <div class="anim-item" style="transition-delay:1.2s; margin-top:14px">
+      <p style="font-size:12px; color: rgba(168,212,240,0.5); text-align:center; letter-spacing:1px">
+        mike.woellert@gmail.com · Cleveland, OH
+      </p>
+    </div>
+  </div>
+
+</div><!-- /slides -->
+
+<!-- HUD -->
+<div id="hud">
+  <div id="progress-bar"><div id="progress-fill"></div></div>
+  <div class="hud-row">
+    <div class="hud-controls">
+      <button class="hud-btn icon-btn" id="resetBtn" title="Reset (R)">↺</button>
+      <button class="hud-btn icon-btn" id="prevBtn" title="Prev (←)">‹</button>
+      <button class="hud-btn" id="playPauseBtn" title="Play/Pause (Space)">⏸ Pause</button>
+      <button class="hud-btn icon-btn" id="nextBtn" title="Next (→)">›</button>
+    </div>
+    <div class="slide-dots" id="slideDots"></div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <button class="hud-btn icon-btn" id="musicBtn" title="Toggle Music (M)" >♪</button>
+      <span id="timestamp">0:00 / 1:00</span>
+    </div>
+  </div>
+</div>
+
+<!-- SPLASH -->
+<div id="splash">
+  <p class="splash-sub">A Cinematic Video Resume</p>
+  <div class="splash-title">Mike Woellert</div>
+  <div class="splash-title" style="font-style:italic; color:var(--sky); font-size:clamp(22px,3vw,42px); margin-top:-4px">Demand Generation Leader</div>
+  <button id="playBtn" onclick="startFilm()">
+    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+  </button>
+  <p class="splash-hint">Press play to begin</p>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════
+const SLIDE_COUNT = 7;
+const SLIDE_DURATION = 60 / SLIDE_COUNT; // ~8.57s each
+let currentSlide = 0;
+let isPlaying = false;
+let isPaused = false;
+let totalElapsed = 0;
+let slideElapsed = 0;
+let animFrame;
+let lastTime = null;
+let audioCtx = null;
+let musicOn = false;
+let musicNodes = {};
+let filmStarted = false;
+
+// ═══════════════════════════════════════════════════════
+// FILM HOLES
+// ═══════════════════════════════════════════════════════
+function buildFilmHoles() {
+  const count = Math.ceil(window.innerWidth / 22) + 2;
+  ['topHoles','bottomHoles'].forEach(id => {
+    const el = document.getElementById(id);
+    el.innerHTML = Array.from({length:count}, () => '<div class="film-hole"></div>').join('');
+  });
+}
+buildFilmHoles();
+
+// ═══════════════════════════════════════════════════════
+// SLIDE DOTS
+// ═══════════════════════════════════════════════════════
+const dotsContainer = document.getElementById('slideDots');
+for (let i = 0; i < SLIDE_COUNT; i++) {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0?' active':'');
+  d.addEventListener('click', () => goToSlide(i));
+  dotsContainer.appendChild(d);
+}
+function updateDots(idx) {
+  dotsContainer.querySelectorAll('.dot').forEach((d,i)=>{
+    d.classList.toggle('active', i===idx);
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+// PARTICLE CANVAS
+// ═══════════════════════════════════════════════════════
+const pCanvas = document.getElementById('particleCanvas');
+const pCtx = pCanvas.getContext('2d');
+let particles = [];
+function resizeParticle() {
+  pCanvas.width = window.innerWidth;
+  pCanvas.height = window.innerHeight;
+}
+resizeParticle();
+window.addEventListener('resize', resizeParticle);
+
+function spawnParticles() {
+  for (let i = 0; i < 60; i++) {
+    particles.push({
+      x: Math.random() * pCanvas.width,
+      y: Math.random() * pCanvas.height,
+      r: Math.random() * 1.5 + 0.3,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      alpha: Math.random() * 0.4 + 0.1,
+      color: Math.random() > 0.5 ? '74,159,212' : '168,212,240'
+    });
+  }
+}
+spawnParticles();
+
+function drawParticles() {
+  if (!filmStarted) return;
+  pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = pCanvas.width;
+    if (p.x > pCanvas.width) p.x = 0;
+    if (p.y < 0) p.y = pCanvas.height;
+    if (p.y > pCanvas.height) p.y = 0;
+    pCtx.beginPath();
+    pCtx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+    pCtx.fillStyle = `rgba(${p.color},${p.alpha})`;
+    pCtx.fill();
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+// BACKGROUND CANVAS (gradient blobs animated)
+// ═══════════════════════════════════════════════════════
+const bgCanvas = document.getElementById('bgCanvas');
+const bgCtx = bgCanvas.getContext('2d');
+let bgTime = 0;
+function resizeBg() {
+  bgCanvas.width = window.innerWidth;
+  bgCanvas.height = window.innerHeight;
+}
+resizeBg();
+window.addEventListener('resize', resizeBg);
+
+function drawBg(t) {
+  bgCtx.clearRect(0,0,bgCanvas.width,bgCanvas.height);
+  const w = bgCanvas.width, h = bgCanvas.height;
+  // Moving glow orbs
+  const orbs = [
+    { x: w*0.2 + Math.sin(t*0.5)*80, y: h*0.3 + Math.cos(t*0.4)*60, r:300, c:'rgba(37,99,176,0.12)' },
+    { x: w*0.8 + Math.sin(t*0.3+1)*100, y: h*0.6 + Math.cos(t*0.5+2)*80, r:250, c:'rgba(74,159,212,0.10)' },
+    { x: w*0.5 + Math.sin(t*0.7+3)*60, y: h*0.8 + Math.cos(t*0.3)*50, r:200, c:'rgba(26,64,128,0.10)' },
+  ];
+  orbs.forEach(o => {
+    const g = bgCtx.createRadialGradient(o.x,o.y,0,o.x,o.y,o.r);
+    g.addColorStop(0, o.c);
+    g.addColorStop(1, 'transparent');
+    bgCtx.fillStyle = g;
+    bgCtx.beginPath();
+    bgCtx.arc(o.x, o.y, o.r, 0, Math.PI*2);
+    bgCtx.fill();
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+// FLOATERS (business / marketing symbols)
+// ═══════════════════════════════════════════════════════
+const FLOAT_SYMBOLS = ['📊','📈','💡','🎯','⚡','🔗','✦','◈','◆','▸','↗','⬡','◉'];
+const floaterEl = document.getElementById('floaters');
+function spawnFloater() {
+  if (!filmStarted) return;
+  const el = document.createElement('div');
+  el.className = 'floater';
+  el.textContent = FLOAT_SYMBOLS[Math.floor(Math.random()*FLOAT_SYMBOLS.length)];
+  el.style.left = Math.random()*100 + 'vw';
+  el.style.bottom = '-40px';
+  el.style.fontSize = (12 + Math.random()*14) + 'px';
+  el.style.opacity = '0';
+  const dur = 8 + Math.random()*10;
+  el.style.animationDuration = dur + 's';
+  el.style.animationDelay = '0s';
+  floaterEl.appendChild(el);
+  setTimeout(() => el.remove(), dur*1000);
+}
+setInterval(spawnFloater, 1200);
+
+// ═══════════════════════════════════════════════════════
+// WEB AUDIO — LO-FI CORPORATE BACKGROUND
+// 88 BPM · Subtle steady bassline · Mid-tempo lo-fi beat
+// Warm Rhodes-style chords · Soft hi-hat shuffle · Clean & modern
+// Safe: oscillators + envelopes only, zero feedback loops
+// ═══════════════════════════════════════════════════════
+function initAudio() {
+  if (audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+  var master = audioCtx.createGain();
+  master.gain.setValueAtTime(0.0, audioCtx.currentTime);
+  master.gain.linearRampToValueAtTime(0.68, audioCtx.currentTime + 2.5);
+  master.connect(audioCtx.destination);
+  musicNodes.master = master;
+
+  // Gentle bus compressor
+  var comp = audioCtx.createDynamicsCompressor();
+  comp.threshold.value = -22; comp.knee.value = 14;
+  comp.ratio.value = 2.8; comp.attack.value = 0.012; comp.release.value = 0.30;
+  comp.connect(master);
+
+  // Warm low-mid shelf (lo-fi fullness)
+  var warmEQ = audioCtx.createBiquadFilter();
+  warmEQ.type = 'lowshelf'; warmEQ.frequency.value = 320; warmEQ.gain.value = 2.5;
+  warmEQ.connect(comp);
+
+  // Slight high-frequency roll-off (lo-fi cassette feel, not harsh)
+  var lofiLP = audioCtx.createBiquadFilter();
+  lofiLP.type = 'lowpass'; lofiLP.frequency.value = 9000; lofiLP.Q.value = 0.5;
+  lofiLP.connect(warmEQ);
+
+  var dest = lofiLP;
+
+  // Room reverb — small, intimate, not washy
+  function makeReverb() {
+    var sr = audioCtx.sampleRate;
+    var len = Math.floor(sr * 1.0);
+    var buf = audioCtx.createBuffer(2, len, sr);
+    for (var c = 0; c < 2; c++) {
+      var d = buf.getChannelData(c);
+      for (var i = 0; i < len; i++)
+        d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3.5);
+    }
+    var conv = audioCtx.createConvolver(); conv.buffer = buf; return conv;
+  }
+  var rvb = makeReverb();
+  var rvbG = audioCtx.createGain(); rvbG.gain.value = 0.14;
+  rvb.connect(rvbG); rvbG.connect(comp);
+
+  // ── TEMPO: 88 BPM (mid-tempo lo-fi feel) ──
+  var beat = 60 / 88;       // ~0.682s
+  var bar  = beat * 4;      // ~2.727s
+  var e8   = beat / 2;      // 8th note
+  var e16  = beat / 4;      // 16th note
+  // Swing feel: lo-fi 8ths are slightly swung
+  var swL  = beat * 0.58;   // long 8th
+  var swS  = beat * 0.42;   // short 8th
+
+  // Tiny human timing imperfection
+  function h() { return (Math.random() - 0.5) * 0.009; }
+
+  // ── NOTE HELPER (safe, no loops) ──
+  function note(freq, type, vol, atk, rel, tStart, dur, toRvb) {
+    var o  = audioCtx.createOscillator();
+    var lp = audioCtx.createBiquadFilter();
+    var g  = audioCtx.createGain();
+    lp.type = 'lowpass'; lp.frequency.value = Math.min(freq * 5, 7000);
+    o.type = type; o.frequency.value = freq;
+    g.gain.setValueAtTime(0, tStart);
+    g.gain.linearRampToValueAtTime(vol, tStart + atk);
+    g.gain.setValueAtTime(vol, tStart + dur - rel);
+    g.gain.linearRampToValueAtTime(0, tStart + dur);
+    o.connect(lp); lp.connect(g); g.connect(dest);
+    if (toRvb) { var rg = audioCtx.createGain(); rg.gain.value = 0.20; g.connect(rg); rg.connect(rvb); }
+    o.start(tStart); o.stop(tStart + dur + 0.05);
+  }
+
+  // ── RHODES-STYLE CHORD VOICINGS ──
+  // ii-V-I-VI in D: Em7 A7 Dmaj7 Bm7  (modern corporate lo-fi)
+  var chords = {
+    Em7:  [164.81, 246.94, 329.63, 392.00, 493.88],
+    A7:   [220.00, 277.18, 329.63, 415.30, 493.88],
+    Dmaj7:[146.83, 220.00, 293.66, 369.99, 440.00],
+    Bm7:  [123.47, 185.00, 246.94, 293.66, 369.99],
+  };
+  var prog = ['Em7','Em7','A7','A7','Dmaj7','Dmaj7','Bm7','Bm7'];
+
+  // ── RHODES PAD (warm sine + triangle stack, soft attack) ──
+  var padBar = 0, padSched = audioCtx.currentTime + 0.05;
+  function schedulePad() {
+    if (!musicOn) { setTimeout(schedulePad, 100); return; }
+    var chord = prog[padBar % prog.length];
+    var freqs = chords[chord];
+    var t = padSched;
+    freqs.forEach(function(f, i) {
+      var vol = 0.038 - i * 0.004;
+      // Sine (fundamental warmth)
+      note(f, 'sine', vol, 0.06, 0.18, t + h(), bar * 0.96, true);
+      // Triangle (adds slight harmonic body, kept soft)
+      note(f, 'triangle', vol * 0.28, 0.08, 0.20, t + h(), bar * 0.90, false);
+    });
+    padSched += bar; padBar++;
+    setTimeout(schedulePad, (padSched - audioCtx.currentTime - 0.15) * 1000);
+  }
+  schedulePad();
+
+  // ── CHORD STAB (Rhodes-style chop on beats 2 & 4) ──
+  var stabBar = 0, stabSched = audioCtx.currentTime + 0.05;
+  function scheduleStab() {
+    if (!musicOn) { setTimeout(scheduleStab, 100); return; }
+    var chord = prog[stabBar % prog.length];
+    var freqs = chords[chord];
+    var t = stabSched;
+    // Beat 2 stab
+    freqs.forEach(function(f, i) {
+      note(f * 2, 'sine',     0.042 - i*0.005, 0.005, 0.18, t + beat + h(),     e8 * 1.4, true);
+      note(f * 2, 'triangle', 0.018 - i*0.002, 0.005, 0.14, t + beat + h(),     e8 * 1.2, false);
+    });
+    // Beat 4 stab (slightly softer)
+    freqs.forEach(function(f, i) {
+      note(f * 2, 'sine',     0.036 - i*0.004, 0.005, 0.16, t + beat*3 + h(),   e8 * 1.4, true);
+      note(f * 2, 'triangle', 0.015 - i*0.002, 0.005, 0.12, t + beat*3 + h(),   e8 * 1.2, false);
+    });
+    // Occasional ghost stab on & of 3 (keeps it interesting)
+    if (Math.random() > 0.52) {
+      freqs.slice(0,3).forEach(function(f, i) {
+        note(f*2, 'sine', 0.018, 0.005, 0.10, t + beat*2 + swL + h(), e8*0.8, false);
+      });
+    }
+    stabSched += bar; stabBar++;
+    setTimeout(scheduleStab, (stabSched - audioCtx.currentTime - 0.15) * 1000);
+  }
+  scheduleStab();
+
+  // ── SUBTLE STEADY BASSLINE ──
+  // Roots on 1 & 3, subtle octave walk, sine for warmth
+  var bassRoots = {Em7:82.41, A7:110.00, Dmaj7:73.41, Bm7:61.74};
+  var bassFifths= {Em7:123.47,A7:164.81, Dmaj7:110.00,Bm7:92.50};
+  var bassBar = 0, bassSched = audioCtx.currentTime + 0.05;
+  function scheduleBass() {
+    if (!musicOn) { setTimeout(scheduleBass, 100); return; }
+    var chord = prog[bassBar % prog.length];
+    var t = bassSched;
+    var r = bassRoots[chord], f5 = bassFifths[chord];
+    // Beat 1: root, solid
+    note(r,   'sine', 0.55, 0.010, 0.10, t + h(),           beat * 0.88, false);
+    // Beat 2: octave ghost (very quiet, lo-fi walk)
+    note(r*2, 'sine', 0.18, 0.008, 0.08, t + beat + h(),     beat * 0.72, false);
+    // Beat 3: fifth
+    note(f5,  'sine', 0.46, 0.010, 0.09, t + beat*2 + h(),   beat * 0.88, false);
+    // Beat 4: chromatic approach into next root
+    var nextChord = prog[(bassBar+1) % prog.length];
+    var nextR = bassRoots[nextChord];
+    note(nextR * 0.972, 'sine', 0.32, 0.008, 0.07, t + beat*3 + h(), beat * 0.78, false);
+    bassSched += bar; bassBar++;
+    setTimeout(scheduleBass, (bassSched - audioCtx.currentTime - 0.15) * 1000);
+  }
+  scheduleBass();
+
+  // ── LO-FI DRUMS ──
+  function makeNoiseBuf(dur) {
+    var sr = audioCtx.sampleRate;
+    var len = Math.floor(sr * dur);
+    var buf = audioCtx.createBuffer(1, len, sr);
+    var d = buf.getChannelData(0);
+    for (var i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+    return buf;
+  }
+
+  // Kick: soft thud (lo-fi, not punchy)
+  function kick(vol, t) {
+    var o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.type = 'sine';
+    o.frequency.setValueAtTime(140, t);
+    o.frequency.exponentialRampToValueAtTime(44, t + 0.10);
+    g.gain.setValueAtTime(vol * 0.65, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.28);
+    o.connect(g); g.connect(dest); o.start(t); o.stop(t + 0.32);
+    // Soft thud noise layer
+    var src = audioCtx.createBufferSource();
+    src.buffer = makeNoiseBuf(0.04);
+    var f = audioCtx.createBiquadFilter(); f.type='bandpass'; f.frequency.value=180; f.Q.value=1.5;
+    var gn = audioCtx.createGain(); gn.gain.value = vol * 0.15;
+    src.connect(f); f.connect(gn); gn.connect(dest);
+    src.start(t); src.stop(t + 0.045);
+  }
+
+  // Snare: lo-fi brushed feel (not crisp — warm and muffled)
+  function snare(vol, t) {
+    // Muted body
+    var o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.type = 'triangle'; o.frequency.value = 185;
+    g.gain.setValueAtTime(vol * 0.22, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.06);
+    o.connect(g); g.connect(dest); o.start(t); o.stop(t+0.07);
+    // Brushed wire — filtered, warm (not snappy)
+    var src = audioCtx.createBufferSource();
+    src.buffer = makeNoiseBuf(0.14);
+    var f1 = audioCtx.createBiquadFilter(); f1.type='bandpass'; f1.frequency.value=3200; f1.Q.value=0.8;
+    var f2 = audioCtx.createBiquadFilter(); f2.type='lowpass';  f2.frequency.value=7000;
+    var gn = audioCtx.createGain();
+    gn.gain.setValueAtTime(vol * 0.38, t);
+    gn.gain.exponentialRampToValueAtTime(0.0001, t + 0.14);
+    var rg = audioCtx.createGain(); rg.gain.value = 0.18;
+    src.connect(f1); f1.connect(f2); f2.connect(gn);
+    gn.connect(dest); gn.connect(rg); rg.connect(rvb);
+    src.start(t); src.stop(t + 0.16);
+  }
+
+  // Hi-hat: swing shuffle, muted and warm (lo-fi tape feel)
+  function hihat(vol, t, open) {
+    var dur = open ? 0.14 : 0.028;
+    var src = audioCtx.createBufferSource();
+    src.buffer = makeNoiseBuf(dur);
+    var f1 = audioCtx.createBiquadFilter(); f1.type='highpass'; f1.frequency.value=6000;
+    var f2 = audioCtx.createBiquadFilter(); f2.type='lowpass';  f2.frequency.value=11000; // lo-fi cap
+    var gn = audioCtx.createGain();
+    gn.gain.setValueAtTime(vol * 0.13, t);
+    gn.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    src.connect(f1); f1.connect(f2); f2.connect(gn); gn.connect(dest);
+    src.start(t); src.stop(t + dur + 0.01);
+  }
+
+  // Drum pattern — swing hi-hat, kick on 1 & 3, brushed snare 2 & 4
+  var drumBar = 0, drumSched = audioCtx.currentTime + 0.05;
+  function scheduleDrums() {
+    if (!musicOn) { setTimeout(scheduleDrums, 100); return; }
+    var t = drumSched;
+    // Kick: beats 1 and 3
+    kick(1.00, t + h());
+    kick(0.82, t + beat*2 + h());
+    // Occasional extra kick on & of 3 (lo-fi variation)
+    if (Math.random() > 0.62) kick(0.50, t + beat*2 + swL + h());
+    // Snare: beats 2 and 4
+    snare(0.88, t + beat + h());
+    snare(0.92, t + beat*3 + h());
+    // Ghost snare on & of 4 occasionally
+    if (Math.random() > 0.55) snare(0.24, t + beat*3 + swL + h());
+    // Hi-hat: swung 8ths (long-short swing feel — lo-fi signature)
+    for (var i = 0; i < 4; i++) {
+      hihat(0.72, t + i*beat + h(), false);               // downbeat
+      hihat(0.44, t + i*beat + swL + h(), i===3);         // upbeat (open on last)
+    }
+    drumSched += bar; drumBar++;
+    setTimeout(scheduleDrums, (drumSched - audioCtx.currentTime - 0.15) * 1000);
+  }
+  scheduleDrums();
+
+  // ── AMBIENT HIGH NOTE SHIMMER ──
+  // Occasional soft sine notes floating above — keeps it from feeling empty
+  var shimmerNotes = [587.33, 659.25, 739.99, 880.00, 987.77, 1046.50];
+  var shimBar = 0, shimSched = audioCtx.currentTime + bar * 1.5;
+  function scheduleShimmer() {
+    if (!musicOn) { setTimeout(scheduleShimmer, 100); return; }
+    var t = shimSched;
+    // 1–2 soft notes per bar, floating on upbeats
+    [e8, beat + swL, beat*2 + e8].forEach(function(off) {
+      if (Math.random() > 0.58) {
+        var f = shimmerNotes[Math.floor(Math.random() * shimmerNotes.length)];
+        note(f, 'sine', 0.020, 0.015, 0.55, t + off + h(), e8 * 3.5, true);
+      }
+    });
+    shimSched += bar; shimBar++;
+    setTimeout(scheduleShimmer, (shimSched - audioCtx.currentTime - 0.15) * 1000);
+  }
+  scheduleShimmer();
+}
+function toggleMusic() {
+  if (!audioCtx) return;
+  musicOn = !musicOn;
+  const g = musicNodes.master;
+  if (musicOn) {
+    g.gain.cancelScheduledValues(audioCtx.currentTime);
+    g.gain.linearRampToValueAtTime(0.74, audioCtx.currentTime + 0.8);
+  } else {
+    g.gain.cancelScheduledValues(audioCtx.currentTime);
+    g.gain.linearRampToValueAtTime(0.0, audioCtx.currentTime + 0.8);
+  }
+  document.getElementById('musicBtn').classList.toggle('active', musicOn);
+}
+
+// ═══════════════════════════════════════════════════════
+// SLIDE MANAGEMENT
+// ═══════════════════════════════════════════════════════
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(idx, instant=false) {
+  slides.forEach((s, i) => {
+    s.classList.toggle('active', i === idx);
+    if (i !== idx) clearReveal(s);
+  });
+  currentSlide = idx;
+  updateDots(idx);
+  slideElapsed = 0;
+  if (!instant) setTimeout(() => revealSlide(slides[idx]), 200);
+  else revealSlide(slides[idx]);
+}
+
+function revealSlide(slide) {
+  const items = slide.querySelectorAll('.anim-item');
+  items.forEach((item, i) => {
+    setTimeout(() => {
+      item.classList.add('revealed');
+    }, i * 120);
+  });
+}
+
+function clearReveal(slide) {
+  slide.querySelectorAll('.anim-item').forEach(item => {
+    item.classList.remove('revealed');
+  });
+}
+
+function goToSlide(idx) {
+  if (idx < 0 || idx >= SLIDE_COUNT) return;
+  showSlide(idx);
+  totalElapsed = idx * (60 / SLIDE_COUNT);
+  slideElapsed = 0;
+}
+
+// ═══════════════════════════════════════════════════════
+// MAIN LOOP
+// ═══════════════════════════════════════════════════════
+function loop(ts) {
+  if (!filmStarted) return;
+  if (lastTime === null) lastTime = ts;
+  const dt = (ts - lastTime) / 1000;
+  lastTime = ts;
+  bgTime += dt;
+
+  drawBg(bgTime);
+  drawParticles();
+
+  if (!isPaused) {
+    totalElapsed = Math.min(totalElapsed + dt, 60);
+    slideElapsed += dt;
+
+    // Advance slide
+    if (slideElapsed >= SLIDE_DURATION && currentSlide < SLIDE_COUNT - 1) {
+      showSlide(currentSlide + 1);
+    }
+
+    // Update progress bar
+    const progress = (totalElapsed / 60) * 100;
+    document.getElementById('progress-fill').style.width = progress + '%';
+
+    // Update timestamp
+    const s = Math.floor(totalElapsed);
+    document.getElementById('timestamp').textContent =
+      `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')} / 1:00`;
+
+    // End
+    if (totalElapsed >= 60) {
+      isPaused = true;
+      document.getElementById('playPauseBtn').textContent = '▶ Play';
+    }
+  }
+
+  animFrame = requestAnimationFrame(loop);
+}
+
+// ═══════════════════════════════════════════════════════
+// CONTROLS
+// ═══════════════════════════════════════════════════════
+function startFilm() {
+  filmStarted = true;
+  const splash = document.getElementById('splash');
+  splash.classList.add('hiding');
+  setTimeout(() => { splash.style.display = 'none'; }, 1200);
+
+  document.getElementById('hud').classList.add('visible');
+  showSlide(0);
+  isPlaying = true;
+  isPaused = false;
+
+  initAudio();
+  musicOn = true;
+  if (audioCtx) { document.getElementById('musicBtn').classList.add('active'); }
+
+  lastTime = null;
+  animFrame = requestAnimationFrame(loop);
+}
+
+document.getElementById('playPauseBtn').addEventListener('click', () => {
+  if (!filmStarted) return;
+  isPaused = !isPaused;
+  document.getElementById('playPauseBtn').textContent = isPaused ? '▶ Play' : '⏸ Pause';
+  if (!isPaused) lastTime = null;
+});
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+  if (currentSlide > 0) goToSlide(currentSlide - 1);
+});
+
+document.getElementById('nextBtn').addEventListener('click', () => {
+  if (currentSlide < SLIDE_COUNT - 1) goToSlide(currentSlide + 1);
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  totalElapsed = 0; slideElapsed = 0;
+  goToSlide(0);
+  isPaused = false;
+  lastTime = null;
+  document.getElementById('playPauseBtn').textContent = '⏸ Pause';
+  document.getElementById('progress-fill').style.width = '0%';
+  document.getElementById('timestamp').textContent = '0:00 / 1:00';
+});
+
+document.getElementById('musicBtn').addEventListener('click', toggleMusic);
+
+document.addEventListener('keydown', e => {
+  if (!filmStarted) { if (e.code === 'Space') { e.preventDefault(); startFilm(); } return; }
+  if (e.code === 'Space') { e.preventDefault(); document.getElementById('playPauseBtn').click(); }
+  if (e.code === 'ArrowRight') document.getElementById('nextBtn').click();
+  if (e.code === 'ArrowLeft') document.getElementById('prevBtn').click();
+  if (e.code === 'KeyM') toggleMusic();
+  if (e.code === 'KeyR') document.getElementById('resetBtn').click();
+  if (e.code === 'KeyM') toggleMusic();
+});
+
+// BG animation even before film starts (for splash)
+(function bgLoop(ts) {
+  if (!filmStarted) {
+    bgTime += 0.016;
+    drawBg(bgTime);
+    requestAnimationFrame(bgLoop);
+  }
+})();
+</script>
+</body>
+</html>
