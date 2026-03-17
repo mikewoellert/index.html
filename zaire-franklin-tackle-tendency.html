@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zaire Franklin · IDP Film Analysis · Tackle Tendency</title>
+<style>
+:root {
+  --bg:#06080A;--s1:#0E1114;--s2:#141820;--s3:#1C2028;
+  --bdr:#22272F;--bdr2:#2C333D;
+  --gold:#E8B84B;--blue:#5B9BD5;--green:#4CAF7D;--red:#D94F4F;--amber:#D4842A;--teal:#3DBFB8;
+  --white:#F4F4FA;--light:#DDDDE8;--mid:#A8A8C0;--dim:#6E6E88;
+  --mono:'IBM Plex Mono','Courier New',monospace;
+  --sans:'DM Sans','Helvetica Neue',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--white);font-family:var(--sans);min-height:100vh}
+.wrap{max-width:1020px;margin:0 auto;padding:20px 18px}
+
+/* HEADER */
+.hdr{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--bdr)}
+.hdr-left{display:flex;gap:14px;align-items:flex-start}
+.accent-bar{flex-shrink:0;margin-top:4px;width:3px;height:54px;background:linear-gradient(180deg,var(--teal),var(--gold));border-radius:2px}
+.brand{font-family:var(--mono);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:5px}
+.player-name{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1;margin-bottom:9px}
+.tags{display:flex;gap:7px;flex-wrap:wrap}
+.tag{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;border:1px solid;padding:2px 8px;border-radius:2px;white-space:nowrap}
+.hdr-scores{display:flex;gap:3px;flex-shrink:0}
+.score-box{background:var(--s1);border-radius:8px;padding:10px 14px;text-align:center;min-width:76px;border:1px solid}
+.score-role{font-family:var(--mono);font-size:7px;letter-spacing:.1em;color:var(--dim);margin-bottom:3px;text-transform:uppercase}
+.score-num{font-family:var(--mono);font-size:24px;font-weight:700;line-height:1}
+.score-sub{font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:3px}
+
+/* CONCERN BANNER */
+.banner{background:linear-gradient(90deg,rgba(217,79,79,.08),var(--s1),rgba(212,130,42,.06));border:1px solid rgba(217,79,79,.25);border-radius:8px;padding:10px 16px;margin-bottom:16px;display:flex;gap:12px;align-items:center}
+.banner-label{font-family:var(--mono);font-size:9px;color:var(--red);font-weight:700;flex-shrink:0;letter-spacing:.06em}
+.banner-text{font-family:var(--mono);font-size:10px;color:var(--light);line-height:1.7}
+
+/* PILLS */
+.pills{display:flex;gap:7px;margin-bottom:16px;flex-wrap:wrap}
+.pill{flex:1 1 82px;background:var(--s1);border:1px solid var(--bdr);border-radius:7px;padding:9px 11px}
+.pill-lbl{font-family:var(--mono);font-size:8.5px;color:var(--mid);letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px}
+.pill-val{font-family:var(--mono);font-size:19px;font-weight:700;line-height:1;margin-bottom:3px}
+.pill-sub{font-family:var(--mono);font-size:8.5px;color:var(--mid)}
+
+/* TABS */
+.tabs{display:flex;gap:2px;margin-bottom:16px;background:var(--s1);padding:3px;border-radius:8px;border:1px solid var(--bdr)}
+.tab-btn{flex:1;padding:8px 0;border-radius:6px;border:none;cursor:pointer;background:transparent;color:var(--mid);font-family:var(--mono);font-size:9px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;border-bottom:2px solid transparent;transition:all .15s}
+.tab-btn.active{background:var(--s3);color:var(--white);font-weight:700;border-bottom:2px solid var(--teal)}
+.tab{display:none}.tab.active{display:block}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.span2{grid-column:1/-1}
+.card{background:var(--s1);border:1px solid var(--bdr);border-radius:8px;padding:15px 17px}
+.lbl{font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--mid);margin-bottom:11px}
+
+/* STAT BARS */
+.sbar{margin-bottom:13px}
+.sbar-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.sbar-lbl{font-family:var(--mono);font-size:9px;color:var(--light)}
+.sbar-vals{display:flex;gap:10px;align-items:center}
+.sbar-avg{font-family:var(--mono);font-size:8px;color:var(--dim)}
+.sbar-val{font-family:var(--mono);font-size:13px;font-weight:700}
+.sbar-track{position:relative;height:4px;background:var(--s3);border-radius:2px}
+.sbar-fill{position:absolute;top:0;left:0;height:100%;border-radius:2px;width:0%;transition:width .9s cubic-bezier(.16,1,.3,1)}
+.sbar-marker{position:absolute;top:-5px;height:14px;width:1.5px;background:var(--bdr2);transform:translateX(-50%)}
+
+/* FPTS CHART */
+.fpts-wrap{display:flex;gap:8px;align-items:flex-end;height:96px;margin-bottom:8px}
+.fpts-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.fpts-num{font-family:var(--mono);font-size:10px;font-weight:700}
+.fpts-bar{width:100%;border-radius:3px 3px 0 0;height:0;transition:height .7s cubic-bezier(.16,1,.3,1)}
+.fpts-lbl{font-family:var(--mono);font-size:8px;color:var(--mid);text-align:center;line-height:1.3}
+
+/* GAME CARDS */
+.gc{margin-bottom:9px;background:var(--s2);border-radius:7px;padding:10px 12px}
+.gc-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.gc-stats{display:flex;gap:11px;flex-wrap:wrap}
+
+/* CONCERN TAGS */
+.concern{display:inline-block;font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;padding:1px 6px;border-radius:2px;margin-top:5px}
+
+/* PROD GRID */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.prod-cell{background:var(--s2);border-radius:8px;padding:12px 14px;border:1px solid var(--bdr)}
+
+/* GAME BY GAME */
+.game-layout{display:grid;grid-template-columns:115px 1fr;gap:13px}
+.game-nav{display:flex;flex-direction:column;gap:6px}
+.gnb{background:var(--s1);border:1px solid var(--bdr);border-radius:7px;padding:9px 11px;cursor:pointer;transition:all .15s;text-align:left;width:100%;color:var(--white)}
+.gnb.active{background:var(--s3)}
+.gd-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:13px}
+.gd-cell{background:var(--s2);border-radius:6px;padding:9px 6px;border:1px solid var(--bdr2);text-align:center}
+.eff-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.eff-row{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;background:var(--s2);border-radius:6px;border:1px solid var(--bdr)}
+
+/* FINDINGS */
+.finding{display:flex;gap:9px;margin-bottom:8px;align-items:flex-start}
+.finding-icon{font-size:9px;flex-shrink:0;margin-top:3px}
+.finding-text{font-size:11px;color:var(--light);line-height:1.65}
+
+/* BOXPCT CHART */
+.boxpct-wrap{display:flex;gap:10px;align-items:flex-end;height:88px;margin-bottom:10px}
+.boxpct-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+
+/* FOOTER */
+.footer{margin-top:18px;padding-top:10px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between}
+.footer span{font-family:var(--mono);font-size:7px;color:var(--dim)}
+
+@media(max-width:660px){
+  .g2{grid-template-columns:1fr}.span2{grid-column:1}
+  .hdr{flex-direction:column}.hdr-scores{flex-wrap:wrap}
+  .game-layout{grid-template-columns:1fr}
+  .game-nav{flex-direction:row;overflow-x:auto}
+  .gnb{min-width:80px}
+  .prod-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body><div class="wrap">
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="accent-bar"></div>
+    <div>
+      <div class="brand">Tackle Tendency · IDP Film Analysis</div>
+      <div class="player-name">Zaire Franklin</div>
+      <div class="tags">
+        <span class="tag" style="color:var(--mid);border-color:rgba(168,168,192,.3)">Indianapolis Colts</span>
+        <span class="tag" style="color:var(--teal);border-color:rgba(61,191,184,.3)">MLB / ILB</span>
+        <span class="tag" style="color:var(--gold);border-color:rgba(232,184,75,.3)">3 Games Charted</span>
+        <span class="tag" style="color:var(--amber);border-color:rgba(212,130,42,.3)">2025 Season</span>
+      </div>
+    </div>
+  </div>
+  <div class="hdr-scores">
+    <div class="score-box" style="border-color:rgba(61,191,184,.2)">
+      <div class="score-role">Avg Snaps</div>
+      <div class="score-num" style="color:var(--teal)">60.3</div>
+      <div class="score-sub">per game</div>
+    </div>
+    <div class="score-box" style="border-color:rgba(232,184,75,.2)">
+      <div class="score-role">Box %</div>
+      <div class="score-num" style="color:var(--gold)">86%</div>
+      <div class="score-sub">avg 3 games</div>
+    </div>
+    <div class="score-box" style="border-color:rgba(217,79,79,.2)">
+      <div class="score-role">Miss Rate</div>
+      <div class="score-num" style="color:var(--red)">21%</div>
+      <div class="score-sub">pos avg 18%</div>
+    </div>
+    <div class="score-box" style="border-color:rgba(61,191,184,.15)">
+      <div class="score-role">Fpts/Gm</div>
+      <div class="score-num" style="color:var(--teal)">7.5</div>
+      <div class="score-sub">pos avg 8.2</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONCERN BANNER -->
+<div class="banner">
+  <div class="banner-label">◆ 3-GAME SIGNAL</div>
+  <div class="banner-text">High snap volume and elite box rate confirm the every-down role. The concern is execution — <span style="color:var(--red)">42% tackle completion and 21% miss rate</span> both trail the position average, and <span style="color:var(--amber)">80% catch rate allowed in Wk3 is a liability flag</span>. The floor is real; the ceiling requires cleaning up the missed tackle problem.</div>
+</div>
+
+<!-- PILLS -->
+<div class="pills" id="pills-row"></div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+  <button class="tab-btn" onclick="switchTab('idp')">IDP Outlook</button>
+  <button class="tab-btn" onclick="switchTab('efficiency')">Efficiency</button>
+  <button class="tab-btn" onclick="switchTab('coverage')">Coverage</button>
+  <button class="tab-btn" onclick="switchTab('profile')">Player Profile</button>
+  <button class="tab-btn" onclick="switchTab('game')">By Game</button>
+</div>
+
+<!-- OVERVIEW -->
+<div class="tab active" id="tab-overview">
+  <div class="g2">
+    <div class="card">
+      <div class="lbl">Fantasy Points · 3 Games</div>
+      <div class="fpts-wrap" id="fpts-chart"></div>
+      <div style="display:flex;justify-content:center;gap:14px;margin-top:4px">
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:12px;height:3px;background:var(--teal);border-radius:2px"></div><span style="font-family:var(--mono);font-size:8px;color:var(--dim)">game</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:12px;height:0;border-top:1.5px dashed var(--dim)"></div><span style="font-family:var(--mono);font-size:8px;color:var(--dim)">pos avg 8.2</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="lbl">Box Alignment % · 3 Games</div>
+      <div class="boxpct-wrap" id="boxpct-chart"></div>
+      <div style="padding:9px 12px;background:rgba(61,191,184,.06);border:1px solid rgba(61,191,184,.2);border-radius:6px;font-family:var(--mono);font-size:9.5px;color:var(--light);line-height:1.6">
+        <span style="color:var(--teal);font-weight:700">86% avg box rate</span> is well above the 61% position average. He's in the box on virtually every run snap — the role alignment is exactly right for IDP production.
+      </div>
+    </div>
+    <div class="card span2">
+      <div class="lbl">Film Findings · 3 Games</div>
+      <div id="findings-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- IDP OUTLOOK -->
+<div class="tab" id="tab-idp">
+  <div class="g2">
+    <!-- Radar card -->
+    <div class="card">
+      <div class="lbl">Skill Profile · 3-Game Radar</div>
+      <div style="display:flex;align-items:flex-start;gap:14px">
+        <svg id="radar-svg" width="248" height="256" style="flex-shrink:0;overflow:visible"></svg>
+        <div style="flex:1;display:flex;flex-direction:column;gap:5px;padding-top:4px" id="radar-table"></div>
+      </div>
+    </div>
+    <!-- Tier cards -->
+    <div style="display:flex;flex-direction:column;gap:10px" id="tier-cards"></div>
+    <!-- Scheme fit + draft strategy full width -->
+    <div class="card span2">
+      <div class="lbl">Scheme Fit Matrix</div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:14px" id="scheme-grid"></div>
+      <div style="background:var(--s2);border-radius:8px;padding:12px 14px;border:1px solid rgba(61,191,184,.2)">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--teal);font-weight:700;margin-bottom:8px">◆ DRAFT STRATEGY · 3-GAME SAMPLE</div>
+        <div style="font-size:11px;color:var(--light);line-height:1.75">Franklin has the role and the deployment — <span style="color:var(--teal)">86% box rate and 60+ snaps per game</span> put him in elite territory for opportunity. The miss rate (21%) and tackle completion (42%) are the only things standing between him and LB1 output right now. At 3 games the sample is small: <span style="color:var(--amber)">do not buy at LB1 price</span> until the tackle efficiency stabilizes. If Wk5 (50% comp, 14% miss, 11.0 fpts) becomes his baseline rather than Wk3/Wk6, the ceiling is legitimate. Monitor the miss rate closely — if it stays above 20% through 6 games, it's a structural problem, not variance.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EFFICIENCY -->
+<div class="tab" id="tab-efficiency">
+  <div class="g2">
+    <div class="card">
+      <div class="lbl">Tackle Efficiency · 3-Game Avg</div>
+      <div id="tackle-bars"></div>
+    </div>
+    <div class="card">
+      <div class="lbl">Pass Rush · 3-Game Avg</div>
+      <div id="rush-bars"></div>
+    </div>
+    <div class="card span2">
+      <div class="lbl">Game-by-Game Production</div>
+      <div class="prod-grid" id="prod-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- COVERAGE -->
+<div class="tab" id="tab-coverage">
+  <div class="g2">
+    <div class="card">
+      <div class="lbl">Coverage Efficiency · 3-Game Avg</div>
+      <div id="cov-bars"></div>
+    </div>
+    <div class="card">
+      <div class="lbl">Coverage Breakdown · Per Game</div>
+      <div id="cov-breakdown"></div>
+    </div>
+    <div class="card span2">
+      <div class="lbl">Coverage Assessment</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px" id="cov-assess"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PLAYER PROFILE -->
+<div class="tab" id="tab-profile">
+  <div class="g2">
+
+    <!-- 3-year season summary header cards -->
+    <div class="card span2">
+      <div class="lbl">Season-by-Season Overview · 2023 – 2025</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px" id="season-header-cards"></div>
+      <div style="padding:10px 14px;background:rgba(61,191,184,.06);border:1px solid rgba(61,191,184,.2);border-radius:7px;font-family:var(--mono);font-size:10px;color:var(--light);line-height:1.7" id="profile-thesis"></div>
+    </div>
+
+    <!-- Fpts trend chart -->
+    <div class="card">
+      <div class="lbl">Fpts/Game Trend · Wk-by-Wk 2023–2025</div>
+      <div id="trend-chart" style="position:relative;height:140px;margin-bottom:8px"></div>
+      <div style="display:flex;gap:14px;justify-content:center">
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:3px;background:var(--dim);border-radius:2px"></div><span style="font-family:var(--mono);font-size:8px;color:var(--dim)">2023</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:3px;background:var(--gold);border-radius:2px"></div><span style="font-family:var(--mono);font-size:8px;color:var(--dim)">2024</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:3px;background:var(--teal);border-radius:2px"></div><span style="font-family:var(--mono);font-size:8px;color:var(--dim)">2025 (3 gm)</span></div>
+      </div>
+    </div>
+
+    <!-- Snap & box% bars -->
+    <div class="card">
+      <div class="lbl">Key Metrics · Year-over-Year</div>
+      <div id="yoy-bars"></div>
+    </div>
+
+    <!-- PFF grades table -->
+    <div class="card">
+      <div class="lbl">PFF Grades · 2023 vs 2024</div>
+      <div id="pff-grades"></div>
+    </div>
+
+    <!-- Season stat comparison table -->
+    <div class="card">
+      <div class="lbl">Season Stat Log · 2023 – 2025</div>
+      <div id="season-stat-table"></div>
+    </div>
+
+    <!-- GB Outlook full-width -->
+    <div class="card span2">
+      <div class="lbl">IDP Outlook · Green Bay Packers 2026</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px" id="gb-outlook-cards"></div>
+      <div style="padding:12px 16px;background:rgba(217,79,79,.06);border:1px solid rgba(217,79,79,.2);border-radius:7px;font-size:11px;color:var(--light);line-height:1.75" id="gb-verdict"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BY GAME -->
+<div class="tab" id="tab-game">
+  <div class="game-layout">
+    <div class="game-nav" id="game-nav"></div>
+    <div class="card" id="game-detail"></div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>TACKLE TENDENCY · ZAIRE FRANKLIN · WK 3, 5, 6 · 2025 · INDIANAPOLIS COLTS</span>
+  <span>3 GAMES CHARTED · FILM-BASED ANALYSIS</span>
+</div>
+</div>
+
+<script>
+const GAMES = [
+  {wk:3, opp:"TEN", full:"Titans",   snaps:64, box_pct:91, run_snaps:20, pass_snaps:44,
+   opps:19, solo:5, ast:2, tfl:0, sack:0, miss:4, ff:0, comp_pct:37, miss_pct:21,
+   cov_snaps:38, tgts:5, catches:4, yds:43, pbu:0, ints:0, tgt_rate:13, catch_rate:80, yps:1.13,
+   rush_snaps:6, pressures:2, hurries:2, press_rate:33, noeff:5, fpts:6.0},
+  {wk:5, opp:"LV",  full:"Raiders",  snaps:52, box_pct:87, run_snaps:19, pass_snaps:33,
+   opps:14, solo:3, ast:4, tfl:1, sack:1, miss:2, ff:0, comp_pct:50, miss_pct:14,
+   cov_snaps:28, tgts:6, catches:3, yds:6,  pbu:0, ints:0, tgt_rate:21, catch_rate:50, yps:0.21,
+   rush_snaps:6, pressures:2, hurries:0, press_rate:33, noeff:4, fpts:11.0},
+  {wk:6, opp:"ARI", full:"Cardinals",snaps:65, box_pct:80, run_snaps:23, pass_snaps:42,
+   opps:18, solo:4, ast:3, tfl:0, sack:0, miss:5, ff:0, comp_pct:39, miss_pct:28,
+   cov_snaps:49, tgts:10, catches:4, yds:32, pbu:0, ints:0, tgt_rate:20, catch_rate:40, yps:0.65,
+   rush_snaps:4, pressures:1, hurries:0, press_rate:25, noeff:3, fpts:5.5},
+];
+const POS = {tklPg:6.8, fpts:8.2, boxPct:61, comp:71, missRate:18, soloRatio:1.4,
+             tgtRate:16, catchRate:58, yps:0.42, pressRate:22};
+const C = {teal:"#3DBFB8",gold:"#E8B84B",green:"#4CAF7D",red:"#D94F4F",amber:"#D4842A",
+           white:"#F4F4FA",light:"#DDDDE8",mid:"#A8A8C0",dim:"#6E6E88",
+           bg:"#06080A",s1:"#0E1114",s2:"#141820",s3:"#1C2028",bdr:"#22272F",bdr2:"#2C333D"};
+
+let activeGame = 0;
+
+function switchTab(id) {
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const ids=['overview','idp','efficiency','coverage','profile','game'];
+  document.querySelectorAll('.tab-btn')[ids.indexOf(id)].classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='idp') setTimeout(animateRadar,80);
+  if(id==='profile') setTimeout(animateTrend,80);
+  setTimeout(animateBars,60);
+}
+
+// ── PLAYER PROFILE DATA ───────────────────────────────────────────────────────
+const SEASONS = [
+  {yr:"2023", gp:16, solo:107, ast:72, tfl:3,  sack:1.5, ff:2, miss:25,
+   snaps:1090, box:993, cov:576, rush:43, pres:7, tgts:91, rec:72, yds:745,
+   grade_def:60.9, grade_run:66.1, grade_cov:56.4, grade_tkl:51.9,
+   miss_rate:12.3, catch_rate:79.1,
+   fpts_pg:9.9, snaps_pg:68.1, tkl_pg:11.2, box_pct:91,
+   note:"Every-down starter in first full feature role. Elite snap volume, high tackle volume, coverage liability (79% catch rate).",
+   col:C.dim},
+  {yr:"2024", gp:17, solo:93,  ast:80, tfl:11, sack:3.5, ff:5, miss:22,
+   snaps:1157, box:1029, cov:596, rush:52, pres:15, tgts:76, rec:66, yds:668,
+   grade_def:61.0, grade_run:72.3, grade_cov:48.7, grade_tkl:63.2,
+   miss_rate:11.6, catch_rate:86.8,
+   fpts_pg:10.5, snaps_pg:68.1, tkl_pg:10.2, box_pct:89,
+   note:"Career-best season. Big-play explosion (11 TFL, 3.5 SK, 5 FF). Tackle grade improved +11 pts. Coverage grade declined to 48.7.",
+   col:C.gold},
+  {yr:"2025", gp:3,  solo:12,  ast:9,  tfl:1,  sack:1,   ff:0, miss:11,
+   snaps:181,  box:156, cov:115, rush:16, pres:5,  tgts:21, rec:8,  yds:81,
+   grade_def:null, grade_run:null, grade_cov:null, grade_tkl:null,
+   miss_rate:21, catch_rate:57,
+   fpts_pg:7.5, snaps_pg:60.3, tkl_pg:7.0, box_pct:86,
+   note:"3 games charted. Miss rate spike (21%) vs prior seasons (~12%). Slight snap volume dip. TFL/SK rate similar to 2023 pace.",
+   col:C.teal},
+];
+
+const W23 = [
+  {wk:1,fpts:25.75},{wk:2,fpts:16.75},{wk:3,fpts:27.15},{wk:4,fpts:17.35},
+  {wk:5,fpts:16.50},{wk:6,fpts:9.00}, {wk:7,fpts:14.75},{wk:8,fpts:17.50},
+  {wk:10,fpts:21.25},{wk:12,fpts:6.75},{wk:13,fpts:5.00},{wk:14,fpts:16.50},
+  {wk:15,fpts:8.75},{wk:16,fpts:16.75},{wk:17,fpts:15.00},{wk:18,fpts:8.25},
+];
+const W24 = [
+  {wk:1,fpts:10.00},{wk:2,fpts:14.00},{wk:3,fpts:13.00},{wk:4,fpts:9.75},
+  {wk:5,fpts:12.50},{wk:6,fpts:13.75},{wk:7,fpts:18.50},{wk:8,fpts:14.75},
+  {wk:9,fpts:20.25},{wk:10,fpts:12.75},{wk:11,fpts:5.25},{wk:12,fpts:23.85},
+  {wk:13,fpts:34.80},{wk:15,fpts:26.15},{wk:16,fpts:6.75},{wk:17,fpts:30.00},{wk:18,fpts:27.10},
+];
+const W25 = [
+  {wk:3,fpts:6.0},{wk:5,fpts:11.0},{wk:6,fpts:5.5},
+];
+
+// SEASON HEADER CARDS
+document.getElementById('season-header-cards').innerHTML = SEASONS.map(s=>`
+  <div style="background:var(--s2);border-radius:9px;padding:14px 16px;border:1px solid ${s.col}30">
+    <div style="font-family:var(--mono);font-size:9px;color:${s.col};font-weight:700;letter-spacing:.1em;margin-bottom:10px">
+      ${s.yr} SEASON${s.yr==="2025"?" · 3 GM CHARTED":""}
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+      ${[["Fpts/Gm",s.fpts_pg,s.col],["Snaps/Gm",s.snaps_pg,C.mid],
+         ["Tkl/Gm",s.tkl_pg,C.mid],["Box %",s.box_pct+"%",s.col],
+         ["TFL",s.tfl,s.tfl>=8?C.green:C.mid],["Miss%",s.miss_rate+"%",s.miss_rate<=14?C.green:C.red],
+        ].map(([l,v,c])=>`
+      <div style="background:var(--s3);border-radius:6px;padding:7px 8px">
+        <div style="font-family:var(--mono);font-size:15px;font-weight:700;color:${c};line-height:1">${v}</div>
+        <div style="font-family:var(--mono);font-size:7px;color:var(--dim);text-transform:uppercase;margin-top:2px">${l}</div>
+      </div>`).join('')}
+    </div>
+    <div style="font-size:10px;color:var(--mid);line-height:1.6;border-top:1px solid var(--bdr);padding-top:9px">${s.note}</div>
+  </div>`).join('');
+
+// PROFILE THESIS
+document.getElementById('profile-thesis').innerHTML =
+  `<span style="color:var(--teal);font-weight:700">MULTI-YEAR SIGNAL:</span>  Franklin's 2024 season was the clearest view of his ceiling — 11 TFLs, 3.5 sacks, 5 forced fumbles in 17 games is legitimate LB1 production. The 2023–2024 miss rate (~12%) is one of the better marks in the league at the position. The 2025 spike to 21% across 3 charted games is the primary concern and needs to be watched. <span style="color:var(--amber)">Coverage has been a consistent liability for three consecutive seasons</span> — catch rate allowed has ranged from 79–87%, well above the 58% position average every year.`;
+
+// YOY BARS
+function yoyBar(label, vals, max, invert=false, fmt='dec') {
+  const f=v=>fmt==='pct'?v+'%':fmt==='dec'?v.toFixed?v.toFixed(1):v:v;
+  const cols=[C.dim, C.gold, C.teal];
+  const yrs=['2023','2024','2025'];
+  return `<div class="sbar" style="margin-bottom:16px">
+    <div class="sbar-hdr"><span class="sbar-lbl">${label}</span>
+      <div style="display:flex;gap:10px">${vals.map((v,i)=>v!==null?`<span style="font-family:var(--mono);font-size:10px;font-weight:700;color:${cols[i]}">${f(v)}</span>`:'').join('')}</div>
+    </div>
+    <div style="display:flex;gap:4px;height:6px;border-radius:3px;overflow:hidden;background:var(--s3)">
+      ${vals.map((v,i)=>v!==null?`<div style="height:100%;background:${cols[i]};border-radius:2px;width:${Math.min((v/max)*100,100)}%;opacity:0.85"></div>`:'').join('')}
+    </div>
+    <div style="display:flex;gap:12px;margin-top:4px">
+      ${yrs.map((yr,i)=>vals[i]!==null?`<span style="font-family:var(--mono);font-size:7px;color:${cols[i]}">${yr}</span>`:'').join('')}
+    </div>
+  </div>`;
+}
+document.getElementById('yoy-bars').innerHTML =
+  yoyBar("Fpts / Game",[9.9,10.5,7.5],35,'','')+
+  yoyBar("Snaps / Game",[68.1,68.1,60.3],90,'','')+
+  yoyBar("Box %",[91,89,86],100,'','pct')+
+  yoyBar("Missed Tackle Rate",[12.3,11.6,21],30,'','dec')+
+  yoyBar("TFL (season)",[3,11,1],15,'','')+
+  yoyBar("Cover Catch Rate Allow",[79.1,86.8,57],100,'','dec');
+
+// PFF GRADES
+document.getElementById('pff-grades').innerHTML = `
+  <div style="display:grid;grid-template-columns:1fr 70px 70px;gap:4px;margin-bottom:6px;padding:0 8px">
+    <span style="font-family:var(--mono);font-size:8px;color:var(--dim)">Grade</span>
+    <span style="font-family:var(--mono);font-size:8px;color:var(--dim);text-align:center">2023</span>
+    <span style="font-family:var(--mono);font-size:8px;color:var(--gold);text-align:center">2024</span>
+  </div>` +
+  [["Overall Defense",60.9,61.0],[" Run Defense",66.1,72.3],[" Coverage",56.4,48.7],[" Tackling",51.9,63.2]].map(([label,v23,v24])=>{
+    const better=v24>v23;
+    const gradeColor=g=>g>=70?C.green:g>=60?C.amber:C.red;
+    return `<div style="display:grid;grid-template-columns:1fr 70px 70px;gap:4px;align-items:center;padding:7px 8px;background:var(--s2);border-radius:6px;border:1px solid var(--bdr);margin-bottom:5px">
+      <div style="font-family:var(--mono);font-size:9px;color:var(--light)">${label}</div>
+      <div style="text-align:center;font-family:var(--mono);font-size:14px;font-weight:700;color:${gradeColor(v23)}">${v23}</div>
+      <div style="text-align:center">
+        <span style="font-family:var(--mono);font-size:14px;font-weight:700;color:${gradeColor(v24)}">${v24}</span>
+        <span style="font-family:var(--mono);font-size:9px;color:${better?C.green:C.red};margin-left:3px">${better?'▲':'▼'}</span>
+      </div>
+    </div>`;
+  }).join('');
+
+// SEASON STAT TABLE
+const statRows = [
+  ["Season","GP","Solo","Ast","Tkl","TFL","SK","FF","Miss","Fpts/Gm","Snaps/Gm","Box%"],
+  ...SEASONS.map(s=>[s.yr,s.gp,
+    s.yr==="2025"?s.solo:s.solo,
+    s.yr==="2025"?s.ast:s.ast,
+    s.solo+s.ast,s.tfl,s.sack,s.ff,s.miss,s.fpts_pg,s.snaps_pg,s.box_pct+"%"])
+];
+document.getElementById('season-stat-table').innerHTML = `
+  <div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:9px">
+      ${statRows.map((row,i)=>`<tr style="background:${i===0?"var(--s3)":i%2===0?"var(--s2)":"var(--s1)"}">${row.map((cell,j)=>`<td style="padding:7px 8px;color:${i===0?"var(--dim)":j===0?SEASONS[i-1]?.col||"var(--white)":"var(--light)"};font-weight:${i===0||j===0?700:400};text-align:${j===0?"left":"center"};border-bottom:1px solid var(--bdr);white-space:nowrap">${cell}</td>`).join('')}</tr>`).join('')}
+    </table>
+  </div>`;
+
+// GB OUTLOOK CARDS
+const gbOutlook = [
+  {title:"Snap Projection", icon:"📉", val:"20–35/gm", sub:"vs 68/gm in IND", col:C.red,
+   detail:"Cooper is untouchable, McDuffie expected at MIKE. Franklin enters as 4th LB at best — rotational snaps only in base personnel."},
+  {title:"Role Fit", icon:"⚠️", val:"Run Plugger", sub:"coverage liability confirmed", col:C.amber,
+   detail:"Green Bay wants his run-fit skills next to Cooper. His 3-yr coverage catch rate (79–87%) will limit his usage in passing situations immediately."},
+  {title:"Upside Path", icon:"🔑", val:"Injury Handcuff", sub:"Cooper or McDuffie", col:C.teal,
+   detail:"If either starter misses games, Franklin is the direct next-man-up. His IDP value is almost entirely contingent on that scenario."},
+];
+document.getElementById('gb-outlook-cards').innerHTML = gbOutlook.map(o=>`
+  <div style="background:var(--s2);border-radius:9px;padding:14px 16px;border:1px solid ${o.col}25">
+    <div style="font-size:20px;margin-bottom:6px">${o.icon}</div>
+    <div style="font-family:var(--mono);font-size:8px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">${o.title}</div>
+    <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:${o.col};margin-bottom:2px">${o.val}</div>
+    <div style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-bottom:10px">${o.sub}</div>
+    <div style="font-size:10.5px;color:var(--light);line-height:1.65;border-top:1px solid var(--bdr);padding-top:9px">${o.detail}</div>
+  </div>`).join('');
+
+document.getElementById('gb-verdict').innerHTML =
+  `<strong style="color:var(--red)">IDP VERDICT — GREEN BAY 2026:</strong>  Franklin is a massive IDP downgrade from his Colts role. His entire production profile — 68 snaps/gm, 91% box rate, 10–11 tkl/gm — was built as an every-down starter. In Green Bay behind Cooper (locked), McDuffie (expected MIKE), and Hopper (third LB), he enters as the fourth linebacker. His 2024 ceiling (10.5 fpts/gm, 11 TFLs) is irrelevant at rotational snap counts.<br><br>
+  <strong style="color:var(--amber)">Do not pay for Indianapolis production in a Green Bay context.</strong> His ADP will reflect his Colts role; the reality is 20–35 snaps per game in a crowded room. The only path back to LB2 value requires a significant injury to Cooper or McDuffie — and even then, his confirmed coverage liability limits full deployment. <span style="color:var(--teal)">Roster as a handcuff to either of those players, not as a standalone asset.</span>`;
+
+// TREND CHART (SVG sparkline)
+function animateTrend() {
+  const el = document.getElementById('trend-chart');
+  const W = el.offsetWidth || 460, H = 140;
+  const allFpts = [...W23.map(g=>g.fpts), ...W24.map(g=>g.fpts), ...W25.map(g=>g.fpts)];
+  const maxF = Math.max(...allFpts) + 2, minF = 0;
+  const range = maxF - minF;
+
+  const toY = f => H - 20 - ((f - minF) / range) * (H - 30);
+  const posAvgY = toY(8.2);
+
+  const makePath = (weeks, col, label) => {
+    if (!weeks.length) return '';
+    const pts = weeks.map((g, i) => `${(i / (weeks.length - 1||1)) * W},${toY(g.fpts)}`);
+    return `<polyline points="${pts.join(' ')}" fill="none" stroke="${col}" stroke-width="2" opacity=".85" stroke-linejoin="round"/>
+            ${weeks.map((g,i)=>`<circle cx="${(i/(weeks.length-1||1))*W}" cy="${toY(g.fpts)}" r="3.5" fill="${col}" stroke="var(--bg)" stroke-width="1.5"/>`).join('')}`;
+  };
+
+  // Lay out each season across its own x-space
+  const n23=W23.length, n24=W24.length, n25=W25.length;
+  const total=n23+n24+n25;
+  const xPos=(series,i)=>((series_offset(series)+i)/(total-1))*W;
+  function series_offset(s){return s==='23'?0:s==='24'?n23:n23+n24;}
+  const path23=W23.map((g,i)=>`${xPos('23',i)},${toY(g.fpts)}`).join(' ');
+  const path24=W24.map((g,i)=>`${xPos('24',i)},${toY(g.fpts)}`).join(' ');
+  const path25=W25.map((g,i)=>`${xPos('25',i)},${toY(g.fpts)}`).join(' ');
+
+  // Grid lines
+  let gridSvg='';
+  [0,5,10,15,20,25,30].forEach(v=>{
+    const y=toY(v);
+    if(y>=0&&y<=H){
+      gridSvg+=`<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="var(--bdr)" stroke-width="${v===0?.8:.4}" opacity=".6"/>`;
+      gridSvg+=`<text x="2" y="${y-2}" font-size="7" fill="var(--dim)" font-family="monospace">${v}</text>`;
+    }
+  });
+  // Pos avg dashed
+  gridSvg+=`<line x1="0" y1="${posAvgY}" x2="${W}" y2="${posAvgY}" stroke="var(--mid)" stroke-width="1" stroke-dasharray="4 3" opacity=".5"/>`;
+  gridSvg+=`<text x="${W-2}" y="${posAvgY-3}" font-size="7" fill="var(--mid)" text-anchor="end" font-family="monospace">pos avg 8.2</text>`;
+
+  // Season dividers
+  const x23end=xPos('24',0);
+  const x24end=xPos('25',0);
+  gridSvg+=`<line x1="${x23end}" y1="0" x2="${x23end}" y2="${H}" stroke="var(--bdr2)" stroke-width="1" opacity=".6" stroke-dasharray="2 3"/>`;
+  gridSvg+=`<line x1="${x24end}" y1="0" x2="${x24end}" y2="${H}" stroke="var(--bdr2)" stroke-width="1" opacity=".6" stroke-dasharray="2 3"/>`;
+  gridSvg+=`<text x="${x23end/2}" y="${H-3}" text-anchor="middle" font-size="8" fill="var(--dim)" font-family="monospace">2023</text>`;
+  gridSvg+=`<text x="${(x23end+x24end)/2}" y="${H-3}" text-anchor="middle" font-size="8" fill="var(--gold)" font-family="monospace">2024</text>`;
+  gridSvg+=`<text x="${(x24end+W)/2}" y="${H-3}" text-anchor="middle" font-size="8" fill="var(--teal)" font-family="monospace">2025</text>`;
+
+  const dots23=W23.map((g,i)=>`<circle cx="${xPos('23',i)}" cy="${toY(g.fpts)}" r="3" fill="var(--dim)" stroke="var(--bg)" stroke-width="1"/>`).join('');
+  const dots24=W24.map((g,i)=>`<circle cx="${xPos('24',i)}" cy="${toY(g.fpts)}" r="3" fill="var(--gold)" stroke="var(--bg)" stroke-width="1"/>`).join('');
+  const dots25=W25.map((g,i)=>`<circle cx="${xPos('25',i)}" cy="${toY(g.fpts)}" r="3.5" fill="var(--teal)" stroke="var(--bg)" stroke-width="1.5"/>`).join('');
+
+  el.innerHTML=`<svg width="${W}" height="${H}" style="overflow:visible">
+    ${gridSvg}
+    <polyline points="${path23}" fill="none" stroke="var(--dim)" stroke-width="1.8" opacity=".7" stroke-linejoin="round"/>
+    <polyline points="${path24}" fill="none" stroke="var(--gold)" stroke-width="2" opacity=".9" stroke-linejoin="round"/>
+    <polyline points="${path25}" fill="none" stroke="var(--teal)" stroke-width="2.2" opacity="1" stroke-linejoin="round"/>
+    ${dots23}${dots24}${dots25}
+  </svg>`;
+}
+
+// 6 axes scored 0–10 for Franklin (3-game) vs position average
+// Scoring rationale based on charted data
+const AXES = [
+  {label:"Run Fit",    sub:"box%, run opps, TFL",   franklin:8.0, pos:5.5},
+  // 86% box avg is elite; 17 opps/gm is high; 0.3 TFL/gm is below avg → 8.0
+  {label:"Big Play",   sub:"TFL + SK per game",     franklin:2.5, pos:4.0},
+  // 1 TFL, 1 SK across 3 games = 0.67/gm vs pos avg ~0.8/gm → below avg
+  {label:"Tkl Clean",  sub:"comp%, miss rate",      franklin:3.0, pos:6.0},
+  // 42% comp vs 71% pos avg; 21% miss vs 18% pos avg → clear concern
+  {label:"Coverage",   sub:"tgt rate, catch allow", franklin:5.5, pos:5.5},
+  // 57% catch allow ≈ pos avg 58%; tgt rate 18% slightly above 16% → average
+  {label:"Pass Rush",  sub:"pressure%, sack rate",  franklin:5.5, pos:5.0},
+  // 30% pressure rate is above pos avg 22%; only 16 rush snaps total → moderate
+  {label:"Snap Vol",   sub:"snaps/gm, role depth",  franklin:9.0, pos:7.0},
+  // 60.3 snaps/gm is starter-level; full-time every-down → elite
+];
+const N=6, CX=124, CY=128, R=88;
+const radarAng = i => (Math.PI*2*i/N) - Math.PI/2;
+const rPt = (s,i) => { const a=radarAng(i),r=(s/10)*R; return{x:CX+r*Math.cos(a),y:CY+r*Math.sin(a)}; };
+const poly = sc => sc.map((s,i)=>{const p=rPt(s,i);return p.x+','+p.y;}).join(' ');
+const LOFF = [32,28,32,32,28,32];
+const lPt  = i => { const a=radarAng(i),r=R+LOFF[i]; return{x:CX+r*Math.cos(a),y:CY+r*Math.sin(a)}; };
+const tAnchor = i => { const x=Math.cos(radarAng(i)); return x>.25?'start':x<-.25?'end':'middle'; };
+
+let svgS = '';
+[2,4,6,8,10].forEach(r=>{
+  const pts=Array.from({length:N},(_,i)=>{const p=rPt(r,i);return p.x+','+p.y;}).join(' ');
+  svgS+=`<polygon points="${pts}" fill="none" stroke="${C.bdr}" stroke-width="${r===10?.9:.5}" opacity=".8"/>`;
+});
+AXES.forEach((_,i)=>{const p=rPt(10,i);svgS+=`<line x1="${CX}" y1="${CY}" x2="${p.x}" y2="${p.y}" stroke="${C.bdr2}" stroke-width=".8" opacity=".6"/>`;});
+// Pos avg polygon
+svgS+=`<polygon points="${poly(AXES.map(a=>a.pos))}" fill="${C.mid}0A" stroke="${C.dim}" stroke-width="1" stroke-dasharray="3 2" opacity=".7"/>`;
+// Franklin polygon — animate in
+svgS+=`<polygon id="poly-franklin" points="${poly(AXES.map(a=>a.franklin))}" fill="${C.teal}1C" stroke="${C.teal}" stroke-width="2.2" opacity="0" style="transition:opacity .6s ease .2s"/>`;
+// Dots
+AXES.forEach((a,i)=>{
+  const p=rPt(a.franklin,i);
+  svgS+=`<circle class="rdot" cx="${p.x}" cy="${p.y}" r="4.5" fill="${C.teal}" stroke="${C.bg}" stroke-width="1.5" opacity="0"/>`;
+});
+// Ring labels
+[2,4,8].forEach(r=>{const p=rPt(r,0);svgS+=`<text x="${p.x+3}" y="${p.y+3}" font-size="7" fill="${C.dim}" font-family="monospace">${r}</text>`;});
+// Axis labels — skip right-side ones (1=Big Play, 2=Tkl Clean) — shown in table
+AXES.forEach((a,i)=>{
+  if(i===1||i===2) return;
+  const lp=lPt(i),ta=tAnchor(i),ang=radarAng(i),isTop=Math.sin(ang)<-.4;
+  const y1=isTop?lp.y-9:lp.y+1, y2=isTop?lp.y+4:lp.y+13;
+  svgS+=`<text x="${lp.x}" y="${y1}" text-anchor="${ta}" font-size="10" font-weight="700" fill="${C.light}" font-family="monospace">${a.label}</text>`;
+  svgS+=`<text x="${lp.x}" y="${y2}" text-anchor="${ta}" font-size="7.5" fill="${C.dim}" font-family="monospace">${a.sub}</text>`;
+});
+document.getElementById('radar-svg').innerHTML = svgS;
+
+// Radar score table
+document.getElementById('radar-table').innerHTML =
+  `<div style="display:grid;grid-template-columns:1fr 36px 36px;gap:3px;margin-bottom:4px;padding:0 4px">
+    <span style="font-family:var(--mono);font-size:7px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em">Axis</span>
+    <span style="font-family:var(--mono);font-size:7px;color:var(--teal);text-align:center">ZF</span>
+    <span style="font-family:var(--mono);font-size:7px;color:var(--dim);text-align:center">POS</span>
+  </div>` +
+  AXES.map(a=>{
+    const diff=a.franklin-a.pos;
+    const dc=diff>1?C.teal:diff<-1?C.red:C.mid;
+    return `<div style="display:grid;grid-template-columns:1fr 36px 36px;gap:3px;align-items:center;padding:4px 7px;background:var(--s2);border-radius:5px;border:1px solid var(--bdr)">
+      <div><div style="font-family:var(--mono);font-size:8.5px;font-weight:700;color:var(--light)">${a.label}</div>
+           <div style="font-family:var(--mono);font-size:6px;color:var(--dim);margin-top:1px">${a.sub}</div></div>
+      <div style="text-align:center;font-family:var(--mono);font-size:14px;font-weight:700;color:${dc}">${a.franklin}</div>
+      <div style="text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim)">${a.pos}</div>
+    </div>`;
+  }).join('') +
+  `<div style="display:flex;gap:12px;margin-top:5px;flex-wrap:wrap;padding:0 2px">
+    <div style="display:flex;align-items:center;gap:4px"><div style="width:12px;height:3px;background:var(--teal);border-radius:2px"></div><span style="font-family:var(--mono);font-size:7px;color:var(--dim)">Franklin</span></div>
+    <div style="display:flex;align-items:center;gap:4px"><div style="width:12px;height:0;border-top:1.5px dashed #6E6E88"></div><span style="font-family:var(--mono);font-size:7px;color:var(--dim)">pos avg</span></div>
+  </div>`;
+
+// IDP TIERS
+const TIERS = [
+  {rank:1, label:"Every-Down ILB · Run-First Team", color:C.green, tag:"LB1 Ceiling",
+   box:"85–90%", tklPg:"9–11/gm", fpts:"11–14/gm",
+   why:"If tackle efficiency (comp%, miss rate) stabilizes to position average, the snap volume and box rate project to elite LB1 output. Wk5 is the blueprint."},
+  {rank:2, label:"ILB Starter · Balanced Scheme",   color:C.teal,  tag:"Solid LB2",
+   box:"82–88%", tklPg:"7–9/gm",  fpts:"8–10/gm",
+   why:"Current trajectory. High deployment, modest execution. Tackle volume floors the production; miss rate caps the ceiling. Reliable starter-level output."},
+  {rank:3, label:"High-Miss ILB / Two-Down",        color:C.amber, tag:"Boom-Bust",
+   box:"80%+",   tklPg:"6–8/gm",  fpts:"5–8/gm",
+   why:"If the 21% miss rate persists or rises, production becomes volatile — high opportunity, inconsistent conversion. Streamable but not a core hold."},
+];
+const ca = {[C.green]:"rgba(76,175,125,.18)",[C.teal]:"rgba(61,191,184,.18)",[C.amber]:"rgba(212,130,42,.18)"};
+document.getElementById('tier-cards').innerHTML = TIERS.map(t=>`
+  <div style="background:var(--s1);border-radius:9px;padding:14px 16px;border:1px solid ${ca[t.color]};flex:1">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
+      <span style="font-family:var(--mono);font-size:10px;color:${t.color};font-weight:700;letter-spacing:.05em">Tier ${t.rank}</span>
+      <span style="font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:${t.color};border:1px solid ${t.color}55;padding:1px 7px;border-radius:2px">${t.tag}</span>
+    </div>
+    <div style="font-size:11.5px;font-weight:700;color:var(--white);margin-bottom:10px">${t.label}</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px">
+      ${[["Box %",t.box],["Tackles",t.tklPg],["Fantasy",t.fpts]].map(([k,v])=>`
+      <div style="background:var(--s2);border-radius:6px;padding:7px 6px;text-align:center;border:1px solid ${t.color}1A">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:${t.color}">${v}</div>
+        <div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px;text-transform:uppercase;letter-spacing:.06em">${k}</div>
+      </div>`).join('')}
+    </div>
+    <div style="font-size:10.5px;color:var(--light);line-height:1.65;border-top:1px solid var(--bdr);padding-top:9px">${t.why}</div>
+  </div>`).join('');
+
+// SCHEME FIT GRID
+const schemes = [
+  {s:"3-4 ILB",     fit:"★★★",c:C.green},
+  {s:"4-3 MIKE",    fit:"★★★",c:C.green},
+  {s:"4-3 WLB",     fit:"★★", c:C.teal},
+  {s:"Odd Front ILB",fit:"★★",c:C.teal},
+  {s:"Nickel-heavy",fit:"✗",  c:C.amber},
+  {s:"Coverage spec.",fit:"✗",c:C.red},
+];
+document.getElementById('scheme-grid').innerHTML = schemes.map(({s,fit,c})=>`
+  <div style="background:var(--s2);border-radius:7px;padding:10px 8px;text-align:center;border:1px solid ${c}22">
+    <div style="font-family:var(--mono);font-size:18px;color:${c};margin-bottom:5px">${fit}</div>
+    <div style="font-family:var(--mono);font-size:7.5px;color:var(--light);line-height:1.4">${s}</div>
+  </div>`).join('');
+
+function animateRadar(){
+  document.getElementById('poly-franklin').style.opacity='1';
+  document.querySelectorAll('.rdot').forEach(el=>{
+    el.style.transition='opacity .4s ease .5s';
+    el.style.opacity='1';
+  });
+}
+
+// PILLS
+const pillData = [
+  {l:"Solo Tkl/Gm",    v:"4.0",  s:"pos avg 4.8",   c:C.red,   g:false},
+  {l:"Ast Tkl/Gm",     v:"3.0",  s:"3 games",       c:C.teal,  g:null},
+  {l:"Miss Rate",      v:"21%",  s:"pos avg 18%",   c:C.red,   g:false},
+  {l:"Tkl Comp %",     v:"42%",  s:"pos avg 71%",   c:C.red,   g:false},
+  {l:"Cov Tgt Rate",   v:"18%",  s:"pos avg 16%",   c:C.amber, g:false},
+  {l:"Catch Allow",    v:"57%",  s:"pos avg 58%",   c:C.green, g:true},
+  {l:"Press Rate",     v:"30%",  s:"pos avg 22%",   c:C.green, g:true},
+  {l:"Box % Avg",      v:"86%",  s:"pos avg 61%",   c:C.teal,  g:true},
+];
+document.getElementById('pills-row').innerHTML = pillData.map(p=>`
+  <div class="pill" style="border-color:${p.g===true?p.c+'40':'var(--bdr)'}">
+    <div class="pill-lbl">${p.l}</div>
+    <div class="pill-val" style="color:${p.g===true?p.c:p.g===false?C.red:C.white}">${p.v}</div>
+    <div class="pill-sub">${p.s}</div>
+  </div>`).join('');
+
+// FPTS CHART
+const mx=12;
+document.getElementById('fpts-chart').innerHTML = GAMES.map((g,i)=>{
+  const h=(g.fpts/mx)*80;
+  const col = g.fpts>=8.2?C.teal:g.fpts>=6?C.amber:C.red;
+  return `<div class="fpts-col">
+    <span class="fpts-num" style="color:${col}">${g.fpts}</span>
+    <div class="fpts-bar" data-h="${h}" style="background:linear-gradient(180deg,${col},${col}55)"></div>
+    <span class="fpts-lbl">W${g.wk}<br>${g.opp}</span>
+  </div>`;
+}).join('') + `<div class="fpts-col">
+  <span style="font-family:var(--mono);font-size:8px;color:var(--dim)">avg</span>
+  <div style="width:100%;border-radius:3px 3px 0 0;height:${(POS.fpts/mx)*80}px;background:transparent;border:1px dashed var(--bdr2);border-bottom:none"></div>
+  <span style="font-family:var(--mono);font-size:8px;color:var(--dim)">${POS.fpts}</span>
+</div>`;
+
+// BOX% CHART
+document.getElementById('boxpct-chart').innerHTML = GAMES.map(g=>{
+  const h=Math.max((g.box_pct/100)*70,4);
+  return `<div class="boxpct-col">
+    <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--teal)">${g.box_pct}%</span>
+    <div style="width:100%;border-radius:3px 3px 0 0;height:${h}px;background:linear-gradient(180deg,var(--teal),rgba(61,191,184,.4))"></div>
+    <span style="font-family:var(--mono);font-size:8px;color:var(--mid);text-align:center;line-height:1.3">W${g.wk} ${g.opp}</span>
+  </div>`;
+}).join('') + `<div class="boxpct-col">
+  <span style="font-family:var(--mono);font-size:8px;color:var(--dim)">pos avg</span>
+  <div style="width:100%;height:${(POS.boxPct/100)*70}px;border:1px dashed var(--bdr2);border-bottom:none;border-radius:3px 3px 0 0"></div>
+  <span style="font-family:var(--mono);font-size:8px;color:var(--dim)">${POS.boxPct}%</span>
+</div>`;
+
+// FINDINGS
+const findings = [
+  [C.teal,  "▲", "86% average box rate vs 61% position average — every-down role confirmed across all 3 games. The deployment is ideal for IDP production."],
+  [C.teal,  "▲", "Wk5 vs Raiders: best game in the sample — 7 tackles, 1 TFL, 1 sack, 11.0 fpts. The ceiling when everything clicks is legitimate LB1 output."],
+  [C.teal,  "▲", "Pass rush surprise: 30% pressure rate across 16 snaps shows legitimate blitz value when deployed as a rusher."],
+  [C.red,   "▼", "42% tackle completion rate vs 71% position average is the most significant concern in the sample — well below floor."],
+  [C.red,   "▼", "21% missed tackle rate (11 misses across 51 opportunities) vs 18% position average. Wk6 (5 misses, 28% rate) is a clear regression game."],
+  [C.red,   "▼", "Wk3 vs Titans: 80% catch rate allowed in coverage — 4 catches on 5 targets, 43 yards. Coverage liability confirmed early."],
+  [C.amber, "◆", "3-game sample is small but directional: snap volume and box rate are elite, tackle execution trails. The IDP floor depends heavily on clean-up efficiency improving."],
+  [C.amber, "◆", "No forced fumbles, no INTs, no PBUs across 3 games. All production is tackle-based — zero big play production from non-tackle sources so far."],
+];
+document.getElementById('findings-list').innerHTML = findings.map(([col,icon,text])=>`
+  <div class="finding">
+    <span class="finding-icon" style="color:${col}">${icon}</span>
+    <span class="finding-text">${text}</span>
+  </div>`).join('');
+
+// STAT BARS
+function sbar(label,val,posAvg,max,invert,fmt,delay=0){
+  const n=parseFloat(val),a=parseFloat(posAvg);
+  const pct=Math.min((n/max)*100,100),apct=Math.min((a/max)*100,100);
+  const good=invert?n<=a:n>=a,col=good?C.green:C.red;
+  const f=v=>fmt==="pct"?`${Math.round(v)}%`:fmt==="dec"?v.toFixed(2):fmt==="ratio"?v.toFixed(1)+"x":v.toFixed(1);
+  return `<div class="sbar"><div class="sbar-hdr"><span class="sbar-lbl">${label}</span>
+    <div class="sbar-vals"><span class="sbar-avg">pos ${f(a)}</span><span class="sbar-val" style="color:${col}">${f(n)}</span></div></div>
+    <div class="sbar-track"><div class="sbar-fill" data-w="${pct}" data-delay="${delay}" style="background:linear-gradient(90deg,${col}60,${col})"></div>
+    <div class="sbar-marker" style="left:${apct}%"></div></div></div>`;
+}
+document.getElementById('tackle-bars').innerHTML =
+  sbar("Box Alignment %",86,POS.boxPct,100,false,"pct",0)+
+  sbar("Tackle Opps/Gm",17,POS.tklPg,20,false,"dec",70)+
+  sbar("Tackle Comp %",42,POS.comp,100,false,"pct",140)+
+  sbar("Missed Tackle Rate",21,POS.missRate,40,true,"pct",210)+
+  sbar("Solo / Assist Ratio",1.3,POS.soloRatio,4,false,"ratio",280);
+
+document.getElementById('rush-bars').innerHTML =
+  sbar("Rush Snaps / Gm",5.3,8,20,false,"dec",0)+
+  sbar("Pressure Rate",30,POS.pressRate,60,false,"pct",70)+
+  sbar("Hurries / 3 Games",2,3,10,false,"dec",140)+
+  sbar("No Effect Rate",75,50,100,true,"pct",210);
+
+document.getElementById('cov-bars').innerHTML =
+  sbar("Coverage Snaps/Gm",38.3,25,60,false,"dec",0)+
+  sbar("Target Rate",18,POS.tgtRate,40,true,"pct",70)+
+  sbar("Catch Rate Allowed",57,POS.catchRate,100,true,"pct",140)+
+  sbar("Yards / Cov Snap",0.66,POS.yps,1.5,true,"dec",210);
+
+// PROD GRID
+document.getElementById('prod-grid').innerHTML = GAMES.map(g=>{
+  const big=g.tfl+g.sack;
+  const fcol=g.fpts>=8.2?C.teal:g.fpts>=6?C.amber:C.red;
+  return `<div class="prod-cell">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+      <div>
+        <div style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-bottom:2px">WK ${g.wk} · ${g.snaps} snaps</div>
+        <div style="font-size:14px;font-weight:700">vs ${g.full}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-family:var(--mono);font-size:7px;color:var(--dim)">fpts</div>
+        <div style="font-family:var(--mono);font-size:26px;font-weight:700;color:${fcol};line-height:1">${g.fpts}</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px">
+      ${[["Solo",g.solo],["Assist",g.ast],["TFL",g.tfl],["Sack",g.sack],
+         ["Missed",g.miss],["CovSnp",g.cov_snaps],["Tgts",g.tgts],["Rush",g.rush_snaps]
+        ].map(([l,v])=>`<div style="background:var(--s3);border-radius:5px;padding:6px 4px;text-align:center">
+          <div style="font-family:var(--mono);font-size:13px;font-weight:700;color:${l==="Missed"&&v>0?C.red:l==="TFL"&&v>0?C.green:l==="Sack"&&v>0?C.green:C.white};line-height:1">${v}</div>
+          <div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);text-transform:uppercase;margin-top:2px">${l}</div>
+        </div>`).join('')}
+    </div>
+    <div style="display:flex;gap:8px">
+      <div style="flex:1;background:${g.comp_pct>=71?"rgba(76,175,125,.08)":"rgba(217,79,79,.08)"};border:1px solid ${g.comp_pct>=71?"rgba(76,175,125,.25)":"rgba(217,79,79,.25)"};border-radius:5px;padding:6px 8px;text-align:center">
+        <div style="font-family:var(--mono);font-size:14px;font-weight:700;color:${g.comp_pct>=71?C.green:C.red}">${g.comp_pct}%</div>
+        <div style="font-family:var(--mono);font-size:7px;color:var(--dim)">Comp%</div>
+      </div>
+      <div style="flex:1;background:${g.miss_pct<=18?"rgba(76,175,125,.08)":"rgba(217,79,79,.08)"};border:1px solid ${g.miss_pct<=18?"rgba(76,175,125,.25)":"rgba(217,79,79,.25)"};border-radius:5px;padding:6px 8px;text-align:center">
+        <div style="font-family:var(--mono);font-size:14px;font-weight:700;color:${g.miss_pct<=18?C.green:C.red}">${g.miss_pct}%</div>
+        <div style="font-family:var(--mono);font-size:7px;color:var(--dim)">Miss%</div>
+      </div>
+      <div style="flex:1;background:var(--s3);border-radius:5px;padding:6px 8px;text-align:center">
+        <div style="font-family:var(--mono);font-size:14px;font-weight:700;color:${g.box_pct>=61?C.teal:C.amber}">${g.box_pct}%</div>
+        <div style="font-family:var(--mono);font-size:7px;color:var(--dim)">Box%</div>
+      </div>
+    </div>
+  </div>`;
+}).join('');
+
+// COV BREAKDOWN
+document.getElementById('cov-breakdown').innerHTML = GAMES.map(g=>`
+  <div class="gc" style="border:1px solid ${g.catch_rate<=58?"rgba(76,175,125,.2)":"rgba(217,79,79,.2)"}">
+    <div class="gc-hdr">
+      <div>
+        <span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--white)">Wk${g.wk} vs ${g.full}</span>
+        <span style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-left:8px">${g.cov_snaps} cov snaps</span>
+      </div>
+      <span style="font-family:var(--mono);font-size:9px;color:${g.catch_rate<=58?C.green:C.red};font-weight:700">${g.catch_rate}% catch allow</span>
+    </div>
+    <div style="display:flex;gap:14px">
+      ${[["Tgts",g.tgts],["Catch",g.catches],["Yds",g.yds],["Yps",g.yps],["PBU",g.pbu]].map(([l,v])=>`
+      <div style="text-align:center">
+        <div style="font-family:var(--mono);font-size:13px;font-weight:700;line-height:1;color:${l==="PBU"&&v>0?C.green:"var(--white)"}">${v}</div>
+        <div style="font-family:var(--mono);font-size:7px;color:var(--dim);text-transform:uppercase;margin-top:2px">${l}</div>
+      </div>`).join('')}
+    </div>
+  </div>`).join('');
+
+// COV ASSESS
+const assessData = [
+  {title:"Target Rate",val:"18% avg",sub:"pos avg 16%",col:C.amber,note:"Slightly above position average. He's being tested — not avoided."},
+  {title:"Catch Rate Allowed",val:"57% avg",sub:"pos avg 58%",col:C.green,note:"3-game avg is at the position average. Wk3 (80%) is the outlier that inflates concern."},
+  {title:"Yds/Cov Snap",val:"0.66 avg",sub:"pos avg 0.42",col:C.red,note:"Above average yards given up per snap. Wk3 (1.13 yps) is the primary driver."},
+];
+document.getElementById('cov-assess').innerHTML = assessData.map(a=>`
+  <div style="background:var(--s2);border-radius:8px;padding:13px 14px;border:1px solid ${a.col}25">
+    <div style="font-family:var(--mono);font-size:8px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">${a.title}</div>
+    <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:${a.col};margin-bottom:3px">${a.val}</div>
+    <div style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-bottom:8px">${a.sub}</div>
+    <div style="font-size:11px;color:var(--light);line-height:1.6;border-top:1px solid var(--bdr);padding-top:8px">${a.note}</div>
+  </div>`).join('');
+
+// GAME NAV + DETAIL
+function renderNav(){
+  document.getElementById('game-nav').innerHTML = GAMES.map((g,i)=>`
+    <button class="gnb${i===activeGame?" active":""}" onclick="setGame(${i})"
+      style="border-color:${i===activeGame?"var(--teal)":"var(--bdr)"}">
+      <div style="display:flex;justify-content:space-between;margin-bottom:2px">
+        <span style="font-family:var(--mono);font-size:8px;color:var(--dim)">WK ${g.wk}</span>
+        <span style="font-family:var(--mono);font-size:8px;font-weight:700;color:var(--teal)">${g.fpts}</span>
+      </div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:2px">${g.opp}</div>
+      <div style="font-family:var(--mono);font-size:7px;color:var(--dim)">${g.solo+g.ast} tkl · ${g.box_pct}%</div>
+    </button>`).join('');
+}
+
+function renderDetail(){
+  const g=GAMES[activeGame];
+  const fcol=g.fpts>=8.2?C.teal:g.fpts>=6?C.amber:C.red;
+  const bpC=g.box_pct>=61?C.teal:C.amber;
+  const eff=[
+    ["Tkl Comp",g.comp_pct+"%","pos "+POS.comp+"%",g.comp_pct>=POS.comp],
+    ["Miss Rate",g.miss_pct+"%","pos "+POS.missRate+"%",g.miss_pct<=POS.missRate],
+    ["Cov Tgt%",g.cov_snaps>0?g.tgt_rate+"%":"—","pos "+POS.tgtRate+"%",g.tgt_rate<=POS.tgtRate],
+    ["Catch Allow",g.tgts>0?g.catch_rate+"%":"—","pos "+POS.catchRate+"%",g.catch_rate<=POS.catchRate],
+    ["Yds/Snap",g.yps,"pos "+POS.yps,parseFloat(g.yps)<=POS.yps],
+    ["Press Rate",g.rush_snaps>0?g.press_rate+"%":"—","pos "+POS.pressRate+"%",g.press_rate>=POS.pressRate],
+  ];
+  document.getElementById('game-detail').innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+      <div>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:5px">
+          <span style="font-family:var(--mono);font-size:9px;color:var(--dim)">WEEK ${g.wk} · ${g.snaps} SNAPS</span>
+          <span style="font-family:var(--mono);font-size:8px;color:${g.box_pct>=61?C.teal:C.amber};font-weight:700;border:1px solid ${g.box_pct>=61?"rgba(61,191,184,.4)":"rgba(212,130,42,.4)"};padding:1px 7px;border-radius:2px">${g.box_pct}% BOX</span>
+        </div>
+        <div style="font-size:18px;font-weight:700">vs ${g.full}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-bottom:2px">FANTASY</div>
+        <div style="font-family:var(--mono);font-size:36px;font-weight:700;color:${fcol};line-height:1">${g.fpts}</div>
+      </div>
+    </div>
+    <div class="gd-grid">
+      ${[["Solo",g.solo],["Assist",g.ast],["TFL",g.tfl],["Sacks",g.sack],["Missed",g.miss],
+         ["FF",g.ff],["Opps",g.opps],["CovSnps",g.cov_snaps],["Tgts",g.tgts],["Rush",g.rush_snaps]
+        ].map(([l,v])=>`<div class="gd-cell">
+          <div style="font-family:var(--mono);font-size:15px;font-weight:700;color:${l==="Missed"&&v>0?C.red:l==="TFL"&&v>0?C.green:l==="Sacks"&&v>0?C.green:"var(--white)"};line-height:1">${v}</div>
+          <div style="font-family:var(--mono);font-size:7px;color:var(--dim);text-transform:uppercase;margin-top:3px">${l}</div>
+        </div>`).join('')}
+    </div>
+    <div class="eff-grid">
+      ${eff.map(([l,v,pv,good])=>`
+      <div class="eff-row">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--mid)">${l}</span>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span style="font-family:var(--mono);font-size:8px;color:var(--dim)">${pv}</span>
+          <span style="font-family:var(--mono);font-size:12px;font-weight:700;color:${good?C.green:C.red}">${v}</span>
+        </div>
+      </div>`).join('')}
+    </div>`;
+}
+
+function setGame(i){activeGame=i;renderNav();renderDetail();}
+renderNav();renderDetail();
+
+// ANIMATIONS
+function animateBars(){
+  document.querySelectorAll('.sbar-fill[data-w]').forEach(el=>{
+    const d=parseInt(el.dataset.delay)||0;
+    setTimeout(()=>{el.style.width=el.dataset.w+"%";},d);
+  });
+  document.querySelectorAll('.fpts-bar[data-h]').forEach((el,i)=>{
+    setTimeout(()=>{el.style.height=el.dataset.h+"px";},i*90);
+  });
+}
+setTimeout(()=>animateBars(),150);
+</script>
+</body>
+</html>
