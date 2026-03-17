@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zaire Franklin · IDP Film Analysis · Tackle Tendency</title>
+<style>
+:root {
+  --bg:#06080A;--s1:#0E1114;--s2:#141820;--s3:#1C2028;
+  --bdr:#22272F;--bdr2:#2C333D;
+  --gold:#E8B84B;--blue:#5B9BD5;--green:#4CAF7D;--red:#D94F4F;--amber:#D4842A;--teal:#3DBFB8;
+  --white:#F4F4FA;--light:#DDDDE8;--mid:#A8A8C0;--dim:#6E6E88;
+  --mono:'IBM Plex Mono','Courier New',monospace;
+  --sans:'DM Sans','Helvetica Neue',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--white);font-family:var(--sans);min-height:100vh}
+.wrap{max-width:1020px;margin:0 auto;padding:20px 18px}
+.hdr{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--bdr)}
+.hdr-left{display:flex;gap:14px;align-items:flex-start}
+.accent-bar{flex-shrink:0;margin-top:4px;width:3px;height:54px;background:linear-gradient(180deg,var(--teal),var(--gold));border-radius:2px}
+.brand{font-family:var(--mono);font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:5px}
+.player-name{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1;margin-bottom:9px}
+.tags{display:flex;gap:7px;flex-wrap:wrap}
+.tag{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;border:1px solid;padding:2px 8px;border-radius:2px;white-space:nowrap}
+.hdr-scores{display:flex;gap:3px;flex-shrink:0}
+.score-box{background:var(--s1);border-radius:8px;padding:10px 14px;text-align:center;min-width:76px;border:1px solid}
+.score-role{font-family:var(--mono);font-size:7px;letter-spacing:.1em;color:var(--dim);margin-bottom:3px;text-transform:uppercase}
+.score-num{font-family:var(--mono);font-size:24px;font-weight:700;line-height:1}
+.score-sub{font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:3px}
+.banner{background:linear-gradient(90deg,rgba(61,191,184,.07),var(--s1),rgba(212,130,42,.05));border:1px solid rgba(61,191,184,.22);border-radius:8px;padding:10px 16px;margin-bottom:16px;display:flex;gap:12px;align-items:center}
+.banner-label{font-family:var(--mono);font-size:9px;color:var(--teal);font-weight:700;flex-shrink:0;letter-spacing:.06em}
+.banner-text{font-family:var(--mono);font-size:10px;color:var(--light);line-height:1.7}
+.pills{display:flex;gap:7px;margin-bottom:16px;flex-wrap:wrap}
+.pill{flex:1 1 82px;background:var(--s1);border:1px solid var(--bdr);border-radius:7px;padding:9px 11px}
+.pill-lbl{font-family:var(--mono);font-size:8.5px;color:var(--mid);letter-spacing:.07em;text-transform:uppercase;margin-bottom:5px}
+.pill-val{font-family:var(--mono);font-size:19px;font-weight:700;line-height:1;margin-bottom:3px}
+.pill-sub{font-family:var(--mono);font-size:8.5px;color:var(--mid)}
+.tabs{display:flex;gap:2px;margin-bottom:16px;background:var(--s1);padding:3px;border-radius:8px;border:1px solid var(--bdr)}
+.tab-btn{flex:1;padding:8px 0;border-radius:6px;border:none;cursor:pointer;background:transparent;color:var(--mid);font-family:var(--mono);font-size:9px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;border-bottom:2px solid transparent;transition:all .15s}
+.tab-btn.active{background:var(--s3);color:var(--white);font-weight:700;border-bottom:2px solid var(--teal)}
+.tab{display:none}.tab.active{display:block}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.span2{grid-column:1/-1}
+.card{background:var(--s1);border:1px solid var(--bdr);border-radius:8px;padding:15px 17px}
+.lbl{font-family:var(--mono);font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--mid);margin-bottom:11px}
+.sbar{margin-bottom:13px}
+.sbar-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.sbar-lbl{font-family:var(--mono);font-size:9px;color:var(--light)}
+.sbar-vals{display:flex;gap:10px;align-items:center}
+.sbar-avg{font-family:var(--mono);font-size:8px;color:var(--dim)}
+.sbar-val{font-family:var(--mono);font-size:13px;font-weight:700}
+.sbar-track{position:relative;height:4px;background:var(--s3);border-radius:2px}
+.sbar-fill{position:absolute;top:0;left:0;height:100%;border-radius:2px;width:0%;transition:width .9s cubic-bezier(.16,1,.3,1)}
+.sbar-marker{position:absolute;top:-5px;height:14px;width:1.5px;background:var(--bdr2);transform:translateX(-50%)}
+.fpts-wrap{display:flex;gap:6px;align-items:flex-end;height:96px;margin-bottom:8px}
+.fpts-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
+.fpts-num{font-family:var(--mono);font-size:9px;font-weight:700}
+.fpts-bar{width:100%;border-radius:3px 3px 0 0;height:0;transition:height .7s cubic-bezier(.16,1,.3,1)}
+.fpts-lbl{font-family:var(--mono);font-size:7.5px;color:var(--mid);text-align:center;line-height:1.3}
+.boxpct-wrap{display:flex;gap:8px;align-items:flex-end;height:88px;margin-bottom:10px}
+.gc{margin-bottom:9px;background:var(--s2);border-radius:7px;padding:10px 12px}
+.gc-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.game-layout{display:grid;grid-template-columns:110px 1fr;gap:13px}
+.game-nav{display:flex;flex-direction:column;gap:5px}
+.gnb{background:var(--s1);border:1px solid var(--bdr);border-radius:7px;padding:8px 10px;cursor:pointer;transition:all .15s;text-align:left;width:100%;color:var(--white)}
+.gnb.active{background:var(--s3)}
+.gd-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:12px}
+.gd-cell{background:var(--s2);border-radius:6px;padding:8px 5px;border:1px solid var(--bdr2);text-align:center}
+.eff-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.eff-row{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:var(--s2);border-radius:6px;border:1px solid var(--bdr)}
+.finding{display:flex;gap:9px;margin-bottom:8px;align-items:flex-start}
+.footer{margin-top:18px;padding-top:10px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between}
+.footer span{font-family:var(--mono);font-size:7px;color:var(--dim)}
+@media(max-width:680px){
+  .g2{grid-template-columns:1fr}.span2{grid-column:1}
+  .hdr{flex-direction:column}.hdr-scores{flex-wrap:wrap}
+  .game-layout{grid-template-columns:1fr}
+  .game-nav{flex-direction:row;overflow-x:auto}.gnb{min-width:80px}
+  .prod-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body><div class="wrap">
+
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="accent-bar"></div>
+    <div>
+      <div class="brand">Tackle Tendency · IDP Film Analysis</div>
+      <div class="player-name">Zaire Franklin</div>
+      <div class="tags">
+        <span class="tag" style="color:var(--mid);border-color:rgba(168,168,192,.3)">Indianapolis Colts</span>
+        <span class="tag" style="color:var(--teal);border-color:rgba(61,191,184,.3)">MLB / ILB</span>
+        <span class="tag" style="color:var(--gold);border-color:rgba(232,184,75,.3)">7 Games Charted · 2025</span>
+        <span class="tag" style="color:var(--amber);border-color:rgba(212,130,42,.3)">FA → Green Bay 2026</span>
+      </div>
+    </div>
+  </div>
+  <div class="hdr-scores">
+    <div class="score-box" style="border-color:rgba(61,191,184,.2)">
+      <div class="score-role">Avg Snaps</div>
+      <div class="score-num" style="color:var(--teal)">61.9</div>
+      <div class="score-sub">7 games</div>
+    </div>
+    <div class="score-box" style="border-color:rgba(232,184,75,.2)">
+      <div class="score-role">Box %</div>
+      <div class="score-num" style="color:var(--gold)">90%</div>
+      <div class="score-sub">pos avg 61%</div>
+    </div>
+    <div class="score-box" style="border-color:rgba(76,175,125,.2)">
+      <div class="score-role">Miss Rate</div>
+      <div class="score-num" style="color:var(--green)">18%</div>
+      <div class="score-sub">= pos avg</div>
+    </div>
+    <div class="score-box" style="border-color:rgba(61,191,184,.15)">
+      <div class="score-role">Fpts/Gm</div>
+      <div class="score-num" style="color:var(--teal)">8.4</div>
+      <div class="score-sub">pos avg 8.2</div>
+    </div>
+  </div>
+</div>
+
+<div class="banner">
+  <div class="banner-label">◆ 7-GAME SIGNAL</div>
+  <div class="banner-text">At the full 7-game sample the story clarifies: <span style="color:var(--teal)">90% box rate and 8.4 fpts/gm both exceed or match position average</span>. The miss rate normalizes to exactly 18% (pos avg). Coverage catch rate (57%) is right at position average. <span style="color:var(--amber)">The core concern is tackle comp% (47%) and the volatile fpts range (3.0–16.0)</span> — high ceiling, inconsistent floor.</div>
+</div>
+
+<div class="pills" id="pills-row"></div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+  <button class="tab-btn" onclick="switchTab('idp')">IDP Outlook</button>
+  <button class="tab-btn" onclick="switchTab('efficiency')">Efficiency</button>
+  <button class="tab-btn" onclick="switchTab('coverage')">Coverage</button>
+  <button class="tab-btn" onclick="switchTab('profile')">Player Profile</button>
+  <button class="tab-btn" onclick="switchTab('game')">By Game</button>
+</div>
+
+<!-- OVERVIEW -->
+<div class="tab active" id="tab-overview">
+  <div class="g2">
+    <div class="card">
+      <div class="lbl">Fantasy Points · 7 Games</div>
+      <div class="fpts-wrap" id="fpts-chart"></div>
+      <div style="display:flex;justify-content:center;gap:14px;margin-top:4px">
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:12px;height:3px;background:var(--teal);border-radius:2px"></div><span style="font-family:var(--mono);font-size:8px;color:var(--dim)">game</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:12px;height:0;border-top:1.5px dashed var(--dim)"></div><span style="font-family:var(--mono);font-size:8px;color:var(--dim)">pos avg 8.2</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="lbl">Box Alignment % · 7 Games</div>
+      <div class="boxpct-wrap" id="boxpct-chart"></div>
+      <div style="padding:9px 12px;background:rgba(61,191,184,.06);border:1px solid rgba(61,191,184,.2);border-radius:6px;font-family:var(--mono);font-size:9.5px;color:var(--light);line-height:1.6">
+        <span style="color:var(--teal);font-weight:700">90% avg box rate</span> — never below 80% across all 7 games. Peak was Wk7 at Chargers (95%). Role alignment is elite and consistent.
+      </div>
+    </div>
+    <div class="card span2">
+      <div class="lbl">Film Findings · 7 Games</div>
+      <div id="findings-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- IDP OUTLOOK -->
+<div class="tab" id="tab-idp">
+  <div class="g2">
+    <div class="card">
+      <div class="lbl">Skill Profile · 7-Game Radar</div>
+      <div style="display:flex;align-items:flex-start;gap:14px">
+        <svg id="radar-svg" width="248" height="256" style="flex-shrink:0;overflow:visible"></svg>
+        <div style="flex:1;display:flex;flex-direction:column;gap:5px;padding-top:4px" id="radar-table"></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px" id="tier-cards"></div>
+    <div class="card span2">
+      <div class="lbl">Scheme Fit Matrix</div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:14px" id="scheme-grid"></div>
+
+      <!-- GB IDP OUTLOOK: Historical context + projection -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+
+        <!-- Left: What the history says -->
+        <div style="background:var(--s2);border-radius:8px;padding:14px 16px;border:1px solid rgba(61,191,184,.2)">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--teal);font-weight:700;letter-spacing:.08em;margin-bottom:12px">◆ WHAT THE HISTORICAL DATA SAYS</div>
+          <div style="font-size:11px;color:var(--light);line-height:1.75;margin-bottom:12px">
+            Franklin's 3-year production at Indianapolis is one of the more consistent IDP profiles at the position. He averaged
+            <strong style="color:var(--teal)">68.1 snaps/gm</strong> in both 2023 and 2024 — every-down deployment in full seasons.
+            His fpts/gm progression (<span style="color:var(--dim)">9.9</span> → <span style="color:var(--gold)">10.5</span> → <span style="color:var(--teal)">8.4</span>)
+            tells a clean story: he improved year-over-year in 2024, and his 2025 dip is entirely explained by the snap volume
+            drop (61.9/gm vs 68.1) not a talent regression.
+          </div>
+          <!-- Mini 3-yr fpts bar — static -->
+          <div style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-bottom:6px">FPTS/GM · 3-YEAR TREND</div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+            <span style="font-family:var(--mono);font-size:8px;color:#6E6E88;width:72px;flex-shrink:0">2023</span>
+            <div style="flex:1;height:6px;background:var(--s3);border-radius:3px;position:relative">
+              <div style="position:absolute;top:0;left:0;height:100%;width:70.7%;background:#6E6E88;border-radius:3px;opacity:.85"></div>
+            </div>
+            <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:#6E6E88;width:30px;text-align:right">9.9</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+            <span style="font-family:var(--mono);font-size:8px;color:#E8B84B;width:72px;flex-shrink:0">2024</span>
+            <div style="flex:1;height:6px;background:var(--s3);border-radius:3px;position:relative">
+              <div style="position:absolute;top:0;left:0;height:100%;width:75%;background:#E8B84B;border-radius:3px;opacity:.85"></div>
+            </div>
+            <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:#E8B84B;width:30px;text-align:right">10.5</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+            <span style="font-family:var(--mono);font-size:8px;color:#3DBFB8;width:72px;flex-shrink:0">2025 (7gm)</span>
+            <div style="flex:1;height:6px;background:var(--s3);border-radius:3px;position:relative">
+              <div style="position:absolute;top:0;left:0;height:100%;width:60%;background:#3DBFB8;border-radius:3px;opacity:.85"></div>
+            </div>
+            <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:#3DBFB8;width:30px;text-align:right">8.4</span>
+          </div>
+          <div style="margin-top:10px;font-family:var(--mono);font-size:9px;color:var(--dim);line-height:1.6">
+            The 2024 big-play season (11 TFL · 3.5 SK · 5 FF) is <strong style="color:var(--gold)">his established ceiling</strong>.
+            The miss rate improved 2023→2024 (12.3% → 11.6%) and held at position average in 2025 (18%).
+            He is not declining — he is changing teams.
+          </div>
+        </div>
+
+        <!-- Right: What GB means for IDP value -->
+        <div style="background:var(--s2);border-radius:8px;padding:14px 16px;border:1px solid rgba(217,79,79,.2)">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--red);font-weight:700;letter-spacing:.08em;margin-bottom:12px">◆ WHAT GREEN BAY MEANS FOR IDP VALUE</div>
+
+          <!-- LB Room depth chart — static -->
+          <div style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-bottom:7px">PACKERS 2026 LB ROOM</div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;padding:7px 10px;background:var(--s3);border-radius:6px;margin-bottom:4px;border-left:3px solid #D94F4F">
+            <div>
+              <div style="font-family:var(--mono);font-size:9px;font-weight:700;color:var(--white)">Edgerrin Cooper</div>
+              <div style="font-family:var(--mono);font-size:7.5px;color:var(--dim);margin-top:1px">WILL — LOCKED STARTER</div>
+              <div style="font-family:var(--mono);font-size:7px;color:#D94F4F;margin-top:2px">Every-down player. Untouchable.</div>
+            </div>
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#D94F4F;flex-shrink:0;margin-left:10px">60–70/gm</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;padding:7px 10px;background:var(--s3);border-radius:6px;margin-bottom:4px;border-left:3px solid #D4842A">
+            <div>
+              <div style="font-family:var(--mono);font-size:9px;font-weight:700;color:var(--white)">Isaiah McDuffie</div>
+              <div style="font-family:var(--mono);font-size:7.5px;color:var(--dim);margin-top:1px">MIKE — EXPECTED STARTER</div>
+              <div style="font-family:var(--mono);font-size:7px;color:#D4842A;margin-top:2px">Replacing Walker. Primary competition.</div>
+            </div>
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#D4842A;flex-shrink:0;margin-left:10px">55–65/gm</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;padding:7px 10px;background:var(--s3);border-radius:6px;margin-bottom:4px;border-left:3px solid #D4842A">
+            <div>
+              <div style="font-family:var(--mono);font-size:9px;font-weight:700;color:var(--white)">Tyron Hopper</div>
+              <div style="font-family:var(--mono);font-size:7.5px;color:var(--dim);margin-top:1px">3rd LB · Base Personnel</div>
+              <div style="font-family:var(--mono);font-size:7px;color:#D4842A;margin-top:2px">Established 3rd option.</div>
+            </div>
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#D4842A;flex-shrink:0;margin-left:10px">25–40/gm</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;padding:7px 10px;background:var(--s3);border-radius:6px;margin-bottom:4px;border-left:3px solid #D94F4F">
+            <div>
+              <div style="font-family:var(--mono);font-size:9px;font-weight:700;color:var(--white)">Zaire Franklin</div>
+              <div style="font-family:var(--mono);font-size:7.5px;color:var(--dim);margin-top:1px">4th LB · Rotational</div>
+              <div style="font-family:var(--mono);font-size:7px;color:#D94F4F;margin-top:2px">Prove-it deal. $0 dead cap out.</div>
+            </div>
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#D94F4F;flex-shrink:0;margin-left:10px">15–30/gm</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GB Snap projection: IND vs GB side by side -->
+      <div style="background:var(--s2);border-radius:8px;padding:14px 16px;border:1px solid var(--bdr);margin-bottom:12px">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--mid);font-weight:700;letter-spacing:.08em;margin-bottom:12px">◆ PRODUCTION PROJECTION · IND ROLE vs GB ROLE</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+          <div style="background:var(--s3);border-radius:7px;padding:10px 11px;border:1px solid var(--bdr)">
+            <div style="font-family:var(--mono);font-size:7.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Snaps/Gm</div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#3DBFB8">61.9</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">IND</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--bdr2)">→</div>
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#D94F4F">15–30</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">GB</div></div>
+            </div>
+          </div>
+          <div style="background:var(--s3);border-radius:7px;padding:10px 11px;border:1px solid var(--bdr)">
+            <div style="font-family:var(--mono);font-size:7.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Box %</div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#3DBFB8">90%</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">IND</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--bdr2)">→</div>
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#D4842A">~85%</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">GB</div></div>
+            </div>
+          </div>
+          <div style="background:var(--s3);border-radius:7px;padding:10px 11px;border:1px solid var(--bdr)">
+            <div style="font-family:var(--mono);font-size:7.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Fpts/Gm</div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#3DBFB8">8.4</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">IND</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--bdr2)">→</div>
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#D94F4F">2–5</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">GB</div></div>
+            </div>
+          </div>
+          <div style="background:var(--s3);border-radius:7px;padding:10px 11px;border:1px solid var(--bdr)">
+            <div style="font-family:var(--mono);font-size:7.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Tkl/Gm</div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#3DBFB8">7.9</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">IND</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--bdr2)">→</div>
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#D94F4F">2–4</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">GB</div></div>
+            </div>
+          </div>
+          <div style="background:var(--s3);border-radius:7px;padding:10px 11px;border:1px solid var(--bdr)">
+            <div style="font-family:var(--mono);font-size:7.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">TFL Pace</div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#3DBFB8">10/yr</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">IND</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--bdr2)">→</div>
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#D94F4F">2–3/yr</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">GB</div></div>
+            </div>
+          </div>
+          <div style="background:var(--s3);border-radius:7px;padding:10px 11px;border:1px solid var(--bdr)">
+            <div style="font-family:var(--mono);font-size:7.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Big Play Prob</div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#3DBFB8">Medium</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">IND</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--bdr2)">→</div>
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#D4842A">Low</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">GB</div></div>
+            </div>
+          </div>
+          <div style="background:var(--s3);border-radius:7px;padding:10px 11px;border:1px solid var(--bdr)">
+            <div style="font-family:var(--mono);font-size:7.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">IDP Tier</div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#3DBFB8">LB2</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">IND</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--bdr2)">→</div>
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#D94F4F">Waiver</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">GB</div></div>
+            </div>
+          </div>
+          <div style="background:var(--s3);border-radius:7px;padding:10px 11px;border:1px solid var(--bdr)">
+            <div style="font-family:var(--mono);font-size:7.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px">Upside Path</div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#3DBFB8">LB1</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">IND</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--bdr2)">→</div>
+              <div style="text-align:center"><div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#D4842A">Handcuff</div><div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px">GB</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Verdict -->
+      <div style="padding:14px 16px;background:rgba(217,79,79,.06);border:1px solid rgba(217,79,79,.22);border-radius:8px">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--red);font-weight:700;letter-spacing:.08em;margin-bottom:9px">◆ IDP VERDICT · GREEN BAY 2026</div>
+        <div style="font-size:11px;color:var(--light);line-height:1.8">
+          Three seasons of historical data confirm Franklin's IDP value was entirely built on his Indianapolis role: every-down deployment, 60+ snaps per game, and 90% box rate. His 2024 ceiling season (10.5 fpts/gm, 11 TFLs, 5 FFs) and consistent 2023–2025 miss rates show no talent regression. <strong style="color:var(--amber)">The move to Green Bay is a role regression, not a talent regression.</strong>
+          <br><br>
+          In Green Bay he is the 4th linebacker in a crowded room. Cooper plays every down. McDuffie is expected to take the MIKE role Walker vacated. Hopper is the established 3rd option. Franklin enters on a prove-it deal with zero guaranteed dead cap — the front office already has an exit ramp. At 15–30 snaps per game, the tackle volume that generated 9.9–10.5 fpts/gm over two full seasons at Indianapolis simply does not exist.
+          <br><br>
+          <strong style="color:var(--teal)">The only IDP scenario where Franklin has value in 2026:</strong> Cooper or McDuffie misses multiple games. If that happens, monitor immediately — his historical snap volume and production rates show he can step into an every-down role and deliver LB2 output within 1–2 weeks of full deployment. But price him as a handcuff, not a starter. <strong style="color:var(--red)">Do not pay for Indianapolis production numbers in Green Bay fantasy drafts.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EFFICIENCY -->
+<div class="tab" id="tab-efficiency">
+  <div class="g2">
+    <div class="card"><div class="lbl">Tackle Efficiency · 7-Game Avg</div><div id="tackle-bars"></div></div>
+    <div class="card"><div class="lbl">Pass Rush · 7-Game Avg</div><div id="rush-bars"></div></div>
+    <div class="card span2"><div class="lbl">Game-by-Game Production</div><div class="prod-grid" id="prod-grid"></div></div>
+  </div>
+</div>
+
+<!-- COVERAGE -->
+<div class="tab" id="tab-coverage">
+  <div class="g2">
+    <div class="card"><div class="lbl">Coverage Efficiency · 7-Game Avg</div><div id="cov-bars"></div></div>
+    <div class="card">
+      <div class="lbl">Coverage · Per Game</div>
+      <div id="cov-breakdown"></div>
+    </div>
+    <div class="card span2">
+      <div class="lbl">Coverage Assessment</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px" id="cov-assess"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PLAYER PROFILE -->
+<div class="tab" id="tab-profile">
+  <div class="g2">
+    <div class="card span2">
+      <div class="lbl">Season-by-Season Overview · 2023 – 2025</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px" id="season-header-cards"></div>
+      <div style="padding:10px 14px;background:rgba(61,191,184,.06);border:1px solid rgba(61,191,184,.2);border-radius:7px;font-family:var(--mono);font-size:10px;color:var(--light);line-height:1.7" id="profile-thesis"></div>
+    </div>
+    <div class="card">
+      <div class="lbl">Fpts/Game Trend · All 3 Seasons</div>
+      <div id="trend-chart" style="position:relative;height:150px;margin-bottom:8px"></div>
+      <div style="display:flex;gap:14px;justify-content:center">
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:3px;background:var(--dim);border-radius:2px"></div><span style="font-family:var(--mono);font-size:8px;color:var(--dim)">2023</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:3px;background:var(--gold);border-radius:2px"></div><span style="font-family:var(--mono);font-size:8px;color:var(--dim)">2024</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:3px;background:var(--teal);border-radius:2px"></div><span style="font-family:var(--mono);font-size:8px;color:var(--dim)">2025 (7 gm)</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="lbl">Key Metrics · Year-over-Year</div>
+      <div id="yoy-bars"></div>
+    </div>
+    <div class="card">
+      <div class="lbl">PFF Grades · 2023 vs 2024</div>
+      <div id="pff-grades"></div>
+    </div>
+    <div class="card">
+      <div class="lbl">Season Stat Log</div>
+      <div id="season-stat-table"></div>
+    </div>
+    <div class="card span2">
+      <div class="lbl">IDP Outlook · Green Bay Packers 2026</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px" id="gb-outlook-cards"></div>
+      <div style="padding:12px 16px;background:rgba(217,79,79,.06);border:1px solid rgba(217,79,79,.2);border-radius:7px;font-size:11px;color:var(--light);line-height:1.75" id="gb-verdict"></div>
+    </div>
+  </div>
+</div>
+
+<!-- BY GAME -->
+<div class="tab" id="tab-game">
+  <div class="game-layout">
+    <div class="game-nav" id="game-nav"></div>
+    <div class="card" id="game-detail"></div>
+  </div>
+</div>
+
+<div class="footer">
+  <span>TACKLE TENDENCY · ZAIRE FRANKLIN · WK 3,5,6,7,10,14,18 · 2025 · IND → GB 2026</span>
+  <span>7 GAMES CHARTED · FILM-BASED ANALYSIS</span>
+</div>
+</div>
+
+<script>
+const GAMES=[
+  {wk:3, opp:"TEN",full:"Titans",   snaps:64,box_pct:91,run_snaps:20,pass_snaps:44,opps:19,solo:5,ast:2,tfl:0,sack:0,miss:4,ff:0,comp_pct:37,miss_pct:21,cov_snaps:38,tgts:5,catches:4,yds:43,tgt_rate:13,catch_rate:80,yps:1.13,rush_snaps:6,pres:2,hurries:2,press_rate:33,noeff:5,fpts:6.0},
+  {wk:5, opp:"LV", full:"Raiders",  snaps:52,box_pct:87,run_snaps:19,pass_snaps:33,opps:14,solo:3,ast:4,tfl:1,sack:1,miss:2,ff:0,comp_pct:50,miss_pct:14,cov_snaps:28,tgts:6,catches:3,yds:6, tgt_rate:21,catch_rate:50,yps:0.21,rush_snaps:6,pres:2,hurries:0,press_rate:33,noeff:4,fpts:11.0},
+  {wk:6, opp:"ARI",full:"Cardinals",snaps:65,box_pct:80,run_snaps:23,pass_snaps:42,opps:18,solo:4,ast:3,tfl:0,sack:0,miss:5,ff:0,comp_pct:39,miss_pct:28,cov_snaps:49,tgts:10,catches:4,yds:32,tgt_rate:20,catch_rate:40,yps:0.65,rush_snaps:4,pres:1,hurries:0,press_rate:25,noeff:3,fpts:5.5},
+  {wk:7, opp:"LAC",full:"Chargers", snaps:65,box_pct:95,run_snaps:22,pass_snaps:43,opps:14,solo:1,ast:4,tfl:0,sack:0,miss:1,ff:0,comp_pct:36,miss_pct:7, cov_snaps:59,tgts:5,catches:3,yds:28,tgt_rate:8, catch_rate:60,yps:0.47,rush_snaps:7,pres:3,hurries:1,press_rate:43,noeff:4,fpts:3.0},
+  {wk:10,opp:"ATL",full:"Falcons",  snaps:60,box_pct:90,run_snaps:21,pass_snaps:39,opps:19,solo:6,ast:4,tfl:2,sack:1,miss:3,ff:0,comp_pct:53,miss_pct:16,cov_snaps:25,tgts:1,catches:1,yds:10,tgt_rate:4, catch_rate:100,yps:0.40,rush_snaps:6,pres:1,hurries:0,press_rate:17,noeff:5,fpts:16.0},
+  {wk:14,opp:"JAX",full:"Jaguars",  snaps:63,box_pct:92,run_snaps:24,pass_snaps:39,opps:17,solo:2,ast:5,tfl:0,sack:0,miss:3,ff:0,comp_pct:41,miss_pct:18,cov_snaps:21,tgts:1,catches:1,yds:18,tgt_rate:5, catch_rate:100,yps:0.86,rush_snaps:12,pres:3,hurries:1,press_rate:25,noeff:9,fpts:4.5},
+  {wk:18,opp:"HOU",full:"Texans",   snaps:64,box_pct:94,run_snaps:25,pass_snaps:39,opps:16,solo:6,ast:6,tfl:2,sack:0,miss:3,ff:0,comp_pct:75,miss_pct:19,cov_snaps:27,tgts:2,catches:1,yds:17,tgt_rate:7, catch_rate:50,yps:0.63,rush_snaps:8,pres:0,hurries:0,press_rate:0,noeff:8,fpts:13.0},
+];
+
+const POS={tklPg:6.8,fpts:8.2,boxPct:61,comp:71,missRate:18,soloRatio:1.4,tgtRate:16,catchRate:58,yps:0.42,pressRate:22};
+const C={teal:"#3DBFB8",gold:"#E8B84B",green:"#4CAF7D",red:"#D94F4F",amber:"#D4842A",
+         white:"#F4F4FA",light:"#DDDDE8",mid:"#A8A8C0",dim:"#6E6E88",
+         bg:"#06080A",s1:"#0E1114",s2:"#141820",s3:"#1C2028",bdr:"#22272F",bdr2:"#2C333D"};
+let activeGame=0;
+
+function switchTab(id){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const ids=['overview','idp','efficiency','coverage','profile','game'];
+  document.querySelectorAll('.tab-btn')[ids.indexOf(id)].classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='idp') setTimeout(animateRadar,80);
+  if(id==='profile') setTimeout(animateTrend,80);
+  setTimeout(animateBars,60);
+}
+
+// PILLS
+const pillData=[
+  {l:"Box % Avg",    v:"90%",  s:"pos avg 61%",  c:C.teal,  g:true},
+  {l:"Fpts/Gm",      v:"8.4",  s:"pos avg 8.2",  c:C.teal,  g:true},
+  {l:"Miss Rate",    v:"18%",  s:"= pos avg",     c:C.green, g:true},
+  {l:"Tkl Comp %",   v:"47%",  s:"pos avg 71%",  c:C.red,   g:false},
+  {l:"Catch Allow",  v:"57%",  s:"pos avg 58%",  c:C.green, g:true},
+  {l:"TFL (7 gm)",   v:"5",    s:"0.7/gm",       c:C.gold,  g:null},
+  {l:"Press Rate",   v:"25%",  s:"pos avg 22%",  c:C.teal,  g:true},
+  {l:"Avg Snaps",    v:"61.9", s:"7 games",      c:C.mid,   g:null},
+];
+document.getElementById('pills-row').innerHTML=pillData.map(p=>`
+  <div class="pill" style="border-color:${p.g===true?p.c+'40':'var(--bdr)'}">
+    <div class="pill-lbl">${p.l}</div>
+    <div class="pill-val" style="color:${p.g===true?p.c:p.g===false?C.red:C.white}">${p.v}</div>
+    <div class="pill-sub">${p.s}</div>
+  </div>`).join('');
+
+// FPTS CHART
+const mx=18;
+document.getElementById('fpts-chart').innerHTML=GAMES.map((g,i)=>{
+  const h=(g.fpts/mx)*80,col=g.fpts>=10?C.teal:g.fpts>=8?C.gold:g.fpts>=5?C.amber:C.red;
+  return `<div class="fpts-col"><span class="fpts-num" style="color:${col}">${g.fpts}</span>
+    <div class="fpts-bar" data-h="${h}" style="background:linear-gradient(180deg,${col},${col}55)"></div>
+    <span class="fpts-lbl">W${g.wk}<br>${g.opp}</span></div>`;
+}).join('')+`<div class="fpts-col">
+  <span style="font-family:var(--mono);font-size:8px;color:var(--dim)">avg</span>
+  <div style="width:100%;border-radius:3px 3px 0 0;height:${(POS.fpts/mx)*80}px;background:transparent;border:1px dashed var(--bdr2);border-bottom:none"></div>
+  <span style="font-family:var(--mono);font-size:8px;color:var(--dim)">${POS.fpts}</span></div>`;
+
+// BOX% CHART
+document.getElementById('boxpct-chart').innerHTML=GAMES.map(g=>{
+  const h=Math.max((g.box_pct/100)*70,4);
+  return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+    <span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--teal)">${g.box_pct}%</span>
+    <div style="width:100%;border-radius:3px 3px 0 0;height:${h}px;background:linear-gradient(180deg,var(--teal),rgba(61,191,184,.4))"></div>
+    <span style="font-family:var(--mono);font-size:7.5px;color:var(--mid);text-align:center;line-height:1.3">W${g.wk} ${g.opp}</span>
+  </div>`;
+}).join('')+`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+  <span style="font-family:var(--mono);font-size:8px;color:var(--dim)">pos avg</span>
+  <div style="width:100%;height:${(POS.boxPct/100)*70}px;border:1px dashed var(--bdr2);border-bottom:none;border-radius:3px 3px 0 0"></div>
+  <span style="font-family:var(--mono);font-size:8px;color:var(--dim)">${POS.boxPct}%</span></div>`;
+
+// FINDINGS
+const findings=[
+  [C.teal,  "▲","90% average box rate across 7 games — never below 80%. Peaked at 95% vs Chargers in Wk7. Every-down deployment is locked in."],
+  [C.teal,  "▲","8.4 fpts/gm over 7 games is above the 8.2 position average. Miss rate normalizes to exactly 18% — the 3-game spike was variance, not a trend."],
+  [C.teal,  "▲","Wk10 vs Falcons: ceiling game — 10 tackles, 2 TFL, 1 SK, 16.0 fpts. That is legitimate LB1 output and shows the upside when the run game is there."],
+  [C.teal,  "▲","Wk18 vs Texans: 12 tackles, 2 TFL, 13.0 fpts to close the season — strong late-season form as a positive signal."],
+  [C.teal,  "▲","Coverage catch rate allowed (57%) is right at the 58% position average over 7 games. Wk6 (40%) and Wk5 (50%) show he can hold in coverage."],
+  [C.red,   "▼","Tackle completion (47%) remains the primary concern — well below the 71% position average across all 7 games. Consistently assist-heavy."],
+  [C.red,   "▼","Wk7 vs Chargers: 3.0 fpts, 1 solo tackle on 14 opps — the floor game. Heavy pass game, limited run opportunities in a 95% box deployment."],
+  [C.red,   "▼","Wk14 vs Jaguars: 4.5 fpts on 12 rush snaps with 9 no-effect rushes — pass-rush-only deployment produces nothing on the tackle or big-play side."],
+  [C.amber, "◆","fpts range of 3.0–16.0 across 7 games reflects a legitimate boom-bust profile. The snap volume is there every week; execution is the variable."],
+];
+document.getElementById('findings-list').innerHTML=findings.map(([col,icon,text])=>`
+  <div class="finding"><span style="font-size:9px;flex-shrink:0;margin-top:3px;color:${col}">${icon}</span>
+  <span style="font-size:11px;color:var(--light);line-height:1.65">${text}</span></div>`).join('');
+
+// STAT BARS
+function sbar(label,val,posAvg,max,invert,fmt,delay=0){
+  const n=parseFloat(val),a=parseFloat(posAvg);
+  const pct=Math.min((n/max)*100,100),apct=Math.min((a/max)*100,100);
+  const good=invert?n<=a:n>=a,col=good?C.green:C.red;
+  const f=v=>fmt==="pct"?`${Math.round(v)}%`:fmt==="dec"?parseFloat(v).toFixed(2):fmt==="ratio"?parseFloat(v).toFixed(1)+"x":parseFloat(v).toFixed(1);
+  return `<div class="sbar"><div class="sbar-hdr"><span class="sbar-lbl">${label}</span>
+    <div class="sbar-vals"><span class="sbar-avg">pos ${f(a)}</span><span class="sbar-val" style="color:${col}">${f(n)}</span></div></div>
+    <div class="sbar-track"><div class="sbar-fill" data-w="${pct}" data-delay="${delay}" style="background:linear-gradient(90deg,${col}60,${col})"></div>
+    <div class="sbar-marker" style="left:${apct}%"></div></div></div>`;
+}
+document.getElementById('tackle-bars').innerHTML=
+  sbar("Box Alignment %",90,POS.boxPct,100,false,"pct",0)+
+  sbar("Tackle Opps/Gm",16.7,POS.tklPg,20,false,"dec",70)+
+  sbar("Tackle Comp %",47,POS.comp,100,false,"pct",140)+
+  sbar("Missed Tackle Rate",18,POS.missRate,40,true,"pct",210)+
+  sbar("Solo / Assist Ratio",0.96,POS.soloRatio,4,false,"ratio",280);
+document.getElementById('rush-bars').innerHTML=
+  sbar("Rush Snaps/Gm",7.0,8,20,false,"dec",0)+
+  sbar("Pressure Rate",25,POS.pressRate,60,false,"pct",70)+
+  sbar("Sack Rate",2.9,8,20,false,"pct",140)+
+  sbar("No Effect Rate",80,50,100,true,"pct",210);
+document.getElementById('cov-bars').innerHTML=
+  sbar("Coverage Snaps/Gm",35.3,25,65,false,"dec",0)+
+  sbar("Target Rate",11,POS.tgtRate,40,true,"pct",70)+
+  sbar("Catch Rate Allowed",57,POS.catchRate,100,true,"pct",140)+
+  sbar("Yards / Cov Snap",0.60,POS.yps,1.5,true,"dec",210);
+
+// PROD GRID
+document.getElementById('prod-grid').innerHTML=GAMES.map(g=>{
+  const big=g.tfl+g.sack, fcol=g.fpts>=10?C.teal:g.fpts>=8?C.gold:g.fpts>=5?C.amber:C.red;
+  return `<div style="background:var(--s2);border-radius:8px;padding:12px 13px;border:1px solid var(--bdr)">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:9px">
+      <div><div style="font-family:var(--mono);font-size:7.5px;color:var(--dim);margin-bottom:2px">WK${g.wk} · ${g.snaps}snps</div>
+           <div style="font-size:13px;font-weight:700">${g.full}</div></div>
+      <div style="text-align:right"><div style="font-family:var(--mono);font-size:7px;color:var(--dim)">fpts</div>
+        <div style="font-family:var(--mono);font-size:24px;font-weight:700;color:${fcol};line-height:1">${g.fpts}</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:8px">
+      ${[["Solo",g.solo],["Ast",g.ast],["TFL",g.tfl],["SK",g.sack],
+         ["Miss",g.miss],["CovSn",g.cov_snaps],["Tgts",g.tgts],["Rush",g.rush_snaps]
+        ].map(([l,v])=>`<div style="background:var(--s3);border-radius:5px;padding:5px 3px;text-align:center">
+          <div style="font-family:var(--mono);font-size:12px;font-weight:700;color:${l==="Miss"&&v>0?C.red:l==="TFL"&&v>0?C.green:l==="SK"&&v>0?C.green:C.white};line-height:1">${v}</div>
+          <div style="font-family:var(--mono);font-size:6px;color:var(--dim);text-transform:uppercase;margin-top:2px">${l}</div>
+        </div>`).join('')}
+    </div>
+    <div style="display:flex;gap:6px">
+      <div style="flex:1;background:${g.comp_pct>=71?"rgba(76,175,125,.08)":"rgba(217,79,79,.08)"};border:1px solid ${g.comp_pct>=71?"rgba(76,175,125,.25)":"rgba(217,79,79,.25)"};border-radius:5px;padding:5px;text-align:center">
+        <div style="font-family:var(--mono);font-size:13px;font-weight:700;color:${g.comp_pct>=71?C.green:C.red}">${g.comp_pct}%</div>
+        <div style="font-family:var(--mono);font-size:6.5px;color:var(--dim)">Comp</div>
+      </div>
+      <div style="flex:1;background:${g.miss_pct<=18?"rgba(76,175,125,.08)":"rgba(217,79,79,.08)"};border:1px solid ${g.miss_pct<=18?"rgba(76,175,125,.25)":"rgba(217,79,79,.25)"};border-radius:5px;padding:5px;text-align:center">
+        <div style="font-family:var(--mono);font-size:13px;font-weight:700;color:${g.miss_pct<=18?C.green:C.red}">${g.miss_pct}%</div>
+        <div style="font-family:var(--mono);font-size:6.5px;color:var(--dim)">Miss</div>
+      </div>
+      <div style="flex:1;background:var(--s3);border-radius:5px;padding:5px;text-align:center">
+        <div style="font-family:var(--mono);font-size:13px;font-weight:700;color:${g.box_pct>=80?C.teal:C.amber}">${g.box_pct}%</div>
+        <div style="font-family:var(--mono);font-size:6.5px;color:var(--dim)">Box</div>
+      </div>
+    </div>
+  </div>`;
+}).join('');
+
+// COV BREAKDOWN
+document.getElementById('cov-breakdown').innerHTML=GAMES.map(g=>`
+  <div class="gc" style="border:1px solid ${g.catch_rate<=58?"rgba(76,175,125,.2)":"rgba(217,79,79,.2)"}">
+    <div class="gc-hdr">
+      <div><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--white)">Wk${g.wk} ${g.full}</span>
+           <span style="font-family:var(--mono);font-size:7.5px;color:var(--dim);margin-left:8px">${g.cov_snaps} snps</span></div>
+      <span style="font-family:var(--mono);font-size:9px;color:${g.catch_rate<=58?C.green:C.red};font-weight:700">${g.catch_rate}% catch</span>
+    </div>
+    <div style="display:flex;gap:12px">
+      ${[["Tgt",g.tgts],["Catch",g.catches],["Yds",g.yds],["Yps",g.yps]].map(([l,v])=>`
+      <div style="text-align:center">
+        <div style="font-family:var(--mono);font-size:12px;font-weight:700;line-height:1;color:var(--white)">${v}</div>
+        <div style="font-family:var(--mono);font-size:7px;color:var(--dim);text-transform:uppercase;margin-top:2px">${l}</div>
+      </div>`).join('')}
+    </div>
+  </div>`).join('');
+
+document.getElementById('cov-assess').innerHTML=[
+  {title:"Target Rate",val:"11% avg",sub:"pos avg 16%",col:C.green,note:"Significantly below position average — he's not being targeted. Coverage scheme and his run-first deployment both contribute."},
+  {title:"Catch Rate Allowed",val:"57% avg",sub:"pos avg 58%",col:C.green,note:"Right at position average over 7 games. Wk3 (80%) was the outlier. 5 of 7 games were at or below position average."},
+  {title:"Yds/Cov Snap",val:"0.60 avg",sub:"pos avg 0.42",col:C.amber,note:"Above position average — he gives up more yards per snap than typical. Wk3 (1.13) is the primary driver inflating the average."},
+].map(a=>`<div style="background:var(--s2);border-radius:8px;padding:13px 14px;border:1px solid ${a.col}25">
+  <div style="font-family:var(--mono);font-size:8px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px">${a.title}</div>
+  <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:${a.col};margin-bottom:3px">${a.val}</div>
+  <div style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-bottom:8px">${a.sub}</div>
+  <div style="font-size:11px;color:var(--light);line-height:1.6;border-top:1px solid var(--bdr);padding-top:8px">${a.note}</div>
+</div>`).join('');
+
+// ── RADAR ─────────────────────────────────────────────────────────────────────
+// Rescored for 7-game sample
+const AXES=[
+  {label:"Run Fit",   sub:"box%, run snaps, TFL",   franklin:8.2, pos:5.5},
+  {label:"Big Play",  sub:"TFL + SK per game",      franklin:4.0, pos:4.0},
+  {label:"Tkl Clean", sub:"comp%, miss rate",       franklin:3.5, pos:6.0},
+  {label:"Coverage",  sub:"tgt rate, catch allow",  franklin:6.0, pos:5.5},
+  {label:"Pass Rush", sub:"pressure%, sack rate",   franklin:5.5, pos:5.0},
+  {label:"Snap Vol",  sub:"snaps/gm, role depth",   franklin:9.0, pos:7.0},
+];
+const N=6,CX=124,CY=128,R=88;
+const rAng=i=>(Math.PI*2*i/N)-Math.PI/2;
+const rPt=(s,i)=>{const a=rAng(i),r=(s/10)*R;return{x:CX+r*Math.cos(a),y:CY+r*Math.sin(a)};};
+const polyPts=sc=>sc.map((s,i)=>{const p=rPt(s,i);return p.x+','+p.y;}).join(' ');
+const LOFF=[32,28,32,32,28,32];
+const lPt=i=>{const a=rAng(i),r=R+LOFF[i];return{x:CX+r*Math.cos(a),y:CY+r*Math.sin(a)};};
+const tA=i=>{const x=Math.cos(rAng(i));return x>.25?'start':x<-.25?'end':'middle';};
+let svgS='';
+[2,4,6,8,10].forEach(r=>{const pts=Array.from({length:N},(_,i)=>{const p=rPt(r,i);return p.x+','+p.y;}).join(' ');svgS+=`<polygon points="${pts}" fill="none" stroke="${C.bdr}" stroke-width="${r===10?.9:.5}" opacity=".8"/>`;});
+AXES.forEach((_,i)=>{const p=rPt(10,i);svgS+=`<line x1="${CX}" y1="${CY}" x2="${p.x}" y2="${p.y}" stroke="${C.bdr2}" stroke-width=".8" opacity=".6"/>`;});
+svgS+=`<polygon points="${polyPts(AXES.map(a=>a.pos))}" fill="${C.mid}0A" stroke="${C.dim}" stroke-width="1" stroke-dasharray="3 2" opacity=".7"/>`;
+svgS+=`<polygon id="poly-f" points="${polyPts(AXES.map(a=>a.franklin))}" fill="${C.teal}1C" stroke="${C.teal}" stroke-width="2.2" opacity="0" style="transition:opacity .6s ease .2s"/>`;
+AXES.forEach((a,i)=>{const p=rPt(a.franklin,i);svgS+=`<circle class="rdot" cx="${p.x}" cy="${p.y}" r="4.5" fill="${C.teal}" stroke="${C.bg}" stroke-width="1.5" opacity="0"/>`;});
+[2,4,8].forEach(r=>{const p=rPt(r,0);svgS+=`<text x="${p.x+3}" y="${p.y+3}" font-size="7" fill="${C.dim}" font-family="monospace">${r}</text>`;});
+AXES.forEach((a,i)=>{
+  if(i===1||i===2)return;
+  const lp=lPt(i),ta=tA(i),ang=rAng(i),isTop=Math.sin(ang)<-.4;
+  const y1=isTop?lp.y-9:lp.y+1,y2=isTop?lp.y+4:lp.y+13;
+  svgS+=`<text x="${lp.x}" y="${y1}" text-anchor="${ta}" font-size="10" font-weight="700" fill="${C.light}" font-family="monospace">${a.label}</text>`;
+  svgS+=`<text x="${lp.x}" y="${y2}" text-anchor="${ta}" font-size="7.5" fill="${C.dim}" font-family="monospace">${a.sub}</text>`;
+});
+document.getElementById('radar-svg').innerHTML=svgS;
+document.getElementById('radar-table').innerHTML=
+  `<div style="display:grid;grid-template-columns:1fr 36px 36px;gap:3px;margin-bottom:4px;padding:0 4px">
+    <span style="font-family:var(--mono);font-size:7px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em">Axis</span>
+    <span style="font-family:var(--mono);font-size:7px;color:var(--teal);text-align:center">ZF</span>
+    <span style="font-family:var(--mono);font-size:7px;color:var(--dim);text-align:center">POS</span>
+  </div>`+
+  AXES.map(a=>{const diff=a.franklin-a.pos,dc=diff>1?C.teal:diff<-1?C.red:C.mid;
+    return `<div style="display:grid;grid-template-columns:1fr 36px 36px;gap:3px;align-items:center;padding:4px 7px;background:var(--s2);border-radius:5px;border:1px solid var(--bdr)">
+      <div><div style="font-family:var(--mono);font-size:8.5px;font-weight:700;color:var(--light)">${a.label}</div>
+           <div style="font-family:var(--mono);font-size:6px;color:var(--dim);margin-top:1px">${a.sub}</div></div>
+      <div style="text-align:center;font-family:var(--mono);font-size:14px;font-weight:700;color:${dc}">${a.franklin}</div>
+      <div style="text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim)">${a.pos}</div>
+    </div>`;}).join('')+
+  `<div style="display:flex;gap:12px;margin-top:5px;flex-wrap:wrap;padding:0 2px">
+    <div style="display:flex;align-items:center;gap:4px"><div style="width:12px;height:3px;background:var(--teal);border-radius:2px"></div><span style="font-family:var(--mono);font-size:7px;color:var(--dim)">Franklin</span></div>
+    <div style="display:flex;align-items:center;gap:4px"><div style="width:12px;height:0;border-top:1.5px dashed #6E6E88"></div><span style="font-family:var(--mono);font-size:7px;color:var(--dim)">pos avg</span></div>
+  </div>`;
+
+// TIERS
+const TIERS=[
+  {rank:1,label:"Every-Down ILB · Run-First Team", color:C.green,tag:"LB1 Ceiling",box:"88–92%",tklPg:"9–11/gm",fpts:"12–15/gm",
+   why:"Wk10 (16.0 fpts, 2 TFL, 1 SK) and Wk18 (13.0 fpts, 2 TFL) show the ceiling is real. At full deployment with a run-first team the snap volume + big play rate projects to genuine LB1."},
+  {rank:2,label:"ILB Starter · Current Trajectory", color:C.teal,tag:"Solid LB2",box:"88–92%",tklPg:"7–9/gm",fpts:"8–10/gm",
+   why:"8.4 fpts/gm over 7 games is his realistic floor in the IND role. Consistent deployment, average miss rate, average coverage. The tackle comp% is the only structural drag."},
+  {rank:3,label:"GB Rotational / Handcuff",        color:C.red,  tag:"Do Not Roster",box:"25–40%",tklPg:"3–5/gm",fpts:"3–6/gm",
+   why:"In Green Bay behind Cooper, McDuffie, and Hopper, the snap volume that drives his entire profile disappears. His IND stats are irrelevant at GB rotational snap counts."},
+];
+const ca={[C.green]:"rgba(76,175,125,.18)",[C.teal]:"rgba(61,191,184,.18)",[C.red]:"rgba(217,79,79,.18)"};
+document.getElementById('tier-cards').innerHTML=TIERS.map(t=>`
+  <div style="background:var(--s1);border-radius:9px;padding:14px 16px;border:1px solid ${ca[t.color]};flex:1">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">
+      <span style="font-family:var(--mono);font-size:10px;color:${t.color};font-weight:700;letter-spacing:.05em">Tier ${t.rank}</span>
+      <span style="font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:${t.color};border:1px solid ${t.color}55;padding:1px 7px;border-radius:2px">${t.tag}</span>
+    </div>
+    <div style="font-size:11.5px;font-weight:700;color:var(--white);margin-bottom:10px">${t.label}</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px">
+      ${[["Box %",t.box],["Tackles",t.tklPg],["Fantasy",t.fpts]].map(([k,v])=>`
+      <div style="background:var(--s2);border-radius:6px;padding:7px 6px;text-align:center;border:1px solid ${t.color}1A">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:${t.color}">${v}</div>
+        <div style="font-family:var(--mono);font-size:6.5px;color:var(--dim);margin-top:2px;text-transform:uppercase;letter-spacing:.06em">${k}</div>
+      </div>`).join('')}
+    </div>
+    <div style="font-size:10.5px;color:var(--light);line-height:1.65;border-top:1px solid var(--bdr);padding-top:9px">${t.why}</div>
+  </div>`).join('');
+
+document.getElementById('scheme-grid').innerHTML=[
+  {s:"3-4 ILB",fit:"★★★",c:C.green},{s:"4-3 MIKE",fit:"★★★",c:C.green},
+  {s:"4-3 WLB",fit:"★★",c:C.teal},{s:"Odd Front ILB",fit:"★★",c:C.teal},
+  {s:"Nickel-heavy",fit:"✗",c:C.amber},{s:"GB 2026",fit:"↓↓",c:C.red},
+].map(({s,fit,c})=>`<div style="background:var(--s2);border-radius:7px;padding:10px 8px;text-align:center;border:1px solid ${c}22">
+  <div style="font-family:var(--mono);font-size:18px;color:${c};margin-bottom:5px">${fit}</div>
+  <div style="font-family:var(--mono);font-size:7.5px;color:var(--light);line-height:1.4">${s}</div>
+</div>`).join('');
+
+function animateRadar(){
+  document.getElementById('poly-f').style.opacity='1';
+  document.querySelectorAll('.rdot').forEach(el=>{el.style.transition='opacity .4s ease .5s';el.style.opacity='1';});
+}
+
+// ── PLAYER PROFILE ────────────────────────────────────────────────────────────
+const SEASONS=[
+  {yr:"2023",gp:16,solo:107,ast:72,tfl:3,sack:1.5,ff:2,miss:25,snaps_pg:68.1,box_pct:91,
+   fpts_pg:9.9,tkl_pg:11.2,miss_rate:12.3,catch_rate:79.1,
+   grade_def:60.9,grade_run:66.1,grade_cov:56.4,grade_tkl:51.9,
+   note:"First full feature role. Elite snap volume, top-10 tackle total, coverage liability (79% catch rate allowed).",col:C.dim},
+  {yr:"2024",gp:17,solo:93,ast:80,tfl:11,sack:3.5,ff:5,miss:22,snaps_pg:68.1,box_pct:89,
+   fpts_pg:10.5,tkl_pg:10.2,miss_rate:11.6,catch_rate:86.8,
+   grade_def:61.0,grade_run:72.3,grade_cov:48.7,grade_tkl:63.2,
+   note:"Career-best season. Big-play explosion (11 TFL, 3.5 SK, 5 FF). Tackle grade +11 pts YoY. Coverage grade declined to 48.7.",col:C.gold},
+  {yr:"2025",gp:7,solo:27,ast:28,tfl:5,sack:2,ff:0,miss:21,snaps_pg:61.9,box_pct:90,
+   fpts_pg:8.4,tkl_pg:7.9,miss_rate:18.0,catch_rate:57.0,
+   grade_def:null,grade_run:null,grade_cov:null,grade_tkl:null,
+   note:"7 games charted. Miss rate normalizes to pos avg (18%). fpts/gm (8.4) matches pos avg. Slight snap dip from prior years.",col:C.teal},
+];
+
+document.getElementById('season-header-cards').innerHTML=SEASONS.map(s=>`
+  <div style="background:var(--s2);border-radius:9px;padding:14px 16px;border:1px solid ${s.col}30">
+    <div style="font-family:var(--mono);font-size:9px;color:${s.col};font-weight:700;letter-spacing:.1em;margin-bottom:10px">${s.yr}${s.yr==="2025"?" · 7 GM CHARTED":""}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px">
+      ${[["Fpts/Gm",s.fpts_pg,s.col],["Snaps/Gm",s.snaps_pg,C.mid],
+         ["Tkl/Gm",s.tkl_pg,C.mid],["Box %",s.box_pct+"%",s.col],
+         ["TFL",s.tfl,s.tfl>=8?C.green:C.mid],["Miss%",s.miss_rate+"%",s.miss_rate<=14?C.green:s.miss_rate<=18?C.amber:C.red],
+        ].map(([l,v,c])=>`
+      <div style="background:var(--s3);border-radius:6px;padding:7px 8px">
+        <div style="font-family:var(--mono);font-size:15px;font-weight:700;color:${c};line-height:1">${v}</div>
+        <div style="font-family:var(--mono);font-size:7px;color:var(--dim);text-transform:uppercase;margin-top:2px">${l}</div>
+      </div>`).join('')}
+    </div>
+    <div style="font-size:10px;color:var(--mid);line-height:1.6;border-top:1px solid var(--bdr);padding-top:9px">${s.note}</div>
+  </div>`).join('');
+
+document.getElementById('profile-thesis').innerHTML=
+  `<span style="color:var(--teal);font-weight:700">MULTI-YEAR SIGNAL:</span>  The 2023–2024 comp is the most important data in the profile. His miss rate improved year-over-year (12.3% → 11.6%) and his tackle grade jumped 11 points. The 2024 big-play season (11 TFL, 3.5 SK, 5 FF) is his genuine ceiling — it wasn't a fluke. The 2025 sample (7 games) shows the miss rate holding at position average (18%) and fpts/gm right at position average (8.4). <span style="color:var(--amber)">Coverage catch rate has been a consistent concern all three seasons</span>, ranging from 57–87%. The Green Bay move changes nothing about his talent — it eliminates the snap volume that makes him IDP-relevant.`;
+
+document.getElementById('yoy-bars').innerHTML=[
+  ["Fpts / Game",[9.9,10.5,8.4],18],
+  ["Snaps / Game",[68.1,68.1,61.9],90],
+  ["Box %",[91,89,90],100,'pct'],
+  ["Miss Rate %",[12.3,11.6,18.0],30],
+  ["TFL (season)",[3,11,5],15],
+  ["Catch Rate Allow %",[79.1,86.8,57.0],100],
+].map(([label,vals,max,fmt])=>{
+  const cols=[C.dim,C.gold,C.teal],yrs=["2023","2024","2025"];
+  const f=v=>fmt==='pct'?v+'%':v;
+  return `<div class="sbar" style="margin-bottom:14px">
+    <div class="sbar-hdr"><span class="sbar-lbl">${label}</span>
+      <div style="display:flex;gap:10px">${vals.map((v,i)=>`<span style="font-family:var(--mono);font-size:10px;font-weight:700;color:${cols[i]}">${v}</span>`).join('')}</div>
+    </div>
+    <div style="display:flex;gap:3px;height:5px;border-radius:3px;overflow:hidden;background:var(--s3)">
+      ${vals.map((v,i)=>`<div style="height:100%;background:${cols[i]};border-radius:2px;width:${Math.min((v/max)*100,100)}%;opacity:0.85"></div>`).join('')}
+    </div>
+    <div style="display:flex;gap:12px;margin-top:3px">${yrs.map((yr,i)=>`<span style="font-family:var(--mono);font-size:7px;color:${cols[i]}">${yr}</span>`).join('')}</div>
+  </div>`;}).join('');
+
+document.getElementById('pff-grades').innerHTML=
+  `<div style="display:grid;grid-template-columns:1fr 70px 70px;gap:4px;margin-bottom:6px;padding:0 8px">
+    <span style="font-family:var(--mono);font-size:8px;color:var(--dim)">Grade</span>
+    <span style="font-family:var(--mono);font-size:8px;color:var(--dim);text-align:center">2023</span>
+    <span style="font-family:var(--mono);font-size:8px;color:var(--gold);text-align:center">2024</span>
+  </div>`+
+  [["Overall Defense",60.9,61.0],[" Run Defense",66.1,72.3],[" Coverage",56.4,48.7],[" Tackling",51.9,63.2]]
+  .map(([l,v23,v24])=>{
+    const gc=g=>g>=70?C.green:g>=60?C.amber:C.red, better=v24>v23;
+    return `<div style="display:grid;grid-template-columns:1fr 70px 70px;gap:4px;align-items:center;padding:7px 8px;background:var(--s2);border-radius:6px;border:1px solid var(--bdr);margin-bottom:5px">
+      <div style="font-family:var(--mono);font-size:9px;color:var(--light)">${l}</div>
+      <div style="text-align:center;font-family:var(--mono);font-size:14px;font-weight:700;color:${gc(v23)}">${v23}</div>
+      <div style="text-align:center"><span style="font-family:var(--mono);font-size:14px;font-weight:700;color:${gc(v24)}">${v24}</span>
+        <span style="font-family:var(--mono);font-size:9px;color:${better?C.green:C.red};margin-left:3px">${better?"▲":"▼"}</span></div>
+    </div>`;}).join('');
+
+document.getElementById('season-stat-table').innerHTML=`<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:9px">
+  ${[["Season","GP","Solo","Ast","Tkl","TFL","SK","FF","Miss","Fpts/Gm","Snps/Gm","Box%"],
+     ...SEASONS.map(s=>[s.yr,s.gp,s.solo,s.ast,s.solo+s.ast,s.tfl,s.sack,s.ff,s.miss,s.fpts_pg,s.snaps_pg,s.box_pct+"%"])
+    ].map((row,i)=>`<tr style="background:${i===0?"var(--s3)":i%2===0?"var(--s2)":"var(--s1)"}">
+      ${row.map((cell,j)=>`<td style="padding:7px 8px;color:${i===0?"var(--dim)":j===0?SEASONS[i-1]?.col||"var(--white)":"var(--light)"};font-weight:${i===0||j===0?700:400};text-align:${j===0?"left":"center"};border-bottom:1px solid var(--bdr);white-space:nowrap">${cell}</td>`).join('')}
+    </tr>`).join('')}
+</table></div>`;
+
+document.getElementById('gb-outlook-cards').innerHTML=[
+  {title:"Snap Projection",icon:"📉",val:"20–35/gm",sub:"vs 62/gm in IND",col:C.red,
+   detail:"Cooper is locked. McDuffie expected at MIKE. Hopper is LB3. Franklin enters as the 4th linebacker at best — rotational snaps in base personnel only."},
+  {title:"Role Fit",icon:"⚠️",val:"Run Plugger",sub:"coverage will limit usage",col:C.amber,
+   detail:"GB wants his run-stop skills next to Cooper. His 3-yr coverage catch rate (57–87%) will immediately limit his usage in any passing situation."},
+  {title:"Upside Path",icon:"🔑",val:"Handcuff Only",sub:"Cooper or McDuffie injury",col:C.teal,
+   detail:"If either starter misses games, Franklin is the direct next-man-up. His IDP value in GB is almost entirely dependent on that scenario."},
+].map(o=>`<div style="background:var(--s2);border-radius:9px;padding:14px 16px;border:1px solid ${o.col}25">
+  <div style="font-size:20px;margin-bottom:6px">${o.icon}</div>
+  <div style="font-family:var(--mono);font-size:8px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">${o.title}</div>
+  <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:${o.col};margin-bottom:2px">${o.val}</div>
+  <div style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-bottom:10px">${o.sub}</div>
+  <div style="font-size:10.5px;color:var(--light);line-height:1.65;border-top:1px solid var(--bdr);padding-top:9px">${o.detail}</div>
+</div>`).join('');
+
+document.getElementById('gb-verdict').innerHTML=
+  `<strong style="color:var(--red)">IDP VERDICT — GREEN BAY 2026:</strong>  His 2025 charted data (8.4 fpts/gm, 90% box rate, 62 snaps/gm) shows he was producing at position-average or better in every meaningful category from the Indianapolis role. That entire profile is built on snap volume that disappears in Green Bay. Behind Cooper (every-down, locked), McDuffie (expected MIKE), and Hopper (LB3), Franklin is the 4th linebacker in a room that has no snaps to give him.<br><br>
+  <strong style="color:var(--amber)">Do not pay for Indianapolis production in a Green Bay depth chart.</strong>  His 2024 ceiling season (10.5 fpts/gm, 11 TFLs, 5 FFs) is completely irrelevant at 25–35 snaps per game. <span style="color:var(--teal)">Roster only as a handcuff to Cooper or McDuffie — not as a standalone asset.</span>  If either starter misses multiple weeks, act immediately, but price him as what he is: an every-down linebacker in the wrong room.`;
+
+// TREND CHART
+function animateTrend(){
+  const el=document.getElementById('trend-chart');
+  const W=el.offsetWidth||460,H=150;
+  const W23=[{wk:1,f:25.75},{wk:2,f:16.75},{wk:3,f:27.15},{wk:4,f:17.35},{wk:5,f:16.50},{wk:6,f:9.00},{wk:7,f:14.75},{wk:8,f:17.50},{wk:10,f:21.25},{wk:12,f:6.75},{wk:13,f:5.00},{wk:14,f:16.50},{wk:15,f:8.75},{wk:16,f:16.75},{wk:17,f:15.00},{wk:18,f:8.25}];
+  const W24=[{wk:1,f:10.00},{wk:2,f:14.00},{wk:3,f:13.00},{wk:4,f:9.75},{wk:5,f:12.50},{wk:6,f:13.75},{wk:7,f:18.50},{wk:8,f:14.75},{wk:9,f:20.25},{wk:10,f:12.75},{wk:11,f:5.25},{wk:12,f:23.85},{wk:13,f:34.80},{wk:15,f:26.15},{wk:16,f:6.75},{wk:17,f:30.00},{wk:18,f:27.10}];
+  const W25=[{wk:3,f:6.0},{wk:5,f:11.0},{wk:6,f:5.5},{wk:7,f:3.0},{wk:10,f:16.0},{wk:14,f:4.5},{wk:18,f:13.0}];
+  const all=[...W23,...W24,...W25];
+  const maxF=Math.max(...all.map(g=>g.f))+3,minF=0,range=maxF-minF;
+  const toY=f=>H-20-((f-minF)/range)*(H-30);
+  const n23=W23.length,n24=W24.length,n25=W25.length,total=n23+n24+n25;
+  const off=s=>s==='23'?0:s==='24'?n23:n23+n24;
+  const xp=(s,i)=>((off(s)+i)/(total-1))*W;
+  let g='';
+  [0,5,10,15,20,25,30,35].forEach(v=>{const y=toY(v);if(y>=0&&y<=H){g+=`<line x1="0" y1="${y}" x2="${W}" y2="${y}" stroke="var(--bdr)" stroke-width="${v===0?.8:.4}" opacity=".5"/>`;if(v>0)g+=`<text x="2" y="${y-2}" font-size="7" fill="var(--dim)" font-family="monospace">${v}</text>`;}}); 
+  const pAY=toY(8.2);
+  g+=`<line x1="0" y1="${pAY}" x2="${W}" y2="${pAY}" stroke="var(--mid)" stroke-width="1" stroke-dasharray="4 3" opacity=".4"/>`;
+  g+=`<text x="${W-2}" y="${pAY-3}" font-size="7" fill="var(--mid)" text-anchor="end" font-family="monospace">pos avg</text>`;
+  const x23e=xp('24',0),x24e=xp('25',0);
+  g+=`<line x1="${x23e}" y1="0" x2="${x23e}" y2="${H}" stroke="var(--bdr2)" stroke-width="1" opacity=".5" stroke-dasharray="2 3"/>`;
+  g+=`<line x1="${x24e}" y1="0" x2="${x24e}" y2="${H}" stroke="var(--bdr2)" stroke-width="1" opacity=".5" stroke-dasharray="2 3"/>`;
+  g+=`<text x="${x23e/2}" y="${H-3}" text-anchor="middle" font-size="8" fill="var(--dim)" font-family="monospace">2023</text>`;
+  g+=`<text x="${(x23e+x24e)/2}" y="${H-3}" text-anchor="middle" font-size="8" fill="var(--gold)" font-family="monospace">2024</text>`;
+  g+=`<text x="${(x24e+W)/2}" y="${H-3}" text-anchor="middle" font-size="8" fill="var(--teal)" font-family="monospace">2025</text>`;
+  const p23=W23.map((gm,i)=>`${xp('23',i)},${toY(gm.f)}`).join(' ');
+  const p24=W24.map((gm,i)=>`${xp('24',i)},${toY(gm.f)}`).join(' ');
+  const p25=W25.map((gm,i)=>`${xp('25',i)},${toY(gm.f)}`).join(' ');
+  const d23=W23.map((gm,i)=>`<circle cx="${xp('23',i)}" cy="${toY(gm.f)}" r="2.5" fill="var(--dim)" stroke="var(--bg)" stroke-width="1"/>`).join('');
+  const d24=W24.map((gm,i)=>`<circle cx="${xp('24',i)}" cy="${toY(gm.f)}" r="2.5" fill="var(--gold)" stroke="var(--bg)" stroke-width="1"/>`).join('');
+  const d25=W25.map((gm,i)=>`<circle cx="${xp('25',i)}" cy="${toY(gm.f)}" r="3" fill="var(--teal)" stroke="var(--bg)" stroke-width="1.5"/>`).join('');
+  el.innerHTML=`<svg width="${W}" height="${H}" style="overflow:visible">${g}
+    <polyline points="${p23}" fill="none" stroke="var(--dim)" stroke-width="1.8" opacity=".7" stroke-linejoin="round"/>
+    <polyline points="${p24}" fill="none" stroke="var(--gold)" stroke-width="2" opacity=".9" stroke-linejoin="round"/>
+    <polyline points="${p25}" fill="none" stroke="var(--teal)" stroke-width="2.2" opacity="1" stroke-linejoin="round"/>
+    ${d23}${d24}${d25}</svg>`;
+}
+
+// BY GAME
+function renderNav(){
+  document.getElementById('game-nav').innerHTML=GAMES.map((g,i)=>`
+    <button class="gnb${i===activeGame?" active":""}" onclick="setGame(${i})" style="border-color:${i===activeGame?"var(--teal)":"var(--bdr)"}">
+      <div style="display:flex;justify-content:space-between;margin-bottom:2px">
+        <span style="font-family:var(--mono);font-size:7.5px;color:var(--dim)">WK${g.wk}</span>
+        <span style="font-family:var(--mono);font-size:7.5px;font-weight:700;color:${g.fpts>=10?C.teal:g.fpts>=8?C.gold:g.fpts>=5?C.amber:C.red}">${g.fpts}</span>
+      </div>
+      <div style="font-size:12px;font-weight:700;margin-bottom:2px;color:var(--white)">${g.opp}</div>
+      <div style="font-family:var(--mono);font-size:7px;color:var(--dim)">${g.solo+g.ast}tkl·${g.box_pct}%</div>
+    </button>`).join('');
+}
+function renderDetail(){
+  const g=GAMES[activeGame];
+  const fcol=g.fpts>=10?C.teal:g.fpts>=8?C.gold:g.fpts>=5?C.amber:C.red;
+  const bpC=g.box_pct>=80?C.teal:C.amber;
+  const eff=[
+    ["Tkl Comp",g.comp_pct+"%","pos "+POS.comp+"%",g.comp_pct>=POS.comp],
+    ["Miss Rate",g.miss_pct+"%","pos "+POS.missRate+"%",g.miss_pct<=POS.missRate],
+    ["Cov Tgt%",g.tgt_rate+"%","pos "+POS.tgtRate+"%",g.tgt_rate<=POS.tgtRate],
+    ["Catch Allow",g.tgts>0?g.catch_rate+"%":"—","pos "+POS.catchRate+"%",g.tgts===0||g.catch_rate<=POS.catchRate],
+    ["Yds/Snap",g.yps,"pos "+POS.yps,parseFloat(g.yps)<=POS.yps],
+    ["Press Rate",g.rush_snaps>0?g.press_rate+"%":"—","pos "+POS.pressRate+"%",g.press_rate>=POS.pressRate],
+  ];
+  document.getElementById('game-detail').innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+      <div>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:5px">
+          <span style="font-family:var(--mono);font-size:9px;color:var(--dim)">WEEK ${g.wk} · ${g.snaps} SNAPS</span>
+          <span style="font-family:var(--mono);font-size:8px;color:${bpC};font-weight:700;border:1px solid ${bpC}40;padding:1px 7px;border-radius:2px">${g.box_pct}% BOX</span>
+        </div>
+        <div style="font-size:18px;font-weight:700">vs ${g.full}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-family:var(--mono);font-size:8px;color:var(--dim);margin-bottom:2px">FANTASY</div>
+        <div style="font-family:var(--mono);font-size:36px;font-weight:700;color:${fcol};line-height:1">${g.fpts}</div>
+      </div>
+    </div>
+    <div class="gd-grid">
+      ${[["Solo",g.solo],["Assist",g.ast],["TFL",g.tfl],["Sacks",g.sack],["Missed",g.miss],
+         ["FF",g.ff],["Opps",g.opps],["CovSnps",g.cov_snaps],["Tgts",g.tgts],["Rush",g.rush_snaps]
+        ].map(([l,v])=>`<div class="gd-cell">
+          <div style="font-family:var(--mono);font-size:15px;font-weight:700;color:${l==="Missed"&&v>0?C.red:l==="TFL"&&v>0?C.green:l==="Sacks"&&v>0?C.green:"var(--white)"};line-height:1">${v}</div>
+          <div style="font-family:var(--mono);font-size:7px;color:var(--dim);text-transform:uppercase;margin-top:3px">${l}</div>
+        </div>`).join('')}
+    </div>
+    <div class="eff-grid">
+      ${eff.map(([l,v,pv,good])=>`
+      <div class="eff-row">
+        <span style="font-family:var(--mono);font-size:9px;color:var(--mid)">${l}</span>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span style="font-family:var(--mono);font-size:8px;color:var(--dim)">${pv}</span>
+          <span style="font-family:var(--mono);font-size:12px;font-weight:700;color:${good?C.green:C.red}">${v}</span>
+        </div>
+      </div>`).join('')}
+    </div>`;
+}
+function setGame(i){activeGame=i;renderNav();renderDetail();}
+renderNav();renderDetail();
+
+function animateBars(){
+  document.querySelectorAll('.sbar-fill[data-w]').forEach(el=>{
+    const d=parseInt(el.dataset.delay)||0;
+    setTimeout(()=>{el.style.width=el.dataset.w+"%";},d);
+  });
+  document.querySelectorAll('.fpts-bar[data-h]').forEach((el,i)=>{
+    setTimeout(()=>{el.style.height=el.dataset.h+"px";},i*90);
+  });
+}
+setTimeout(()=>animateBars(),150);
+</script>
+</body>
+</html>
