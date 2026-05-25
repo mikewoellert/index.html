@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ventrell Miller · IDP Film Analysis · Tackle Tendency</title>
+<style>
+:root {
+  --bg:#05080A;--s1:#0C0F12;--s2:#121619;--s3:#181D21;
+  --bdr:#1F252B;--bdr2:#2A3138;
+  --gold:#F59E0B;--teal:#2DD4BF;--green:#22C55E;--red:#EF4444;
+  --amber:#F97316;--blue:#60A5FA;--purple:#A78BFA;
+  --white:#F1F1F8;--light:#CCCCDD;--mid:#9090A8;--dim:#606078;
+  --mono:'Courier New',monospace;--sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--white);font-family:var(--sans);min-height:100vh}
+.wrap{max-width:1020px;margin:0 auto;padding:20px 16px}
+.mono{font-family:var(--mono)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.span2{grid-column:1/-1}
+.card{background:var(--s1);border:1px solid var(--bdr);border-radius:10px;padding:16px 18px}
+.sl{font-size:8.5px;color:var(--mid);font-family:var(--mono);letter-spacing:.13em;text-transform:uppercase;margin-bottom:13px}
+.tabs{display:flex;gap:2px;margin-bottom:16px;background:var(--s1);padding:3px;border-radius:8px;border:1px solid var(--bdr)}
+.tab-btn{flex:1;padding:8px 0;border-radius:6px;border:none;cursor:pointer;background:transparent;
+  color:var(--mid);font-family:var(--mono);font-size:9px;font-weight:400;
+  letter-spacing:.08em;text-transform:uppercase;transition:all .15s}
+.tab-btn.active{background:var(--gold);color:#000;font-weight:700}
+.tab{display:none}.tab.active{display:block}
+.pill{flex:1 1 90px;background:var(--s1);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px}
+.pills{display:flex;gap:7px;margin-bottom:16px;flex-wrap:wrap}
+.sbar{margin-bottom:13px}
+.sbar-track{position:relative;height:4px;background:#181D21;border-radius:2px;margin-top:5px}
+.sbar-fill{position:absolute;left:0;top:0;height:100%;border-radius:2px;width:0;transition:width .85s cubic-bezier(.16,1,.3,1)}
+.sbar-marker{position:absolute;top:-4px;height:12px;width:1.5px;background:var(--bdr2);transform:translateX(-50%);border-radius:1px}
+.gc{background:var(--s2);border-radius:6px;padding:8px 9px;border:1px solid var(--bdr2);text-align:center}
+.game-btn{background:var(--s1);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;
+  cursor:pointer;transition:all .15s;text-align:left;width:100%;color:var(--white)}
+.game-btn.active{background:rgba(245,158,11,.08);border-color:var(--gold)}
+.eff-row{display:flex;justify-content:space-between;padding:8px 11px;
+  background:var(--s2);border-radius:6px;border:1px solid var(--bdr);align-items:center}
+.snap-seg{display:inline-block;height:9px}
+.banner{background:linear-gradient(90deg,#0D1208,#111710,#0D1208);
+  border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:10px 16px;
+  margin-bottom:16px;display:flex;align-items:center;gap:12px}
+@media(max-width:660px){.g2{grid-template-columns:1fr}.span2{grid-column:1}}
+</style>
+</head>
+<body><div class="wrap">
+
+<!-- HEADER -->
+<div style="margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--bdr)">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px">
+    <div style="display:flex;gap:14px;align-items:center">
+      <div style="width:4px;height:54px;background:linear-gradient(180deg,var(--gold),#D97706);border-radius:2px;flex-shrink:0"></div>
+      <div>
+        <div class="mono" style="font-size:8.5px;color:var(--mid);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px">Tackle Tendency · IDP Film Analysis</div>
+        <div style="font-size:32px;font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:8px">Ventrell Miller</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap">
+          <span class="mono" style="font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);border:1px solid rgba(144,144,168,.25);padding:2px 8px;border-radius:3px">Jacksonville Jaguars</span>
+          <span class="mono" style="font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(245,158,11,.25);padding:2px 8px;border-radius:3px">MLB · 4-3</span>
+          <span class="mono" style="font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);border:1px solid rgba(144,144,168,.2);padding:2px 8px;border-radius:3px">2024–2025</span>
+          <span class="mono" style="font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);border:1px solid rgba(34,197,94,.25);padding:2px 8px;border-radius:3px">11 Games Charted</span>
+          <span class="mono" style="font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);border:1px solid rgba(45,212,191,.25);padding:2px 8px;border-radius:3px">🔑 IDP Sleeper 2026</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:right;flex-shrink:0">
+      <div class="mono" style="font-size:8px;color:var(--mid);letter-spacing:.1em;margin-bottom:2px">PROJ FPTS/GM</div>
+      <div class="mono" style="font-size:42px;font-weight:900;color:var(--gold);line-height:1">9–12</div>
+      <div style="font-size:8px;color:var(--dim)">at 55–65 snaps</div>
+      <div class="mono" style="font-size:9px;color:var(--green);margin-top:4px;font-weight:700">LB2 upside</div>
+    </div>
+  </div>
+</div>
+
+<!-- LLOYD BANNER -->
+<div class="banner">
+  <div style="font-size:20px">🔑</div>
+  <div>
+    <div class="mono" style="font-size:8.5px;color:var(--green);letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px">◆ The Lloyd Factor · 2026 Path to Snaps</div>
+    <div style="font-size:11px;color:var(--light);line-height:1.65">Devin Lloyd left in free agency. Miller's three highest-snap 2025 games — Wk6 (29), Wk7 (54), Wk9 (54) — all came when Lloyd was injured. <strong style="color:var(--white)">Three auditions. Three passes.</strong> The starting role is now his to lose.</div>
+  </div>
+</div>
+
+<!-- PILLS -->
+<div class="pills" id="pills"></div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+  <button class="tab-btn" onclick="switchTab('development')">Development</button>
+  <button class="tab-btn" onclick="switchTab('idp')">IDP Outlook</button>
+  <button class="tab-btn" onclick="switchTab('efficiency')">Efficiency</button>
+  <button class="tab-btn" onclick="switchTab('game')">By Game</button>
+</div>
+
+<!-- OVERVIEW -->
+<div class="tab active" id="tab-overview">
+  <div class="g2">
+    <div class="card">
+      <div class="sl">Skill Profile · 11-Game Combined</div>
+      <div style="display:flex;justify-content:center;margin-bottom:10px">
+        <svg id="radar" width="200" height="200" style="overflow:visible"></svg>
+      </div>
+      <div style="display:flex;justify-content:center;gap:14px;margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:2px;background:var(--gold)"></div><span class="mono" style="font-size:8px;color:var(--dim)">Miller</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:2px;background:var(--bdr2)"></div><span class="mono" style="font-size:8px;color:var(--dim)">Pos Avg</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+        <div class="gc"><div class="mono" style="font-size:18px;font-weight:900;color:var(--gold)">+20</div><div style="font-size:7.5px;color:var(--mid);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">PFF DEF</div><div style="font-size:7.5px;color:var(--dim);font-style:italic">52→72.6</div></div>
+        <div class="gc"><div class="mono" style="font-size:18px;font-weight:900;color:var(--green)">+28</div><div style="font-size:7.5px;color:var(--mid);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">PFF TACK</div><div style="font-size:7.5px;color:var(--dim);font-style:italic">38.8→67.1</div></div>
+        <div class="gc"><div class="mono" style="font-size:18px;font-weight:900;color:var(--teal)">+19</div><div style="font-size:7.5px;color:var(--mid);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px">PFF RUN</div><div style="font-size:7.5px;color:var(--dim);font-style:italic">63.4→82.8</div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:11px">
+      <div class="card" style="flex:1">
+        <div class="sl">Key Film Signals · 11 Games</div>
+        <div id="findings"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px" id="game-mini"></div>
+    </div>
+  </div>
+</div>
+
+<!-- DEVELOPMENT -->
+<div class="tab" id="tab-development">
+  <div class="g2">
+    <div class="card span2" style="background:linear-gradient(90deg,#0D1208,#111710,#0D1208);border-color:rgba(34,197,94,.2)">
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <div style="flex:1">
+          <div class="mono" style="font-size:8.5px;color:var(--green);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px">◆ The Core Thesis</div>
+          <div style="font-size:11px;color:var(--light);line-height:1.75">Every efficiency metric improved in 2025 while snap count dropped. <strong style="color:var(--white)">He got better while getting fewer chances to show it.</strong> The miss rate didn't just drop — the <em>volatility</em> was eliminated. A 46% miss rate game in 2024. Zero games above 17% in 2025. That's not regression to the mean. That's technique work paying off.</div>
+        </div>
+        <div style="display:flex;gap:16px;flex-shrink:0">
+          <div style="text-align:center"><div class="mono" style="font-size:8px;color:var(--mid);margin-bottom:2px">2024 DEF</div><div class="mono" style="font-size:28px;font-weight:900;color:var(--gold);line-height:1">52.0</div></div>
+          <div style="font-size:22px;color:var(--bdr2);align-self:center">→</div>
+          <div style="text-align:center"><div class="mono" style="font-size:8px;color:var(--mid);margin-bottom:2px">2025 DEF</div><div class="mono" style="font-size:28px;font-weight:900;color:var(--green);line-height:1">72.6</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="sl">PFF Grades · 2024 vs 2025</div>
+      <div id="pff-bars"></div>
+    </div>
+    <div class="card">
+      <div class="sl">Efficiency Metrics · 2024 vs 2025</div>
+      <div id="eff-bars"></div>
+    </div>
+
+    <div class="card span2">
+      <div class="sl">Miss Rate Volatility — The Key Development Signal</div>
+      <div style="display:flex;gap:6px;align-items:flex-end;height:70px;margin-bottom:10px" id="miss-chart"></div>
+      <div style="display:flex;gap:14px;margin-bottom:10px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:12px;height:12px;border-radius:2px;background:var(--gold)"></div><span class="mono" style="font-size:8px;color:var(--dim)">2024 games</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:12px;height:12px;border-radius:2px;background:var(--teal)"></div><span class="mono" style="font-size:8px;color:var(--dim)">2025 games</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:20px;height:0;border-top:1.5px dashed var(--mid)"></div><span class="mono" style="font-size:8px;color:var(--dim)">pos avg 18%</span></div>
+      </div>
+      <div style="padding:10px 13px;background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.18);border-radius:6px;font-size:10px;color:var(--light);line-height:1.7">
+        <strong style="color:var(--green)">The volatility story:</strong> 2024 miss rates ranged from 9% to 46% across five games — a 37-point spread. 2025 ranged from 0% to 17% across six games — a 17-point spread. Both the average and the variance improved. That's not luck. That's locked-in technique.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDP OUTLOOK -->
+<div class="tab" id="tab-idp">
+  <div class="g2">
+    <div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:11px" id="outlook-cards"></div>
+
+    <div class="card">
+      <div class="sl">Snap Count → fpts Projection</div>
+      <svg id="scatter" width="100%" height="200" style="overflow:visible"></svg>
+      <div style="display:flex;gap:14px;margin-top:10px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:9px;height:9px;border-radius:50%;background:var(--gold)"></div><span class="mono" style="font-size:8px;color:var(--dim)">2024</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:9px;height:9px;border-radius:50%;background:var(--teal)"></div><span class="mono" style="font-size:8px;color:var(--dim)">2025</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:16px;height:8px;background:var(--green);opacity:.2;border-radius:2px"></div><span class="mono" style="font-size:8px;color:var(--dim)">3-down projection</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="sl">Scheme Fit · 2026 Scenarios</div>
+      <div id="scenarios"></div>
+    </div>
+
+    <div class="card span2" style="background:linear-gradient(135deg,var(--s1),#0C1008);border-color:rgba(245,158,11,.2)">
+      <div class="mono" style="font-size:9px;font-weight:700;color:var(--gold);letter-spacing:.08em;margin-bottom:9px">◆ IDP VERDICT · 2026</div>
+      <div style="font-size:11px;color:var(--light);line-height:1.8">Ventrell Miller is not a player you draft. He's a player you <strong style="color:var(--white)">know about before everyone else does.</strong> Eleven games of film across two seasons confirms the talent is real. The PFF grade jumps — +28 on tackling, +19 on run defense, +20 overall — aren't rounding errors. They're a player who fixed his technique and then proved it under pressure when Lloyd went down three separate times.<br><br>With Lloyd gone in free agency, <strong style="color:var(--white)">the starting role is Miller's to lose.</strong> In tackle-heavy formats he's a late-round pick with LB2 upside who outperforms his ADP. In big-play formats, wait until you see the TFL rate scale. The talent is there. The development is real. <span style="color:var(--gold)">The only thing missing is the snap count — and that problem just solved itself.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EFFICIENCY -->
+<div class="tab" id="tab-efficiency">
+  <div class="g2">
+    <div class="card">
+      <div class="sl">Tackle Efficiency · 11-Game Combined</div>
+      <div id="tackle-bars"></div>
+    </div>
+    <div class="card">
+      <div class="sl">Coverage · 11-Game Combined</div>
+      <div id="cov-bars"></div>
+    </div>
+    <div class="card span2">
+      <div class="sl">All 11 Games · Production Grid</div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px" id="prod-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- BY GAME -->
+<div class="tab" id="tab-game">
+  <div style="display:grid;grid-template-columns:120px 1fr;gap:13px">
+    <div style="display:flex;flex-direction:column;gap:6px" id="game-nav"></div>
+    <div class="card" id="game-detail"></div>
+  </div>
+</div>
+
+<div style="margin-top:16px;padding-top:10px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between">
+  <span class="mono" style="font-size:7.5px;color:var(--dim)">TACKLE TENDENCY · VENTRELL MILLER · 5 GM 2024 + 6 GM 2025 · JACKSONVILLE JAGUARS</span>
+  <span class="mono" style="font-size:7.5px;color:var(--dim)">11 GAMES CHARTED · 650 TOTAL SNAPS · IDP SLEEPER 2026</span>
+</div>
+</div>
+
+<script>
+const C={gold:"#F59E0B",teal:"#2DD4BF",green:"#22C55E",red:"#EF4444",amber:"#F97316",
+         blue:"#60A5FA",purple:"#A78BFA",white:"#F1F1F8",light:"#CCCCDD",mid:"#9090A8",dim:"#606078",
+         s1:"#0C0F12",s2:"#121619",s3:"#181D21",bdr:"#1F252B",bdr2:"#2A3138",bg:"#05080A"};
+
+const GAMES=[
+  // wk,opp,yr,snaps,box_pct,solo,ast,tfl,sk,miss,opps,comp_pct,miss_pct,cov_snaps,tgts,catches,yds,catch_rate,rush_snaps,pres,fpts
+  {wk:1, opp:"BUF",yr:2024,snaps:28, box_pct:96, solo:2,ast:4,tfl:0,sk:0,miss:2,opps:9, comp_pct:67,miss_pct:22,cov_snaps:9, tgts:1,catches:0,yds:0,  catch_rate:0,  rush_snaps:2, pres:0,fpts:6.0,  lloyd:false},
+  {wk:4, opp:"HOU",yr:2024,snaps:57, box_pct:95, solo:7,ast:3,tfl:1,sk:0,miss:2,opps:14,comp_pct:71,miss_pct:14,cov_snaps:34,tgts:8,catches:5,yds:57, catch_rate:62, rush_snaps:0, pres:0,fpts:10.5, lloyd:false},
+  {wk:6, opp:"CHI",yr:2024,snaps:42, box_pct:93, solo:7,ast:2,tfl:0,sk:0,miss:1,opps:11,comp_pct:82,miss_pct:9, cov_snaps:18,tgts:2,catches:2,yds:22, catch_rate:100,rush_snaps:2, pres:1,fpts:10.0, lloyd:false},
+  {wk:7, opp:"NE", yr:2024,snaps:31, box_pct:100,solo:4,ast:4,tfl:0,sk:0,miss:4,opps:13,comp_pct:62,miss_pct:31,cov_snaps:17,tgts:3,catches:3,yds:25, catch_rate:100,rush_snaps:3, pres:2,fpts:6.0,  lloyd:false},
+  {wk:8, opp:"GB", yr:2024,snaps:41, box_pct:88, solo:3,ast:2,tfl:1,sk:0,miss:6,opps:13,comp_pct:38,miss_pct:46,cov_snaps:14,tgts:2,catches:2,yds:7,  catch_rate:100,rush_snaps:3, pres:0,fpts:6.0,  lloyd:false},
+  {wk:1, opp:"CAR",yr:2025,snaps:16, box_pct:75, solo:1,ast:1,tfl:0,sk:0,miss:0,opps:4, comp_pct:50,miss_pct:0, cov_snaps:7, tgts:1,catches:0,yds:0,  catch_rate:0,  rush_snaps:1, pres:0,fpts:1.5,  lloyd:false},
+  {wk:6, opp:"SEA",yr:2025,snaps:29, box_pct:72, solo:1,ast:5,sk:1,tfl:1,miss:1,opps:11,comp_pct:55,miss_pct:9, cov_snaps:8, tgts:0,catches:0,yds:0,  catch_rate:0,  rush_snaps:3, pres:2,fpts:9.5,  lloyd:true},
+  {wk:7, opp:"LAR",yr:2025,snaps:54, box_pct:74, solo:4,ast:3,tfl:0,sk:0,miss:2,opps:12,comp_pct:58,miss_pct:17,cov_snaps:21,tgts:3,catches:2,yds:9,  catch_rate:67, rush_snaps:9, pres:1,fpts:5.5,  lloyd:true},
+  {wk:9, opp:"LV", yr:2025,snaps:54, box_pct:83, solo:2,ast:6,tfl:0,sk:0,miss:2,opps:13,comp_pct:62,miss_pct:15,cov_snaps:29,tgts:3,catches:2,yds:12, catch_rate:67, rush_snaps:8, pres:1,fpts:5.0,  lloyd:true},
+  {wk:15,opp:"NYJ",yr:2025,snaps:11, box_pct:82, solo:2,ast:0,tfl:0,sk:0,miss:0,opps:3, comp_pct:67,miss_pct:0, cov_snaps:8, tgts:0,catches:0,yds:0,  catch_rate:0,  rush_snaps:0, pres:0,fpts:2.0,  lloyd:false},
+  {wk:18,opp:"TEN",yr:2025,snaps:12, box_pct:83, solo:1,ast:2,tfl:0,sk:0,miss:0,opps:4, comp_pct:75,miss_pct:0, cov_snaps:8, tgts:1,catches:1,yds:-1, catch_rate:100,rush_snaps:0, pres:0,fpts:2.0,  lloyd:false},
+];
+const POS={fpts:8.2,tkl:6.8,boxPct:61,comp:71,miss:18,tgtRate:16,catchRate:58,yps:0.42,pressRate:22};
+let activeGame=0;
+
+function switchTab(id){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const ids=['overview','development','idp','efficiency','game'];
+  document.querySelectorAll('.tab-btn')[ids.indexOf(id)].classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='idp') setTimeout(drawScatter,80);
+  setTimeout(animateBars,60);
+}
+
+// PILLS
+document.getElementById('pills').innerHTML=[
+  ["PFF DEF 2025","72.6","was 52.0 in 2024",true],
+  ["PFF TACK","67.1","+28 pts YoY",true],
+  ["Miss Rate","7.7%","was 24.4% in 2024",true],
+  ["Catch Allow","39.0%","was 72.4% in 2024",true],
+  ["Proj Fpts/Gm","9–12","at 55–65 snaps",null],
+  ["Starting Role","2026","Lloyd departed",null],
+].map(([l,v,sub,hi])=>`<div class="pill" style="${hi?'background:rgba(245,158,11,.06);border-color:rgba(245,158,11,.25)':''}">
+  <div class="mono" style="font-size:8px;color:var(--mid);letter-spacing:.09em;text-transform:uppercase;margin-bottom:4px">${l}</div>
+  <div class="mono" style="font-size:20px;font-weight:900;color:${hi?C.gold:hi===false?C.red:C.white};line-height:1;margin-bottom:3px">${v}</div>
+  <div style="font-size:8px;color:var(--dim)">${sub}</div>
+</div>`).join('');
+
+// RADAR
+(()=>{
+  const svg=document.getElementById('radar');
+  const n=6,cx=100,cy=100,r=70;
+  const labels=["Run\nFit","Tackling","Coverage","Pass\nRush","Big Play","Snap\nVol"];
+  const miller=[82,72,65,68,52,60], pos=[60,58,52,50,55,55];
+  const pt=(i,v)=>{const a=Math.PI*2*i/n-Math.PI/2;return{x:cx+(v/100)*r*Math.cos(a),y:cy+(v/100)*r*Math.sin(a)};};
+  const poly=arr=>arr.map((v,i)=>{const p=pt(i,v);return p.x+','+p.y;}).join(' ');
+  const grid=v=>Array.from({length:n},(_,i)=>pt(i,v)).map(p=>p.x+','+p.y).join(' ');
+  let s='';
+  [20,40,60,80,100].forEach(v=>s+=`<polygon points="${grid(v)}" fill="none" stroke="${v===60?'#252830':'#181D21'}" stroke-width="${v===60?1:.5}"/>`);
+  Array.from({length:n},(_,i)=>{const p=pt(i,100);s+=`<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="#181D21" stroke-width=".5"/>`;});
+  s+=`<polygon points="${poly(pos)}" fill="rgba(144,144,168,.06)" stroke="rgba(144,144,168,.2)" stroke-width="1" stroke-dasharray="3,2"/>`;
+  s+=`<polygon id="rpoly" points="${poly(miller)}" fill="rgba(245,158,11,.1)" stroke="${C.gold}" stroke-width="1.8" opacity="0" style="transition:opacity .7s;filter:drop-shadow(0 0 8px rgba(245,158,11,.3))"/>`;
+  miller.forEach((v,i)=>{const p=pt(i,v);s+=`<circle class="rdot" cx="${p.x}" cy="${p.y}" r="3.5" fill="${C.gold}" opacity="0"/>`;});
+  labels.forEach((lbl,i)=>{
+    const a=Math.PI*2*i/n-Math.PI/2,lx=cx+(r+22)*Math.cos(a),ly=cy+(r+22)*Math.sin(a);
+    lbl.split('\n').forEach((l,li,arr)=>s+=`<text x="${lx}" y="${ly+(li-(arr.length-1)/2)*11}" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="${C.mid}" font-family="monospace">${l}</text>`);
+  });
+  svg.innerHTML=s;
+  setTimeout(()=>{
+    document.getElementById('rpoly').style.opacity='1';
+    document.querySelectorAll('.rdot').forEach((el,i)=>{el.style.transition=`opacity .4s ease ${i*80}ms`;el.style.opacity='1';});
+  },300);
+})();
+
+// FINDINGS
+document.getElementById('findings').innerHTML=[
+  [C.green, "▲","Week 8 GB floor (46% miss) → 2025 max of 17%. Volatility eliminated, not just average improved."],
+  [C.green, "▲","PFF tackling grade +28 pts (38.8→67.1). Run defense +19 pts (63.4→82.8). Both elite by 2025."],
+  [C.green, "▲","Coverage catch rate: 72.4% → 39.0%. Target rate: 15.6% → 8.3%. Offenses stopped testing him."],
+  [C.green, "▲","Wk6 SEA: 3 rush snaps, 2 pressures, 1 sack. Pass rush weapon — rare for an off-ball LB."],
+  [C.green, "▲","Three Lloyd-injury auditions (Wk6, Wk7, Wk9). Produced each time. Lloyd now gone in FA."],
+  [C.red,   "▼","Big-play rate thin: 2 TFLs + 1 sack in 11 games. Not a big-play format play — yet."],
+  [C.red,   "▼","Wk4 HOU coverage: 8 targets, 5 catches, 57 yds on 34 cov snaps. 2024 liability was real."],
+  [C.amber, "◆","Coverage improvement unproven at full-season scale. Late-season PFF grades encouraging (77.8, 78.5)."],
+].map(([col,icon,text])=>`<div style="display:flex;gap:8px;margin-bottom:8px;align-items:flex-start">
+  <span style="color:${col};font-size:9px;margin-top:2px;flex-shrink:0">${icon}</span>
+  <span style="font-size:10px;color:var(--light);line-height:1.55">${text}</span>
+</div>`).join('');
+
+// GAME MINI CARDS
+document.getElementById('game-mini').innerHTML=GAMES.map((g,i)=>`
+  <div onclick="setGame(${i});switchTab('game')" style="background:var(--s1);border:1px solid ${g.lloyd?C.gold+'44':C.bdr};border-radius:8px;padding:9px 10px;cursor:pointer"
+    onmouseover="this.style.borderColor='${C.gold}'" onmouseout="this.style.borderColor='${g.lloyd?C.gold+"44":"var(--bdr)"}'">
+    <div class="mono" style="font-size:7.5px;color:var(--dim);margin-bottom:2px">Wk${g.wk} '${String(g.yr).slice(2)} ${g.lloyd?'★':''}</div>
+    <div class="mono" style="font-size:9px;color:var(--light);margin-bottom:3px">${g.opp}</div>
+    <div class="mono" style="font-size:20px;font-weight:900;color:${g.fpts>=8?C.green:g.fpts>=5?C.gold:C.amber};line-height:1">${g.fpts}</div>
+    <div style="font-size:8px;color:var(--dim);margin-top:2px">${g.snaps}snps</div>
+  </div>`).join('');
+
+// DEVELOPMENT BARS
+function devBar(label, v24, v25, max, invert, type){
+  const p24=Math.min((v24/max)*100,100), p25=Math.min((v25/max)*100,100);
+  const imp=invert?v25<v24:v25>v24;
+  const col=imp?C.green:C.red;
+  const chg=(v25>v24?'+':'')+((v25-v24).toFixed(1));
+  const f=v=>type==='pct'?v+'%':v;
+  return `<div class="sbar">
+    <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+      <span class="mono" style="font-size:9.5px;color:var(--light)">${label}</span>
+      <div style="display:flex;gap:12px;align-items:center">
+        <span class="mono" style="font-size:10px;font-weight:700;color:${C.gold}">${f(v24)}</span>
+        <span style="font-size:9px;color:var(--dim)">→</span>
+        <span class="mono" style="font-size:10px;font-weight:700;color:${C.teal}">${f(v25)}</span>
+        <span class="mono" style="font-size:9px;font-weight:700;color:${col};width:46px;text-align:right">${chg}</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:3px">
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="mono" style="font-size:7px;color:${C.gold};width:28px">2024</span>
+        <div class="sbar-track" style="flex:1;margin-top:0"><div class="sbar-fill" data-w="${p24}" style="background:${C.gold};opacity:.7"></div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="mono" style="font-size:7px;color:${C.teal};width:28px">2025</span>
+        <div class="sbar-track" style="flex:1;margin-top:0"><div class="sbar-fill" data-w="${p25}" style="background:${C.teal}"></div></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+document.getElementById('pff-bars').innerHTML=
+  devBar("PFF DEF Grade",52.0,72.6,100,false,'')+
+  devBar("PFF RUN Grade",63.4,82.8,100,false,'')+
+  devBar("PFF TACK Grade",38.8,67.1,100,false,'')+
+  devBar("PFF COV Grade",45.4,58.4,100,false,'');
+
+document.getElementById('eff-bars').innerHTML=
+  devBar("Miss Rate %",24.4,7.7,50,true,'pct')+
+  devBar("Catch Rate Allowed",72.4,39.0,100,true,'pct')+
+  devBar("Comp Rate %",64.0,78.8,100,false,'pct')+
+  devBar("Target Rate %",15.6,8.3,25,true,'pct');
+
+// MISS VOLATILITY CHART
+const missData=[
+  {g:"Wk1 BUF",m:22,yr:2024},{g:"Wk4 HOU",m:14,yr:2024},{g:"Wk6 CHI",m:9,yr:2024},
+  {g:"Wk7 NE",m:31,yr:2024},{g:"Wk8 GB",m:46,yr:2024},
+  {g:"Wk1 CAR",m:0,yr:2025},{g:"Wk6 SEA",m:9,yr:2025},{g:"Wk7 LAR",m:17,yr:2025},
+  {g:"Wk9 LV",m:15,yr:2025},{g:"Wk15 NYJ",m:0,yr:2025},{g:"Wk18 TEN",m:0,yr:2025},
+];
+document.getElementById('miss-chart').innerHTML=missData.map(d=>{
+  const h=Math.max((d.m/50)*60,2),col=d.yr===2024?C.gold:C.teal;
+  const alarm=d.m>=30?C.red:d.m>=18?C.amber:col;
+  return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px">
+    <span class="mono" style="font-size:8.5px;font-weight:700;color:${alarm}">${d.m}%</span>
+    <div style="width:100%;border-radius:3px 3px 0 0;height:${h}px;background:${alarm}"></div>
+    <span class="mono" style="font-size:7px;color:var(--dim);text-align:center;line-height:1.2">${d.g.split(' ')[0]}<br>${d.g.split(' ')[1]}</span>
+  </div>`;
+}).join('')+`<div style="flex:0 0 auto;position:relative;width:1px">
+  <div style="position:absolute;bottom:${(18/50)*60+12}px;left:-300px;width:700px;border-top:1px dashed var(--mid);opacity:.5"></div>
+</div>`;
+
+// OUTLOOK CARDS
+document.getElementById('outlook-cards').innerHTML=[
+  {label:"3-Down Projection",score:"9–12",unit:"fpts/gm",color:C.gold,desc:"Based on Week 4 HOU (57 snaps, 10.5 fpts) as the full-deployment blueprint, scaled with 2025 efficiency metrics. LB2 territory every week."},
+  {label:"Starting Role",score:"LB1",unit:"to lose in 2026",color:C.green,desc:"Lloyd departed. Miller is the early leader in camp per Jacksonville's coaching staff. Oluokun called him 'a playmaker who doesn't skip a beat.'"},
+  {label:"Draft Strategy",score:"LATE",unit:"round value",color:C.teal,desc:"In tackle-heavy formats: late-round pick, LB2 upside, outperform ADP. Big-play formats: wait for TFL rate to scale before rostering."},
+].map(({label,score,unit,color,desc})=>`
+  <div style="background:var(--s1);border:1px solid ${color}22;border-radius:10px;padding:14px 16px">
+    <div class="mono" style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:.09em;margin-bottom:5px">${label}</div>
+    <div class="mono" style="font-size:22px;font-weight:900;color:${color};line-height:1;margin-bottom:2px">${score}</div>
+    <div class="mono" style="font-size:8px;color:var(--dim);margin-bottom:10px">${unit}</div>
+    <div style="font-size:10px;color:var(--light);line-height:1.65;border-top:1px solid var(--bdr);padding-top:9px">${desc}</div>
+  </div>`).join('');
+
+// SCENARIOS
+document.getElementById('scenarios').innerHTML=[
+  [C.green, "Starter + Run-First Scheme","9–12 fpts/gm","Lock","JAX run-first + 60+ snaps = LB2 every week"],
+  [C.gold,  "Starter + Balanced Scheme", "7–10 fpts/gm","Solid","Position-average production, solid hold"],
+  [C.amber, "Rotational (new addition)","3–5 fpts/gm","Avoid","Marquee FA/draft pick pushes him back to depth"],
+  [C.red,   "Lloyd-like injury fill",   "varies",      "Stream","Monitor weekly — produce when called, drop when healthy"],
+].map(([col,label,proj,tag,note])=>`
+  <div style="display:flex;gap:10px;align-items:flex-start;padding:9px 11px;background:var(--s2);border-radius:7px;border-left:3px solid ${col};margin-bottom:7px">
+    <div style="flex:1">
+      <div class="mono" style="font-size:9px;font-weight:700;color:var(--white);margin-bottom:2px">${label}</div>
+      <div style="font-size:9px;color:var(--mid);line-height:1.5">${note}</div>
+    </div>
+    <div style="text-align:right;flex-shrink:0">
+      <div class="mono" style="font-size:11px;font-weight:700;color:${col}">${proj}</div>
+      <div class="mono" style="font-size:8px;color:${col};opacity:.7">${tag}</div>
+    </div>
+  </div>`).join('');
+
+// SCATTER PLOT
+function drawScatter(){
+  const svg=document.getElementById('scatter');
+  const W=svg.getBoundingClientRect().width||460,H=200;
+  const pl=30,pr=120,pt=14,pb=36;
+  const cw=W-pl-pr,ch=H-pt-pb;
+  const mxs=65,mxf=14;
+  const fx=s=>pl+(s/mxs)*cw, fy=f=>pt+ch-(Math.min(f,mxf)/mxf)*ch;
+
+  let s=`<rect width="${W}" height="${H}" fill="var(--s1)" rx="6"/>`;
+  // Grid
+  [0,4,8,12].forEach(v=>{const y=fy(v);s+=`<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="var(--bdr)" stroke-width=".5"/>`;s+=`<text x="${pl-3}" y="${y+3}" font-size="8" fill="${C.dim}" text-anchor="end" font-family="monospace">${v}</text>`;});
+  [0,20,40,60].forEach(v=>{const x=fx(v);s+=`<line x1="${x}" y1="${pt}" x2="${x}" y2="${pt+ch}" stroke="var(--bdr)" stroke-width=".5"/>`;s+=`<text x="${x}" y="${pt+ch+13}" font-size="8" fill="${C.dim}" text-anchor="middle" font-family="monospace">${v}</text>`;});
+  // Pos avg
+  const pav=fy(POS.fpts);
+  s+=`<line x1="${pl}" y1="${pav}" x2="${W-pr}" y2="${pav}" stroke="${C.mid}" stroke-width=".8" stroke-dasharray="4 3"/>`;
+  s+=`<text x="${W-pr+3}" y="${pav+3}" font-size="7.5" fill="${C.mid}" font-family="monospace">pos avg</text>`;
+  // Projection zone
+  const px1=fx(55),px2=fx(65),py1=fy(12),py2=fy(9);
+  s+=`<rect x="${px1}" y="${py1}" width="${px2-px1}" height="${py2-py1}" fill="${C.green}" opacity=".08" rx="3"/>`;
+  s+=`<rect x="${px1}" y="${py1}" width="${px2-px1}" height="${py2-py1}" fill="none" stroke="${C.green}" stroke-width=".8" stroke-dasharray="3 2" opacity=".4" rx="3"/>`;
+  s+=`<text x="${(px1+px2)/2}" y="${py1-5}" font-size="8" fill="${C.green}" text-anchor="middle" font-family="monospace" font-weight="700">PROJECTION</text>`;
+  s+=`<text x="${(px1+px2)/2}" y="${py1+8}" font-size="7" fill="${C.green}" text-anchor="middle" font-family="monospace">9–12 fpts</text>`;
+  // Trendline
+  s+=`<line x1="${fx(10)}" y1="${fy(1.5)}" x2="${fx(58)}" y2="${fy(10.5)}" stroke="${C.dim}" stroke-width="1" stroke-dasharray="4 3" opacity=".5"/>`;
+  // Dots
+  GAMES.forEach(g=>{
+    const x=fx(g.snaps),y=fy(g.fpts),col=g.yr===2024?C.gold:C.teal;
+    const ring=g.lloyd?`<circle cx="${x}" cy="${y}" r="8" fill="none" stroke="${C.gold}" stroke-width="1" opacity=".4"/>`:''
+    s+=ring+`<circle cx="${x}" cy="${y}" r="5" fill="${col}" stroke="var(--bg)" stroke-width="1.5" opacity=".9"/>`;
+  });
+  s+=`<text x="${pl+cw/2}" y="${H-2}" font-size="8" fill="${C.dim}" text-anchor="middle" font-family="monospace">Snaps Played</text>`;
+  svg.innerHTML=s;
+}
+drawScatter();
+
+// STAT BARS (efficiency tab)
+function sbar(label,val,pos,max,invert,type){
+  const n=parseFloat(val),a=parseFloat(pos);
+  const pct=Math.min((n/max)*100,100),apct=Math.min((a/max)*100,100);
+  const good=invert?n<=a:n>=a,col=good?C.green:C.red;
+  const f=v=>type==='dec'?parseFloat(v).toFixed(2):type==='ratio'?parseFloat(v).toFixed(1)+'x':Math.round(v)+'%';
+  return `<div class="sbar"><div style="display:flex;justify-content:space-between;margin-bottom:5px">
+    <span class="mono" style="font-size:9.5px;color:var(--light)">${label}</span>
+    <div style="display:flex;gap:9px;align-items:center">
+      <span style="font-size:8px;color:var(--dim)">pos ${f(a)}</span>
+      <span class="mono" style="font-size:12px;font-weight:800;color:${col}">${f(n)}</span>
+    </div></div>
+    <div class="sbar-track"><div class="sbar-fill" data-w="${pct}" style="background:linear-gradient(90deg,${col}55,${col})"></div>
+    <div class="sbar-marker" style="left:${apct}%"></div></div></div>`;
+}
+
+// 2025-only averages for efficiency tab (meaningful games only)
+const G25=GAMES.filter(g=>g.yr===2025&&g.snaps>=29);
+const n25=G25.length;
+const avg25=(k)=>G25.reduce((a,g)=>a+g[k],0)/n25;
+
+document.getElementById('tackle-bars').innerHTML=
+  sbar("Box Alignment %",Math.round(avg25('box_pct')),POS.boxPct,100,false,'pct')+
+  sbar("Tackle Comp %",Math.round(avg25('comp_pct')),POS.comp,100,false,'pct')+
+  sbar("Missed Tackle Rate",Math.round(avg25('miss_pct')),POS.miss,40,true,'pct')+
+  sbar("PFF Tackling Grade",67.1,58,100,false,'dec')+
+  sbar("PFF Run Defense",82.8,62,100,false,'dec');
+
+document.getElementById('cov-bars').innerHTML=
+  sbar("Coverage Target Rate",Math.round(avg25('tgts')/(avg25('cov_snaps')||1)*100),POS.tgtRate,40,true,'pct')+
+  sbar("Catch Rate Allowed",Math.round(avg25('catches')/(avg25('tgts')||1)*100),POS.catchRate,100,true,'pct')+
+  sbar("PFF Coverage Grade",58.4,52,100,false,'dec')+
+  sbar("Pressure Rate",Math.round(avg25('pres')/(avg25('rush_snaps')||1)*100),POS.pressRate,60,false,'pct');
+
+// PRODUCTION GRID
+document.getElementById('prod-grid').innerHTML=GAMES.map((g,i)=>{
+  const fcol=g.fpts>=8?C.green:g.fpts>=5?C.gold:C.amber;
+  const yrcol=g.yr===2024?C.gold:C.teal;
+  return `<div style="background:var(--s2);border-radius:8px;padding:11px 10px;border:1px solid ${g.lloyd?C.gold+'44':'var(--bdr)'};cursor:pointer" onclick="setGame(${i});switchTab('game')"
+    onmouseover="this.style.borderColor='${C.gold}'" onmouseout="this.style.borderColor='${g.lloyd?C.gold+"44":"var(--bdr)"}'">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+      <div>
+        <div class="mono" style="font-size:7px;color:${yrcol};margin-bottom:1px">${g.yr} ${g.lloyd?'★ LLOYD OUT':''}</div>
+        <div style="font-size:12px;font-weight:700;color:var(--white)">Wk${g.wk} ${g.opp}</div>
+        <div class="mono" style="font-size:8px;color:var(--dim)">${g.snaps} snps</div>
+      </div>
+      <div class="mono" style="font-size:22px;font-weight:900;color:${fcol};line-height:1">${g.fpts}</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px">
+      ${[["Tkl",g.solo+g.ast],["Miss",g.miss],["Box",g.box_pct+'%']].map(([l,v])=>`
+      <div style="background:var(--s3);border-radius:4px;padding:4px;text-align:center">
+        <div class="mono" style="font-size:11px;font-weight:700;color:${l==='Miss'&&g.miss>2?C.red:l==='Miss'&&g.miss>0?C.amber:'var(--light)'}">${v}</div>
+        <div style="font-size:6.5px;color:var(--dim);text-transform:uppercase;margin-top:1px">${l}</div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}).join('');
+
+// BY GAME
+const SNAP_COL={Coverage:C.blue,Tackle:C.green,Blocked:C.red,"No Role":C.dim,"Pass Rush":C.gold,Pursuit:C.purple,Missed:C.amber};
+
+function renderNav(){
+  document.getElementById('game-nav').innerHTML=GAMES.map((g,i)=>`
+    <button class="game-btn${i===activeGame?' active':''}" onclick="setGame(${i})">
+      <div class="mono" style="font-size:7.5px;color:var(--dim);margin-bottom:2px">${g.yr} WK${g.wk}${g.lloyd?' ★':''}</div>
+      <div style="font-size:13px;font-weight:800;margin-bottom:3px;color:var(--white)">${g.opp}</div>
+      <div class="mono" style="font-size:20px;font-weight:900;color:${g.fpts>=8?C.green:g.fpts>=5?C.gold:C.amber};line-height:1">${g.fpts}</div>
+      <div style="font-size:8px;color:var(--dim);margin-top:2px">${g.snaps} snps · ${g.solo+g.ast} tkl</div>
+    </button>`).join('');
+}
+
+function renderDetail(){
+  const g=GAMES[activeGame];
+  const fcol=g.fpts>=8?C.green:g.fpts>=5?C.gold:C.amber;
+  const yrcol=g.yr===2024?C.gold:C.teal;
+  const eff=[
+    ["Comp %",g.comp_pct+'%',"pos "+POS.comp+'%',g.comp_pct>=POS.comp],
+    ["Miss %",g.miss_pct+'%',"pos "+POS.miss+'%',g.miss_pct<=POS.miss],
+    ["Box %",g.box_pct+'%',"pos "+POS.boxPct+'%',g.box_pct>=POS.boxPct],
+    ["Cov Tgt",g.tgts>0?g.catch_rate+'%':"0 tgts","pos "+POS.catchRate+'%',g.tgts===0||g.catch_rate<=POS.catchRate],
+    ["Press",g.rush_snaps>0?Math.round(g.pres/g.rush_snaps*100)+'%':"—","pos "+POS.pressRate+'%',g.rush_snaps===0||Math.round(g.pres/g.rush_snaps*100)>=POS.pressRate],
+    ["Catch%",g.tgts>0?g.catch_rate+'%':"—","—",g.tgts===0||g.catch_rate<=POS.catchRate],
+  ];
+  document.getElementById('game-detail').innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+      <div>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:4px">
+          <span class="mono" style="font-size:8px;color:${yrcol}">${g.yr} · WEEK ${g.wk} · ${g.snaps} SNAPS</span>
+          ${g.lloyd?`<span class="mono" style="font-size:7.5px;color:${C.gold};border:1px solid ${C.gold}40;padding:1px 6px;border-radius:2px">★ LLOYD INJURED</span>`:''}
+        </div>
+        <div style="font-size:19px;font-weight:900">vs ${g.opp}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="mono" style="font-size:8px;color:var(--mid);margin-bottom:1px">FANTASY</div>
+        <div class="mono" style="font-size:36px;font-weight:900;color:${fcol};line-height:1">${g.fpts}</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:13px">
+      ${[["Solo",g.solo],["Assist",g.ast],["TFL",g.tfl],["Sacks",g.sk],["Missed",g.miss],
+         ["Opps",g.opps],["Box%",g.box_pct+'%'],["CovSnps",g.cov_snaps],["Tgts",g.tgts],["Rush",g.rush_snaps]
+        ].map(([l,v])=>`<div class="gc">
+          <div class="mono" style="font-size:15px;font-weight:800;color:${l==="Missed"&&v>0?C.red:l==="TFL"&&v>0?C.green:l==="Sacks"&&v>0?C.green:'var(--white)'};line-height:1">${v}</div>
+          <div class="mono" style="font-size:7px;color:var(--dim);text-transform:uppercase;margin-top:3px">${l}</div>
+        </div>`).join('')}
+    </div>
+    ${g.yr===2024&&g.wk===8?`<div style="padding:9px 12px;background:rgba(239,68,68,.07);border:1px solid rgba(239,68,68,.2);border-radius:6px;margin-bottom:11px;font-size:9.5px;color:var(--light);line-height:1.6">
+      <strong style="color:${C.red}">⚠ FLOOR GAME:</strong> 46% miss rate — worst in either season's sample. Six misses on 13 opportunities vs Green Bay's run-heavy scheme. This is the 2024 technique problem at its worst — and the data point that makes the 2025 improvement most meaningful.
+    </div>`:''}
+    ${g.lloyd?`<div style="padding:9px 12px;background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:6px;margin-bottom:11px;font-size:9.5px;color:var(--light);line-height:1.6">
+      <strong style="color:${C.gold}">★ LLOYD AUDITION:</strong> Devin Lloyd was unavailable this game. Miller stepped into the starting role and produced. Three auditions in 2025 — this was one of them. Lloyd is now gone in free agency.
+    </div>`:''}
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      ${eff.map(([l,v,avg,good])=>`
+      <div class="eff-row">
+        <span class="mono" style="font-size:9px;color:var(--mid)">${l}</span>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span style="font-size:8px;color:var(--dim)">${avg}</span>
+          <span class="mono" style="font-size:11px;font-weight:700;color:${good?C.green:C.red}">${v}</span>
+        </div>
+      </div>`).join('')}
+    </div>`;
+}
+function setGame(i){activeGame=i;renderNav();renderDetail();}
+renderNav();renderDetail();
+
+function animateBars(){
+  document.querySelectorAll('.sbar-fill[data-w]').forEach((el,i)=>{
+    setTimeout(()=>{el.style.width=el.dataset.w+'%';},i*55);
+  });
+}
+setTimeout(animateBars,150);
+</script>
+</body>
+</html>
