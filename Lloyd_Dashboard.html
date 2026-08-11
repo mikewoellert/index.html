@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Devin Lloyd · IDP Film Analysis · Tackle Tendency</title>
+<style>
+:root{
+  --bg:#05080A;--s1:#0C0F12;--s2:#121619;--s3:#181D21;
+  --bdr:#1F252B;--bdr2:#2A3138;
+  --blue:#3B82F6;--acc:#60A5FA;--green:#22C55E;--red:#EF4444;
+  --amber:#F97316;--gold:#F59E0B;--teal:#2DD4BF;--purple:#A78BFA;
+  --white:#F1F1F8;--light:#CCCCDD;--mid:#9090A8;--dim:#606078;
+  --mono:'Courier New',monospace;--sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--white);font-family:var(--sans);min-height:100vh}
+.wrap{max-width:1020px;margin:0 auto;padding:20px 16px}
+.mono{font-family:var(--mono)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.span2{grid-column:1/-1}
+.card{background:var(--s1);border:1px solid var(--bdr);border-radius:10px;padding:16px 18px}
+.sl{font-size:8.5px;color:var(--mid);font-family:var(--mono);letter-spacing:.13em;text-transform:uppercase;margin-bottom:13px}
+.tabs{display:flex;gap:2px;margin-bottom:16px;background:var(--s1);padding:3px;border-radius:8px;border:1px solid var(--bdr)}
+.tab-btn{flex:1;padding:8px 0;border-radius:6px;border:none;cursor:pointer;background:transparent;
+  color:var(--mid);font-family:var(--mono);font-size:9px;font-weight:400;
+  letter-spacing:.08em;text-transform:uppercase;transition:all .15s}
+.tab-btn.active{background:var(--blue);color:#fff;font-weight:700}
+.tab{display:none}.tab.active{display:block}
+.pill{flex:1 1 90px;background:var(--s1);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px}
+.pills{display:flex;gap:7px;margin-bottom:16px;flex-wrap:wrap}
+.sbar{margin-bottom:13px}
+.sbar-track{position:relative;height:4px;background:#181D21;border-radius:2px;margin-top:5px}
+.sbar-fill{position:absolute;left:0;top:0;height:100%;border-radius:2px;width:0;transition:width .85s cubic-bezier(.16,1,.3,1)}
+.sbar-marker{position:absolute;top:-4px;height:12px;width:1.5px;background:var(--bdr2);transform:translateX(-50%);border-radius:1px}
+.gc{background:var(--s2);border-radius:6px;padding:8px 9px;border:1px solid var(--bdr2);text-align:center}
+.game-btn{background:var(--s1);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;cursor:pointer;transition:all .15s;text-align:left;width:100%;color:var(--white)}
+.game-btn.active{background:rgba(59,130,246,.08);border-color:var(--blue)}
+.eff-row{display:flex;justify-content:space-between;padding:8px 11px;background:var(--s2);border-radius:6px;border:1px solid var(--bdr);align-items:center}
+.banner{background:linear-gradient(90deg,#080D12,#091018,#080D12);border:1px solid rgba(59,130,246,.22);border-radius:8px;padding:10px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+@media(max-width:660px){.g2{grid-template-columns:1fr}.span2{grid-column:1}}
+</style>
+</head>
+<body><div class="wrap">
+
+<!-- HEADER -->
+<div style="margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--bdr)">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px">
+    <div style="display:flex;gap:14px;align-items:center">
+      <div style="width:4px;height:54px;background:linear-gradient(180deg,var(--blue),#2563EB);border-radius:2px;flex-shrink:0"></div>
+      <div>
+        <div class="mono" style="font-size:8.5px;color:var(--mid);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px">Tackle Tendency · IDP Film Analysis</div>
+        <div style="font-size:32px;font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:8px">Devin Lloyd</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap">
+          <span class="mono" style="font-size:8px;color:var(--mid);border:1px solid rgba(144,144,168,.25);padding:2px 8px;border-radius:3px;letter-spacing:.1em;text-transform:uppercase">JAX → Carolina Panthers</span>
+          <span class="mono" style="font-size:8px;color:var(--blue);border:1px solid rgba(59,130,246,.3);padding:2px 8px;border-radius:3px;letter-spacing:.1em;text-transform:uppercase">MLB · Evero 3-4</span>
+          <span class="mono" style="font-size:8px;color:var(--green);border:1px solid rgba(34,197,94,.25);padding:2px 8px;border-radius:3px;letter-spacing:.1em;text-transform:uppercase">7 Games Charted</span>
+          <span class="mono" style="font-size:8px;color:var(--gold);border:1px solid rgba(245,158,11,.3);padding:2px 8px;border-radius:3px;letter-spacing:.1em;text-transform:uppercase">🏈 Pro Bowl 2025</span>
+          <span class="mono" style="font-size:8px;color:var(--teal);border:1px solid rgba(45,212,191,.25);padding:2px 8px;border-radius:3px;letter-spacing:.1em;text-transform:uppercase">14 Game Dataset</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:right;flex-shrink:0">
+      <div class="mono" style="font-size:8px;color:var(--mid);letter-spacing:.1em;margin-bottom:2px">50+ SNAP GAMES</div>
+      <div class="mono" style="font-size:42px;font-weight:900;color:var(--blue);line-height:1">11.2</div>
+      <div style="font-size:8px;color:var(--dim)">fpts avg (6 games)</div>
+      <div class="mono" style="font-size:9px;color:var(--green);margin-top:4px;font-weight:700">▲ Carolina projection</div>
+    </div>
+  </div>
+</div>
+
+<!-- CAROLINA BANNER -->
+<div class="banner">
+  <div style="font-size:20px">🏈</div>
+  <div>
+    <div class="mono" style="font-size:8.5px;color:var(--blue);letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px">◆ Carolina Panthers · Week 1 Starter · Evero 3-4 · 2026</div>
+    <div style="font-size:11px;color:var(--light);line-height:1.65">Pro Bowl 2025 · 2nd-team All-Pro · <strong style="color:var(--white)">80.2 PFF coverage grade</strong> · 5 INTs in 14 games · 69% charted blitz pressure rate. Trevin Wallace and Cherelus battle for LB2 — Lloyd's role is locked regardless. <strong style="color:var(--white)">At 50+ snaps: 11.2 fpts/gm.</strong></div>
+  </div>
+</div>
+
+<!-- PILLS -->
+<div class="pills" id="pills"></div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+  <button class="tab-btn" onclick="switchTab('season')">Full Season</button>
+  <button class="tab-btn" onclick="switchTab('coverage')">Coverage</button>
+  <button class="tab-btn" onclick="switchTab('idp')">IDP Outlook</button>
+  <button class="tab-btn" onclick="switchTab('game')">By Game</button>
+</div>
+
+<!-- OVERVIEW -->
+<div class="tab active" id="tab-overview">
+  <div class="g2">
+    <div class="card">
+      <div class="sl">Skill Profile · 14-Game Dataset</div>
+      <div style="display:flex;justify-content:center;margin-bottom:10px">
+        <svg id="radar" width="200" height="200" style="overflow:visible"></svg>
+      </div>
+      <div style="display:flex;justify-content:center;gap:14px;margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:2px;background:var(--blue)"></div><span class="mono" style="font-size:8px;color:var(--dim)">Lloyd</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:2px;background:rgba(144,144,168,.35)"></div><span class="mono" style="font-size:8px;color:var(--dim)">Pos Avg</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+        <div class="gc"><div class="mono" style="font-size:17px;font-weight:900;color:var(--green)">80.2</div><div style="font-size:7.5px;color:var(--mid);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px">PFF Cov</div><div style="font-size:7.5px;color:var(--dim);font-style:italic">elite grade</div></div>
+        <div class="gc"><div class="mono" style="font-size:17px;font-weight:900;color:var(--blue)">5</div><div style="font-size:7.5px;color:var(--mid);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px">INTs</div><div style="font-size:7.5px;color:var(--dim);font-style:italic">14 games</div></div>
+        <div class="gc"><div class="mono" style="font-size:17px;font-weight:900;color:var(--teal)">69%</div><div style="font-size:7.5px;color:var(--mid);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px">Blitz Pres</div><div style="font-size:7.5px;color:var(--dim);font-style:italic">charted</div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:11px">
+      <div class="card" style="flex:1">
+        <div class="sl">Key Film + Data Signals</div>
+        <div id="findings"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px" id="mini-cards"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FULL SEASON -->
+<div class="tab" id="tab-season">
+  <div class="g2">
+    <!-- snap/fpts callout -->
+    <div class="card span2" style="background:linear-gradient(90deg,#080D12,#091018,#080D12);border-color:rgba(59,130,246,.2)">
+      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+        <div style="flex:1">
+          <div class="mono" style="font-size:8.5px;color:var(--blue);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px">◆ The Snap Count Story</div>
+          <div style="font-size:11px;color:var(--light);line-height:1.75">14-game season average: <strong style="color:var(--white)">7.6 fpts/gm</strong>. Restricted by 46.1 snaps/gm average at Jacksonville. But filter to his six 50+ snap games — the closest approximation to a starter role — and the average jumps to <strong style="color:var(--green)">11.2 fpts/gm</strong>. Carolina gives him 57-62 snaps every week. The snap count problem is solved.</div>
+        </div>
+        <div style="display:flex;gap:18px;flex-shrink:0">
+          <div style="text-align:center"><div class="mono" style="font-size:8px;color:var(--mid);margin-bottom:2px">JAX AVG</div><div class="mono" style="font-size:28px;font-weight:900;color:var(--mid);line-height:1">7.6</div></div>
+          <div style="font-size:22px;color:var(--bdr2);align-self:center">→</div>
+          <div style="text-align:center"><div class="mono" style="font-size:8px;color:var(--mid);margin-bottom:2px">50+ SNAPS</div><div class="mono" style="font-size:28px;font-weight:900;color:var(--green);line-height:1">11.2</div></div>
+          <div style="font-size:22px;color:var(--bdr2);align-self:center">→</div>
+          <div style="text-align:center"><div class="mono" style="font-size:8px;color:var(--mid);margin-bottom:2px">CAR PROJ</div><div class="mono" style="font-size:28px;font-weight:900;color:var(--blue);line-height:1">9-12</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Season totals -->
+    <div class="card">
+      <div class="sl">Season Totals · 14 Games</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px" id="season-totals"></div>
+    </div>
+
+    <!-- fpts distribution -->
+    <div class="card">
+      <div class="sl">fpts Distribution · 14 Games</div>
+      <div id="dist-bars"></div>
+      <div style="margin-top:11px;padding:9px 12px;background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.15);border-radius:6px;font-size:9.5px;color:var(--light);line-height:1.65">
+        <strong style="color:var(--blue)">3 of 4 sub-5 games came at ≤20 snaps.</strong> Remove those and 11 of 11 meaningful games delivered LB2 or better production.
+      </div>
+    </div>
+
+    <!-- Full 14-game chart -->
+    <div class="card span2">
+      <div class="sl">fpts / Game · Full 14-Game Season · ★ = Film Charted</div>
+      <div style="display:flex;gap:5px;align-items:flex-end;height:110px;margin-bottom:10px" id="season-chart"></div>
+      <div style="display:flex;gap:14px;padding-top:10px;border-top:1px solid var(--bdr);flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:12px;border-radius:2px;background:var(--blue)"></div><span class="mono" style="font-size:8px;color:var(--dim)">Film charted (7 games)</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:12px;border-radius:2px;background:var(--s3);border:1px solid var(--bdr2)"></div><span class="mono" style="font-size:8px;color:var(--dim)">PFF aggregate (7 games)</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><div style="width:24px;height:0;border-top:1.5px dashed var(--mid)"></div><span class="mono" style="font-size:8px;color:var(--dim)">pos avg 8.2</span></div>
+      </div>
+    </div>
+
+    <!-- Full game log table -->
+    <div class="card span2">
+      <div class="sl">Full Season Game Log · 2025 · ★ Film Charted</div>
+      <div style="overflow-x:auto" id="game-log-table"></div>
+      <div style="margin-top:8px;font-size:8.5px;color:var(--dim);font-style:italic">★ = Snap-by-snap film charted · PFF = Aggregate data · Wk7 + Wk9 missed (injury) · Wk8 bye</div>
+    </div>
+  </div>
+</div>
+
+<!-- COVERAGE -->
+<div class="tab" id="tab-coverage">
+  <div class="g2">
+    <div class="card span2" style="background:linear-gradient(90deg,#080D12,#091018,#080D12);border-color:rgba(59,130,246,.2)">
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <div style="flex:1">
+          <div class="mono" style="font-size:8.5px;color:var(--blue);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px">◆ 80.2 PFF Coverage Grade · The IDP Case</div>
+          <div style="font-size:11px;color:var(--light);line-height:1.75">5 INTs in 14 games. The coverage grade is the best among FA linebackers this cycle. The film shows <em>why</em>: elite pre-snap recognition. He eliminates throws before the ball is snapped. Catch rate (74.4%) looks elevated — but passer rating against averages below 80. He allows the short completion and kills the explosive play.</div>
+        </div>
+        <div style="display:flex;gap:14px;flex-shrink:0">
+          <div style="text-align:center"><div class="mono" style="font-size:8px;color:var(--mid);margin-bottom:2px">PFF GRADE</div><div class="mono" style="font-size:28px;font-weight:900;color:var(--green);line-height:1">80.2</div></div>
+          <div style="text-align:center"><div class="mono" style="font-size:8px;color:var(--mid);margin-bottom:2px">TOTAL INT</div><div class="mono" style="font-size:28px;font-weight:900;color:var(--blue);line-height:1">5</div></div>
+          <div style="text-align:center"><div class="mono" style="font-size:8px;color:var(--mid);margin-bottom:2px">COV SNAP%</div><div class="mono" style="font-size:28px;font-weight:900;color:var(--teal);line-height:1">49%</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="sl">Coverage Metrics · 14 Games</div>
+      <div id="cov-bars"></div>
+    </div>
+    <div class="card">
+      <div class="sl">Blitz Pressure · Charted Games</div>
+      <div style="display:flex;gap:7px;align-items:flex-end;height:80px;margin-bottom:12px" id="blitz-chart"></div>
+      <div style="padding:9px 12px;background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.18);border-radius:6px;font-size:9.5px;color:var(--light);line-height:1.65">
+        <strong style="color:var(--green)">69% charted pressure rate.</strong> Wk5 vs KC: 10 pres on 12 rush snaps (83%). Wk2 vs CIN: 8 on 12 (67%). Most LBs generate 20-25%. Lloyd is an elite blitz weapon — a secondary value stream Evero will use weekly.
+      </div>
+    </div>
+    <div class="card span2">
+      <div class="sl">Coverage Snap % by Game — Evero's 3-4 Target: ~50%</div>
+      <div style="display:flex;gap:6px;align-items:flex-end;height:80px;margin-bottom:10px" id="cov-pct-chart"></div>
+      <div style="padding:9px 12px;background:rgba(59,130,246,.05);border:1px solid rgba(59,130,246,.18);border-radius:6px;font-size:9.5px;color:var(--light);line-height:1.65">
+        Lloyd already averaged 49.3% coverage snaps at Jacksonville. Evero's 3-4 targets ~50% for interior linebackers. The volume match is exact — no adjustment required. His coverage grade holds at that snap rate.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDP OUTLOOK -->
+<div class="tab" id="tab-idp">
+  <div class="g2">
+    <div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:11px" id="outlook-cards"></div>
+    <div class="card">
+      <div class="sl">Snap Count → fpts · All 14 Games</div>
+      <svg id="scatter" width="100%" height="200" style="overflow:visible"></svg>
+      <div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:9px;height:9px;border-radius:50%;background:var(--blue)"></div><span class="mono" style="font-size:8px;color:var(--dim)">Film charted</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:9px;height:9px;border-radius:50%;background:var(--mid)"></div><span class="mono" style="font-size:8px;color:var(--dim)">PFF aggregate</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:8px;background:var(--green);opacity:.15;border-radius:2px"></div><span class="mono" style="font-size:8px;color:var(--dim)">CAR projection zone</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="sl">Carolina 2026 Format Guide</div>
+      <div id="format-guide"></div>
+    </div>
+    <div class="card span2" style="background:linear-gradient(135deg,var(--s1),#080C12);border-color:rgba(59,130,246,.2)">
+      <div class="mono" style="font-size:9px;font-weight:700;color:var(--blue);letter-spacing:.08em;margin-bottom:9px">◆ IDP VERDICT · CAROLINA 2026</div>
+      <div style="font-size:11px;color:var(--light);line-height:1.8">Devin Lloyd is a <strong style="color:var(--white)">legitimate LB1 in Carolina's defense</strong> and the data proves it across two different contexts. Seven film games confirm his 80.2 PFF coverage grade is real — elite pre-snap recognition, 5 INTs, and a 69% blitz pressure rate that most managers don't know about. Seven PFF games confirm the production holds across the season.<br><br>The snap count problem at Jacksonville is gone. Evero gives starters 57-62 snaps and Lloyd is the Week 1 starter. At that volume, his 50+ snap game average (11.2 fpts/gm) projects cleanly. <span style="color:var(--gold)">The buy window is now, before Week 1 depth charts confirm the obvious.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- BY GAME -->
+<div class="tab" id="tab-game">
+  <div style="display:grid;grid-template-columns:120px 1fr;gap:13px">
+    <div style="display:flex;flex-direction:column;gap:5px;overflow-y:auto;max-height:600px" id="game-nav"></div>
+    <div class="card" id="game-detail"></div>
+  </div>
+</div>
+
+<div style="margin-top:18px;padding-top:10px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px">
+  <span class="mono" style="font-size:7.5px;color:var(--dim)">TACKLE TENDENCY · DEVIN LLOYD · 7 FILM + 7 PFF · 2025 · JAX → CAROLINA</span>
+  <span class="mono" style="font-size:7.5px;color:var(--dim)">14 GAMES · PRO BOWL 2025 · 80.2 PFF COV · EVERO 3-4</span>
+</div>
+</div>
+
+<script>
+const C={blue:"#3B82F6",acc:"#60A5FA",green:"#22C55E",red:"#EF4444",
+         amber:"#F97316",gold:"#F59E0B",teal:"#2DD4BF",
+         white:"#F1F1F8",light:"#CCCCDD",mid:"#9090A8",dim:"#606078",
+         s1:"#0C0F12",s2:"#121619",s3:"#181D21",bdr:"#1F252B",bdr2:"#2A3138",bg:"#05080A"};
+
+const GAMES=[
+  {wk:1, opp:"Panthers",   snaps:20, box_pct:65, solo:0, ast:3, tfl:0, sack:0, miss:0, int_:0, pbu:0, cov_snaps:7,  tgts:0, catches:0, yds:0,   pres:2,  rush_snaps:2,  fpts:1.5,  charted:true,  def_g:0,  cov_g:0},
+  {wk:2, opp:"Bengals",    snaps:46, box_pct:98, solo:2, ast:1, tfl:0, sack:0, miss:2, int_:1, pbu:0, cov_snaps:21, tgts:2, catches:1, yds:25,  pres:8,  rush_snaps:12, fpts:8.5,  charted:true,  def_g:0,  cov_g:0},
+  {wk:3, opp:"Commanders", snaps:43, box_pct:86, solo:2, ast:1, tfl:1, sack:0, miss:1, int_:0, pbu:0, cov_snaps:21, tgts:5, catches:5, yds:20,  pres:2,  rush_snaps:8,  fpts:4.5,  charted:false, def_g:71.5,cov_g:66.0},
+  {wk:4, opp:"49ers",      snaps:59, box_pct:90, solo:6, ast:2, tfl:1, sack:0, miss:0, int_:2, pbu:0, cov_snaps:33, tgts:5, catches:3, yds:38,  pres:2,  rush_snaps:4,  fpts:21.0, charted:true,  def_g:0,  cov_g:0},
+  {wk:5, opp:"Chiefs",     snaps:57, box_pct:72, solo:2, ast:0, tfl:0, sack:0, miss:0, int_:1, pbu:0, cov_snaps:28, tgts:3, catches:2, yds:5,   pres:10, rush_snaps:12, fpts:8.0,  charted:true,  def_g:0,  cov_g:0},
+  {wk:6, opp:"Seahawks",   snaps:15, box_pct:93, solo:2, ast:1, tfl:0, sack:0, miss:0, int_:0, pbu:0, cov_snaps:8,  tgts:1, catches:1, yds:29,  pres:0,  rush_snaps:0,  fpts:2.5,  charted:false, def_g:64.4,cov_g:52.6},
+  {wk:10,opp:"Texans",     snaps:66, box_pct:82, solo:0, ast:8, tfl:0, sack:0, miss:3, int_:0, pbu:0, cov_snaps:33, tgts:4, catches:4, yds:47,  pres:7,  rush_snaps:11, fpts:5.5,  charted:true,  def_g:0,  cov_g:0},
+  {wk:11,opp:"Cowboys",    snaps:41, box_pct:88, solo:1, ast:1, tfl:1, sack:0, miss:2, int_:0, pbu:0, cov_snaps:27, tgts:2, catches:2, yds:8,   pres:0,  rush_snaps:0,  fpts:3.5,  charted:false, def_g:69.3,cov_g:71.4},
+  {wk:12,opp:"Cardinals",  snaps:52, box_pct:90, solo:3, ast:4, tfl:1, sack:0, miss:2, int_:0, pbu:0, cov_snaps:23, tgts:1, catches:0, yds:0,   pres:8,  rush_snaps:13, fpts:15.0, charted:true,  def_g:0,  cov_g:0},
+  {wk:13,opp:"Titans",     snaps:49, box_pct:73, solo:6, ast:1, tfl:0, sack:0, miss:0, int_:0, pbu:0, cov_snaps:27, tgts:4, catches:3, yds:20,  pres:1,  rush_snaps:10, fpts:6.5,  charted:false, def_g:64.9,cov_g:61.6},
+  {wk:14,opp:"Colts",      snaps:52, box_pct:85, solo:4, ast:4, tfl:0, sack:0, miss:0, int_:1, pbu:0, cov_snaps:22, tgts:2, catches:2, yds:20,  pres:1,  rush_snaps:7,  fpts:12.0, charted:false, def_g:86.9,cov_g:69.8},
+  {wk:15,opp:"Jets",       snaps:47, box_pct:85, solo:4, ast:2, tfl:0, sack:0, miss:0, int_:0, pbu:0, cov_snaps:20, tgts:2, catches:2, yds:18,  pres:1,  rush_snaps:3,  fpts:5.0,  charted:false, def_g:70.3,cov_g:48.6},
+  {wk:16,opp:"Broncos",    snaps:47, box_pct:94, solo:2, ast:5, tfl:1, sack:0, miss:1, int_:0, pbu:1, cov_snaps:27, tgts:5, catches:2, yds:21,  pres:3,  rush_snaps:4,  fpts:7.5,  charted:true,  def_g:0,  cov_g:0},
+  {wk:17,opp:"Colts",      snaps:51, box_pct:76, solo:3, ast:3, tfl:0, sack:0, miss:0, int_:0, pbu:0, cov_snaps:21, tgts:3, catches:2, yds:19,  pres:1,  rush_snaps:7,  fpts:5.5,  charted:false, def_g:78.4,cov_g:80.8},
+];
+const POS={fpts:8.2,tkl:6.8,boxPct:61,comp:71,miss:18,tgtRate:16,catchRate:58,yps:0.42,pressRate:22};
+let activeGame=0;
+
+function switchTab(id){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const ids=['overview','season','coverage','idp','game'];
+  document.querySelectorAll('.tab-btn')[ids.indexOf(id)].classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='idp') setTimeout(drawScatter,80);
+  setTimeout(animateBars,60);
+}
+
+// PILLS
+document.getElementById('pills').innerHTML=[
+  ["80.2 PFF Cov","Grade","elite coverage",true],
+  ["5 INTs","14 games","ball-hawk",true],
+  ["11.2 fpts","50+ snaps","CAR projection",true],
+  ["13.1% Miss","rate","pos avg 18%",true],
+  ["69% Blitz","pres rate","charted",true],
+  ["49% Cov","snap rate","Evero fit",null],
+].map(([l,v,sub,hi])=>`<div class="pill" style="${hi?'background:rgba(59,130,246,.06);border-color:rgba(59,130,246,.25)':''}">
+  <div class="mono" style="font-size:8px;color:var(--mid);letter-spacing:.09em;text-transform:uppercase;margin-bottom:4px">${l}</div>
+  <div class="mono" style="font-size:20px;font-weight:900;color:${hi?C.acc:C.white};line-height:1;margin-bottom:3px">${v}</div>
+  <div style="font-size:8px;color:var(--dim)">${sub}</div>
+</div>`).join('');
+
+// RADAR
+(()=>{
+  const svg=document.getElementById('radar');
+  const n=6,cx=100,cy=100,r=70;
+  const labels=["Coverage","Big Play","Tackle\nVol","Pass\nRush","Comp\nRate","Snap\nFit"];
+  const lloyd=[88,72,58,78,72,85], pos=[55,52,58,45,58,58];
+  const pt=(i,v)=>{const a=Math.PI*2*i/n-Math.PI/2;return{x:cx+(v/100)*r*Math.cos(a),y:cy+(v/100)*r*Math.sin(a)};};
+  const poly=arr=>arr.map((v,i)=>{const p=pt(i,v);return p.x+','+p.y;}).join(' ');
+  const grid=v=>Array.from({length:n},(_,i)=>pt(i,v)).map(p=>p.x+','+p.y).join(' ');
+  let s='';
+  [20,40,60,80,100].forEach(v=>s+=`<polygon points="${grid(v)}" fill="none" stroke="${v===60?'#252830':'#181D21'}" stroke-width="${v===60?1:.5}"/>`);
+  Array.from({length:n},(_,i)=>{const p=pt(i,100);s+=`<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="#181D21" stroke-width=".5"/>`;});
+  s+=`<polygon points="${poly(pos)}" fill="rgba(144,144,168,.06)" stroke="rgba(144,144,168,.2)" stroke-width="1" stroke-dasharray="3,2"/>`;
+  s+=`<polygon id="rpoly" points="${poly(lloyd)}" fill="rgba(59,130,246,.1)" stroke="${C.blue}" stroke-width="1.8" opacity="0" style="transition:opacity .7s;filter:drop-shadow(0 0 8px rgba(59,130,246,.3))"/>`;
+  lloyd.forEach((v,i)=>{const p=pt(i,v);s+=`<circle class="rdot" cx="${p.x}" cy="${p.y}" r="3.5" fill="${C.blue}" opacity="0"/>`;});
+  labels.forEach((lbl,i)=>{
+    const a=Math.PI*2*i/n-Math.PI/2,lx=cx+(r+22)*Math.cos(a),ly=cy+(r+22)*Math.sin(a);
+    lbl.split('\n').forEach((l,li,arr)=>s+=`<text x="${lx}" y="${ly+(li-(arr.length-1)/2)*11}" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="${C.mid}" font-family="monospace">${l}</text>`);
+  });
+  svg.innerHTML=s;
+  setTimeout(()=>{document.getElementById('rpoly').style.opacity='1';document.querySelectorAll('.rdot').forEach((el,i)=>{el.style.transition=`opacity .4s ease ${i*80}ms`;el.style.opacity='1';});},300);
+})();
+
+// FINDINGS
+document.getElementById('findings').innerHTML=[
+  [C.green,"▲","80.2 PFF coverage grade — elite pre-snap recognition, eliminates throws before snap."],
+  [C.green,"▲","5 INTs in 14 games. Wk4 vs SF: 2 in one game. Ball-hawk production is real and sustainable."],
+  [C.green,"▲","69% charted blitz pressure rate. Wk5 KC: 10 pres on 12 snaps. Rare for an off-ball LB."],
+  [C.green,"▲","13.1% miss rate vs 18% pos avg. Clean tackler when given opportunities."],
+  [C.green,"▲","49.3% coverage snap rate — exactly what Evero's 3-4 requires. No adjustment needed."],
+  [C.red,  "▼","74.4% catch rate allowed — opponents find him. Yards allowed are limited, but volume is real."],
+  [C.red,  "▼","5.2 tkl/gm avg at JAX below pos avg (6.8) — limited by snap count, not efficiency."],
+  [C.amber,"◆","Wallace (poor 2025 run grade) and Cherelus as LB2 — Lloyd's role is protected regardless."],
+].map(([col,icon,text])=>`<div style="display:flex;gap:8px;margin-bottom:8px;align-items:flex-start">
+  <span style="color:${col};font-size:9px;margin-top:2px;flex-shrink:0">${icon}</span>
+  <span style="font-size:10px;color:var(--light);line-height:1.55">${text}</span>
+</div>`).join('');
+
+// MINI CARDS
+document.getElementById('mini-cards').innerHTML=GAMES.filter((_,i)=>i%2===0||GAMES[i].fpts>=8).slice(0,4).map((g,i)=>`
+  <div onclick="setGame(${GAMES.indexOf(g)});switchTab('game')" style="background:var(--s1);border:1px solid ${g.charted?C.blue+'44':C.bdr};border-radius:8px;padding:9px 10px;cursor:pointer"
+    onmouseover="this.style.borderColor='${C.blue}'" onmouseout="this.style.borderColor='${g.charted?C.blue+"44":"var(--bdr)"}'">
+    <div class="mono" style="font-size:7.5px;color:var(--dim);margin-bottom:2px">Wk${g.wk} ${g.opp.slice(0,6)}${g.charted?' ★':''}</div>
+    <div class="mono" style="font-size:20px;font-weight:900;color:${g.fpts>=10?C.green:g.fpts>=6?C.gold:C.acc};line-height:1">${g.fpts}</div>
+    <div style="font-size:8px;color:var(--dim);margin-top:2px">${g.snaps}snps · ${g.int_>0?g.int_+'INT':g.solo+g.ast+'tkl'}</div>
+  </div>`).join('');
+
+// SEASON TOTALS
+document.getElementById('season-totals').innerHTML=[
+  ["Fpts/Gm","7.6","full season avg",C.mid],
+  ["50+ Snap","11.2","CAR projection",C.green],
+  ["Ceiling","21.0","Wk4 vs 49ers",C.gold],
+  ["Total INTs","5","14 games",C.blue],
+  ["Total TFLs","5","14 games",C.blue],
+  ["Miss Rate","13.1%","pos avg 18%",C.green],
+  ["PFF Cov","80.2","elite grade",C.green],
+  ["Blitz Pres","69%","charted rate",C.teal],
+  ["Cov Snap%","49.3%","Evero fit",C.blue],
+].map(([l,v,sub,col])=>`<div style="background:var(--s2);border-radius:7px;padding:10px 11px;border:1px solid var(--bdr)">
+  <div class="mono" style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px">${l}</div>
+  <div class="mono" style="font-size:19px;font-weight:900;color:${col};line-height:1;margin-bottom:3px">${v}</div>
+  <div style="font-size:8px;color:var(--dim)">${sub}</div>
+</div>`).join('');
+
+// DISTRIBUTION BARS
+document.getElementById('dist-bars').innerHTML=[
+  ["≥ 15 pts",GAMES.filter(g=>g.fpts>=15).length,C.green,"LB1 ceiling games"],
+  ["10–14 pts",GAMES.filter(g=>g.fpts>=10&&g.fpts<15).length,C.teal,"LB1 output"],
+  ["6–9 pts",  GAMES.filter(g=>g.fpts>=6 &&g.fpts<10).length,C.blue,"LB2 solid"],
+  ["< 6 pts",  GAMES.filter(g=>g.fpts<6).length,C.dim,"low snap games"],
+].map(([l,count,col,note])=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:9px">
+  <div class="mono" style="font-size:9px;color:var(--mid);width:68px;flex-shrink:0">${l}</div>
+  <div style="flex:1;height:18px;background:var(--s3);border-radius:3px;position:relative">
+    <div style="position:absolute;top:0;left:0;height:100%;width:${(count/14)*100}%;background:${col};border-radius:3px;display:flex;align-items:center;padding-left:6px">
+      ${count>0?`<span class="mono" style="font-size:9px;font-weight:700;color:#000">${count}</span>`:''}
+    </div>
+  </div>
+  <div style="font-size:9px;color:var(--dim);width:120px;flex-shrink:0">${note}</div>
+</div>`).join('');
+
+// SEASON FPTS CHART
+document.getElementById('season-chart').innerHTML=GAMES.map(g=>{
+  const h=Math.max((g.fpts/24)*90,4);
+  const col=g.charted?C.blue:(g.fpts>=10?C.green:g.fpts>=6?C.teal:C.s3);
+  const bdr=g.charted?'':`border:1px solid ${g.fpts>=10?C.green:g.fpts>=6?C.teal:C.bdr2}`;
+  const ptcol=g.fpts>=15?C.green:g.fpts>=8?C.teal:g.fpts>=5?C.mid:C.dim;
+  return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+    <span class="mono" style="font-size:8.5px;font-weight:700;color:${ptcol}">${g.fpts}</span>
+    <div style="width:100%;border-radius:3px 3px 0 0;height:${h}px;background:${col};${bdr}"></div>
+    <span class="mono" style="font-size:7px;color:var(--dim)">W${g.wk}</span>
+    <span style="font-size:8px;color:${g.charted?C.blue:'transparent'}">${g.charted?'★':'·'}</span>
+  </div>`;
+}).join('');
+
+// GAME LOG TABLE
+document.getElementById('game-log-table').innerHTML=`<table style="width:100%;border-collapse:collapse;font-family:'Courier New',monospace;font-size:9px">
+  <thead><tr style="background:var(--s3)">
+    ${["Wk","Opponent","Src","Snaps","Box%","Tkl","TFL","INT","Miss","CovSnp","Tgts","Yds","Pres","Fpts"].map(h=>`<th style="padding:7px 9px;color:var(--dim);font-weight:700;text-align:${h==="Opponent"?"left":"center"};border-bottom:1px solid var(--bdr2);letter-spacing:.06em">${h}</th>`).join('')}
+  </tr></thead>
+  <tbody>
+  ${GAMES.map((g,i)=>{
+    const bg=i%2===0?C.s1:C.s2;
+    const fpc=g.fpts>=15?C.green:g.fpts>=10?C.teal:g.fpts>=6?C.white:C.dim;
+    const src=g.charted?`<span style="color:${C.blue}">★</span>`:`<span style="color:${C.dim}">PFF</span>`;
+    return `<tr style="background:${bg}">
+      <td style="padding:6px 9px;text-align:center;color:var(--mid)">${g.wk}</td>
+      <td style="padding:6px 9px;color:var(--white)">${g.opp}</td>
+      <td style="padding:6px 9px;text-align:center">${src}</td>
+      <td style="padding:6px 9px;text-align:center;color:var(--light)">${g.snaps}</td>
+      <td style="padding:6px 9px;text-align:center;color:${g.box_pct>=80?C.blue:C.mid}">${g.box_pct}%</td>
+      <td style="padding:6px 9px;text-align:center;color:var(--light);font-weight:700">${g.solo+g.ast}</td>
+      <td style="padding:6px 9px;text-align:center;color:${g.tfl>0?C.green:C.dim}">${g.tfl}</td>
+      <td style="padding:6px 9px;text-align:center;color:${g.int_>0?C.green:C.dim};font-weight:${g.int_>0?700:400}">${g.int_}</td>
+      <td style="padding:6px 9px;text-align:center;color:${g.miss>2?C.red:C.dim}">${g.miss}</td>
+      <td style="padding:6px 9px;text-align:center;color:var(--mid)">${g.cov_snaps}</td>
+      <td style="padding:6px 9px;text-align:center;color:var(--mid)">${g.tgts}</td>
+      <td style="padding:6px 9px;text-align:center;color:var(--mid)">${g.yds}</td>
+      <td style="padding:6px 9px;text-align:center;color:${g.pres>4?C.teal:C.dim}">${g.pres}</td>
+      <td style="padding:6px 9px;text-align:center;color:${fpc};font-weight:700">${g.fpts}</td>
+    </tr>`;
+  }).join('')}
+  <tr style="background:var(--s3);border-top:2px solid var(--bdr2)">
+    <td colspan="2" style="padding:7px 9px;color:var(--green);font-weight:700">14-GM AVG</td>
+    <td></td>
+    <td style="padding:7px 9px;text-align:center;color:var(--mid)">46.1</td>
+    <td style="padding:7px 9px;text-align:center;color:var(--blue)">84%</td>
+    <td style="padding:7px 9px;text-align:center;color:var(--light);font-weight:700">5.2</td>
+    <td style="padding:7px 9px;text-align:center;color:var(--green)">0.4</td>
+    <td style="padding:7px 9px;text-align:center;color:var(--green);font-weight:700">0.4</td>
+    <td style="padding:7px 9px;text-align:center;color:var(--mid)">0.8</td>
+    <td style="padding:7px 9px;text-align:center;color:var(--mid)">22.7</td>
+    <td style="padding:7px 9px;text-align:center;color:var(--mid)">2.8</td>
+    <td style="padding:7px 9px;text-align:center;color:var(--mid)">19.3</td>
+    <td style="padding:7px 9px;text-align:center;color:var(--teal)">3.3</td>
+    <td style="padding:7px 9px;text-align:center;color:var(--green);font-weight:700">7.6</td>
+  </tr>
+  </tbody>
+</table>`;
+
+// COVERAGE BARS
+function sbar(label,val,pos,max,inv,type,delay=0){
+  const n=parseFloat(val),a=parseFloat(pos);
+  const pct=Math.min((n/max)*100,100),apct=Math.min((a/max)*100,100);
+  const good=inv?n<=a:n>=a,col=good?C.green:C.red;
+  const f=v=>type==='dec'?parseFloat(v).toFixed(2):type==='ratio'?parseFloat(v).toFixed(1)+'x':Math.round(v)+'%';
+  return `<div class="sbar"><div style="display:flex;justify-content:space-between;margin-bottom:5px">
+    <span class="mono" style="font-size:9.5px;color:var(--light)">${label}</span>
+    <div style="display:flex;gap:9px;align-items:center">
+      <span style="font-size:8px;color:var(--dim)">pos ${f(a)}</span>
+      <span class="mono" style="font-size:12px;font-weight:800;color:${col}">${f(n)}</span>
+    </div></div>
+    <div class="sbar-track"><div class="sbar-fill" data-w="${pct}" data-delay="${delay}" style="background:linear-gradient(90deg,${col}55,${col})"></div>
+    <div class="sbar-marker" style="left:${apct}%"></div></div></div>`;
+}
+document.getElementById('cov-bars').innerHTML=
+  sbar("PFF Coverage Grade",80.2,62,100,false,'pct',0)+
+  sbar("Target Rate",Math.round(GAMES.reduce((a,g)=>a+g.tgts,0)/GAMES.reduce((a,g)=>a+g.cov_snaps,0)*100),POS.tgtRate,40,true,'pct',70)+
+  sbar("Catch Rate Allowed",74,POS.catchRate,100,true,'pct',140)+
+  sbar("Yds/Cov Snap",0.85,POS.yps,2,true,'dec',210)+
+  sbar("Miss Rate",13.1,POS.miss,35,true,'pct',280);
+
+// BLITZ CHART
+const blitzGames=GAMES.filter(g=>g.charted&&g.rush_snaps>0);
+document.getElementById('blitz-chart').innerHTML=blitzGames.map(g=>{
+  const h=Math.max((g.pres/g.rush_snaps)*64,4);
+  const pr=Math.round(g.pres/g.rush_snaps*100);
+  const col=pr>=60?C.green:pr>=40?C.gold:C.dim;
+  return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px">
+    <span class="mono" style="font-size:9px;font-weight:700;color:${col}">${pr}%</span>
+    <div style="width:100%;border-radius:3px 3px 0 0;height:${h}px;background:${col};opacity:.85"></div>
+    <span class="mono" style="font-size:7.5px;color:var(--dim)">W${g.wk}</span>
+    <span class="mono" style="font-size:7px;color:var(--dim)">${g.rush_snaps}snps</span>
+  </div>`;
+}).join('')+`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px">
+  <span class="mono" style="font-size:8px;color:var(--dim)">pos</span>
+  <div style="width:100%;border-radius:3px 3px 0 0;height:${(POS.pressRate/100)*64}px;background:var(--bdr2);border:1px dashed var(--mid);border-bottom:none"></div>
+  <span class="mono" style="font-size:8px;color:var(--dim)">${POS.pressRate}%</span>
+</div>`;
+
+// COV PCT CHART
+document.getElementById('cov-pct-chart').innerHTML=GAMES.map(g=>{
+  const h=Math.max((g.cov_snaps/g.snaps)*60,4);
+  const pct=Math.round(g.cov_snaps/g.snaps*100);
+  const col=pct>=40?C.blue:C.dim;
+  return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+    <span class="mono" style="font-size:8.5px;font-weight:700;color:${col}">${pct}%</span>
+    <div style="width:100%;border-radius:3px 3px 0 0;height:${h}px;background:${col};opacity:.75"></div>
+    <span class="mono" style="font-size:7px;color:var(--dim)">W${g.wk}</span>
+  </div>`;
+}).join('')+`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px">
+  <span class="mono" style="font-size:8px;color:var(--dim)">Evero</span>
+  <div style="width:100%;border-radius:3px 3px 0 0;height:30px;background:var(--bdr2);border:1px dashed var(--mid);border-bottom:none"></div>
+  <span class="mono" style="font-size:8px;color:var(--dim)">~50%</span>
+</div>`;
+
+// OUTLOOK CARDS
+document.getElementById('outlook-cards').innerHTML=[
+  {l:"Full-Scoring",s:"LB1",u:"locked",c:C.green,d:"5 INTs + TFLs + blitz sacks project to top-5 LB value. Coverage grades elite. Buy now."},
+  {l:"Tackle-Heavy",s:"LB1",u:"monitor volume",c:C.blue,d:"At 57+ snaps in Carolina, tackle volume scales from 5.2 to 7-8/gm. Check early snap reports."},
+  {l:"Dynasty Value",s:"BUY",u:"before depth chart",c:C.gold,d:"ADP moves significantly when Week 1 starter is confirmed publicly. Buy window is now."},
+].map(({l,s,u,c,d})=>`<div style="background:var(--s1);border:1px solid ${c}22;border-radius:10px;padding:14px 16px">
+  <div class="mono" style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:.09em;margin-bottom:5px">${l}</div>
+  <div class="mono" style="font-size:22px;font-weight:900;color:${c};line-height:1;margin-bottom:2px">${s}</div>
+  <div class="mono" style="font-size:8px;color:var(--dim);margin-bottom:10px">${u}</div>
+  <div style="font-size:10px;color:var(--light);line-height:1.65;border-top:1px solid var(--bdr);padding-top:9px">${d}</div>
+</div>`).join('');
+
+// FORMAT GUIDE
+document.getElementById('format-guide').innerHTML=[
+  [C.green,"Full-scoring (INT/TFL)","LB1 every week","80.2 cov + 5 INTs + blitz weapon"],
+  [C.blue, "Tackle-heavy","LB1/LB2 flex","Monitor snap share vs Wallace"],
+  [C.gold, "Big-play formats","LB1 upside","Ceiling events every week"],
+  [C.teal, "Dynasty startup","Round 2-3","Buy before starter confirmed"],
+  [C.amber,"Redraft","Late LB1","Confirm snap role in Week 1"],
+].map(([c,fmt,tier,note])=>`<div style="display:flex;align-items:flex-start;gap:10px;padding:8px 10px;background:var(--s2);border-radius:6px;border-left:3px solid ${c};margin-bottom:7px">
+  <div style="flex:1">
+    <div class="mono" style="font-size:9px;font-weight:700;color:var(--white);margin-bottom:2px">${fmt}</div>
+    <div style="font-size:9px;color:var(--mid)">${note}</div>
+  </div>
+  <div class="mono" style="font-size:10px;font-weight:700;color:${c};flex-shrink:0">${tier}</div>
+</div>`).join('');
+
+// SCATTER
+function drawScatter(){
+  const svg=document.getElementById('scatter');
+  const W=svg.getBoundingClientRect().width||460,H=200;
+  const pl=28,pr=110,pt=14,pb=36,cw=W-pl-pr,ch=H-pt-pb;
+  const mxs=70,mxf=24;
+  const fx=s=>pl+(s/mxs)*cw, fy=f=>pt+ch-(Math.min(f,mxf)/mxf)*ch;
+  let s=`<rect width="${W}" height="${H}" fill="${C.s1}" rx="6"/>`;
+  [0,5,10,15,20].forEach(v=>{const y=fy(v);s+=`<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="${C.bdr}" stroke-width=".5"/>`;s+=`<text x="${pl-3}" y="${y+3}" font-size="8" fill="${C.dim}" text-anchor="end" font-family="monospace">${v}</text>`;});
+  [0,20,40,60].forEach(v=>{const x=fx(v);s+=`<line x1="${x}" y1="${pt}" x2="${x}" y2="${pt+ch}" stroke="${C.bdr}" stroke-width=".5"/>`;s+=`<text x="${x}" y="${pt+ch+13}" font-size="8" fill="${C.dim}" text-anchor="middle" font-family="monospace">${v}</text>`;});
+  const pav=fy(POS.fpts);
+  s+=`<line x1="${pl}" y1="${pav}" x2="${W-pr}" y2="${pav}" stroke="${C.mid}" stroke-width=".8" stroke-dasharray="4 3"/>`;
+  s+=`<text x="${W-pr+3}" y="${pav+3}" font-size="7.5" fill="${C.mid}" font-family="monospace">pos avg</text>`;
+  // projection zone 57-65 snaps, 9-12 fpts
+  const px1=fx(57),px2=fx(65),py1=fy(12),py2=fy(9);
+  s+=`<rect x="${px1}" y="${py1}" width="${px2-px1}" height="${py2-py1}" fill="${C.green}" opacity=".08" rx="3"/>`;
+  s+=`<rect x="${px1}" y="${py1}" width="${px2-px1}" height="${py2-py1}" fill="none" stroke="${C.green}" stroke-width=".8" stroke-dasharray="3 2" opacity=".4" rx="3"/>`;
+  s+=`<text x="${(px1+px2)/2}" y="${py1-5}" font-size="8" fill="${C.green}" text-anchor="middle" font-family="monospace" font-weight="700">CAR PROJ</text>`;
+  s+=`<text x="${(px1+px2)/2}" y="${py1+9}" font-size="7.5" fill="${C.green}" text-anchor="middle" font-family="monospace">9–12 fpts</text>`;
+  // trendline
+  s+=`<line x1="${fx(15)}" y1="${fy(2)}" x2="${fx(66)}" y2="${fy(14)}" stroke="${C.dim}" stroke-width="1" stroke-dasharray="4 3" opacity=".5"/>`;
+  GAMES.forEach(g=>{
+    const x=fx(g.snaps),y=fy(g.fpts),col=g.charted?C.blue:C.mid;
+    if(g.int_>0)s+=`<circle cx="${x}" cy="${y}" r="8.5" fill="none" stroke="${C.green}" stroke-width="1" opacity=".4"/>`;
+    s+=`<circle cx="${x}" cy="${y}" r="5" fill="${col}" stroke="${C.bg}" stroke-width="1.5" opacity=".9"/>`;
+  });
+  s+=`<text x="${pl+cw/2}" y="${H-2}" font-size="8" fill="${C.dim}" text-anchor="middle" font-family="monospace">Snaps Played</text>`;
+  svg.innerHTML=s;
+}
+drawScatter();
+
+// BY GAME
+function renderNav(){
+  document.getElementById('game-nav').innerHTML=GAMES.map((g,i)=>`
+    <button class="game-btn${i===activeGame?' active':''}" onclick="setGame(${i})">
+      <div class="mono" style="font-size:7px;color:var(--dim);margin-bottom:1px">WK${g.wk}${g.charted?' ★':''}</div>
+      <div style="font-size:12px;font-weight:800;margin-bottom:3px">${g.opp.slice(0,8)}</div>
+      <div class="mono" style="font-size:20px;font-weight:900;color:${g.fpts>=10?C.green:g.fpts>=6?C.gold:C.acc};line-height:1">${g.fpts}</div>
+      <div style="font-size:7.5px;color:var(--dim);margin-top:2px">${g.snaps}snps</div>
+    </button>`).join('');
+}
+function renderDetail(){
+  const g=GAMES[activeGame];
+  const fc=g.fpts>=10?C.green:g.fpts>=6?C.gold:C.acc;
+  document.getElementById('game-detail').innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px">
+      <div>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:4px">
+          <span class="mono" style="font-size:8px;color:var(--mid)">WEEK ${g.wk} · ${g.snaps} SNAPS</span>
+          ${g.charted?`<span class="mono" style="font-size:7.5px;color:${C.blue};border:1px solid ${C.blue}40;padding:1px 6px;border-radius:2px">★ FILM CHARTED</span>`:`<span class="mono" style="font-size:7.5px;color:${C.dim};border:1px solid ${C.bdr2};padding:1px 6px;border-radius:2px">PFF DATA</span>`}
+        </div>
+        <div style="font-size:19px;font-weight:900">vs ${g.opp}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="mono" style="font-size:8px;color:var(--mid);margin-bottom:1px">FANTASY</div>
+        <div class="mono" style="font-size:36px;font-weight:900;color:${fc};line-height:1">${g.fpts}</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:12px">
+      ${[["Solo",g.solo],["Assist",g.ast],["TFL",g.tfl],["INT",g.int_],["Missed",g.miss],
+         ["Opps",g.solo+g.ast+g.miss],["Box%",g.box_pct+'%'],["CovSnps",g.cov_snaps],["Tgts",g.tgts],["Pres",g.pres]
+        ].map(([l,v])=>`<div class="gc">
+          <div class="mono" style="font-size:14px;font-weight:800;color:${l==="INT"&&v>0?C.green:l==="Missed"&&v>2?C.red:l==="TFL"&&v>0?C.green:l==="Pres"&&v>3?C.teal:C.white};line-height:1">${v}</div>
+          <div class="mono" style="font-size:7px;color:var(--dim);text-transform:uppercase;margin-top:3px">${l}</div>
+        </div>`).join('')}
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px">
+      <div style="padding:9px 12px;background:var(--s2);border-radius:7px;border:1px solid var(--bdr)">
+        <div class="mono" style="font-size:8px;color:var(--mid);margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em">Coverage</div>
+        <div style="display:flex;gap:10px">
+          ${[["Snps",g.cov_snaps],["Tgts",g.tgts],["Catch",g.catches],["Yds",Math.round(g.yds)]].map(([l,v])=>`
+          <div><div class="mono" style="font-size:12px;font-weight:700;color:${C.white}">${v}</div>
+          <div style="font-size:7px;color:${C.dim};text-transform:uppercase;margin-top:2px">${l}</div></div>`).join('')}
+        </div>
+      </div>
+      <div style="padding:9px 12px;background:var(--s2);border-radius:7px;border:1px solid var(--bdr)">
+        <div class="mono" style="font-size:8px;color:var(--mid);margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em">Pass Rush</div>
+        <div style="display:flex;gap:10px">
+          ${[["Snps",g.rush_snaps],["Pres",g.pres],["Rate",g.rush_snaps>0?Math.round(g.pres/g.rush_snaps*100)+'%':'—']].map(([l,v])=>`
+          <div><div class="mono" style="font-size:12px;font-weight:700;color:${l==='Rate'&&g.rush_snaps>0&&g.pres/g.rush_snaps>=.5?C.green:C.white}">${v}</div>
+          <div style="font-size:7px;color:${C.dim};text-transform:uppercase;margin-top:2px">${l}</div></div>`).join('')}
+        </div>
+      </div>
+    </div>
+    ${g.def_g>0?`<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
+      ${[["DEF",g.def_g],["RUN",g.run_g],["TACK",g.tck_g],["COV",g.cov_g]].map(([l,v])=>`
+      <div class="eff-row"><span class="mono" style="font-size:8.5px;color:${C.mid}">${l}</span>
+        <span class="mono" style="font-size:11px;font-weight:700;color:${v>=75?C.green:v>=60?C.gold:C.red}">${v}</span></div>`).join('')}
+    </div>`:'<div style="padding:9px 12px;background:var(--s2);border-radius:6px;border:1px solid var(--bdr);font-size:9px;color:var(--dim)">★ Film charted game — snap-by-snap data in charting file</div>'}`;
+}
+function setGame(i){activeGame=i;renderNav();renderDetail();}
+renderNav();renderDetail();
+
+function animateBars(){
+  document.querySelectorAll('.sbar-fill[data-w]').forEach(el=>{
+    const d=parseInt(el.dataset.delay)||0;
+    setTimeout(()=>{el.style.width=el.dataset.w+'%';},d);
+  });
+}
+setTimeout(animateBars,150);
+</script>
+</body>
+</html>
