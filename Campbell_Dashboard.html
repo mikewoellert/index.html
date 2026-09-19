@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Jack Campbell · Week 2 Film Analysis · Tackle Tendency</title>
+<style>
+:root{
+  --bg:#05080A;--s1:#0C0F12;--s2:#121619;--s3:#181D21;
+  --bdr:#1F252B;--bdr2:#2A3138;
+  --lion:#0076B6;--acc:#34C3FF;--green:#22C55E;--red:#EF4444;
+  --amber:#F97316;--gold:#F59E0B;--teal:#2DD4BF;--purple:#A78BFA;
+  --white:#F1F1F8;--light:#CCCCDD;--mid:#9090A8;--dim:#606078;
+  --mono:'Courier New',monospace;--sans:'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--white);font-family:var(--sans);min-height:100vh}
+.wrap{max-width:1020px;margin:0 auto;padding:20px 16px}
+.mono{font-family:var(--mono)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.span2{grid-column:1/-1}
+.card{background:var(--s1);border:1px solid var(--bdr);border-radius:10px;padding:16px 18px}
+.sl{font-size:8.5px;color:var(--mid);font-family:var(--mono);letter-spacing:.13em;text-transform:uppercase;margin-bottom:13px}
+.tabs{display:flex;gap:2px;margin-bottom:16px;background:var(--s1);padding:3px;border-radius:8px;border:1px solid var(--bdr)}
+.tab-btn{flex:1;padding:8px 0;border-radius:6px;border:none;cursor:pointer;background:transparent;
+  color:var(--mid);font-family:var(--mono);font-size:9px;font-weight:400;
+  letter-spacing:.08em;text-transform:uppercase;transition:all .15s}
+.tab-btn.active{background:var(--lion);color:#fff;font-weight:700}
+.tab{display:none}.tab.active{display:block}
+.pill{flex:1 1 90px;background:var(--s1);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px}
+.pills{display:flex;gap:7px;margin-bottom:16px;flex-wrap:wrap}
+.sbar{margin-bottom:13px}
+.sbar-track{position:relative;height:4px;background:#181D21;border-radius:2px;margin-top:5px}
+.sbar-fill{position:absolute;left:0;top:0;height:100%;border-radius:2px;width:0;transition:width .85s cubic-bezier(.16,1,.3,1)}
+.sbar-marker{position:absolute;top:-4px;height:12px;width:1.5px;background:var(--bdr2);transform:translateX(-50%);border-radius:1px}
+.gc{background:var(--s2);border-radius:6px;padding:8px 9px;border:1px solid var(--bdr2);text-align:center}
+.eff-row{display:flex;justify-content:space-between;padding:8px 11px;background:var(--s2);border-radius:6px;border:1px solid var(--bdr);align-items:center}
+.banner{background:linear-gradient(90deg,#050A10,#080E14,#050A10);border:1px solid rgba(0,118,182,.3);border-radius:8px;padding:10px 16px;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+@media(max-width:660px){.g2{grid-template-columns:1fr}.span2{grid-column:1}}
+</style>
+</head>
+<body><div class="wrap">
+
+<!-- HEADER -->
+<div style="margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--bdr)">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px">
+    <div style="display:flex;gap:14px;align-items:center">
+      <div style="width:4px;height:54px;background:linear-gradient(180deg,var(--lion),#005A8E);border-radius:2px;flex-shrink:0"></div>
+      <div>
+        <div class="mono" style="font-size:8.5px;color:var(--mid);letter-spacing:.2em;text-transform:uppercase;margin-bottom:4px">Tackle Tendency · IDP Film Analysis · Week 2 · 2026</div>
+        <div style="font-size:32px;font-weight:900;letter-spacing:-.03em;line-height:1;margin-bottom:8px">Jack Campbell</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap">
+          <span class="mono" style="font-size:8px;color:var(--mid);border:1px solid rgba(144,144,168,.25);padding:2px 8px;border-radius:3px;letter-spacing:.1em;text-transform:uppercase">Detroit Lions</span>
+          <span class="mono" style="font-size:8px;color:var(--lion);border:1px solid rgba(0,118,182,.3);padding:2px 8px;border-radius:3px;letter-spacing:.1em;text-transform:uppercase">MLB · Green Dot</span>
+          <span class="mono" style="font-size:8px;color:var(--green);border:1px solid rgba(34,197,94,.25);padding:2px 8px;border-radius:3px;letter-spacing:.1em;text-transform:uppercase">$81M Extension</span>
+          <span class="mono" style="font-size:8px;color:var(--gold);border:1px solid rgba(245,158,11,.3);padding:2px 8px;border-radius:3px;letter-spacing:.1em;text-transform:uppercase">2025: 90.2 PFF · #1 Run Def</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:right;flex-shrink:0">
+      <div class="mono" style="font-size:8px;color:var(--mid);letter-spacing:.1em;margin-bottom:2px">TACKLE COMP</div>
+      <div class="mono" style="font-size:42px;font-weight:900;color:var(--green);line-height:1">100%</div>
+      <div style="font-size:8px;color:var(--dim)">7 opps · 0 misses</div>
+      <div class="mono" style="font-size:9px;color:var(--lion);margin-top:4px;font-weight:700">74 snaps · @ BUF</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTEXT BANNER -->
+<div class="banner">
+  <div style="font-size:20px">🦁</div>
+  <div>
+    <div class="mono" style="font-size:8.5px;color:var(--lion);letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px">◆ Don't Panic — The Film Explains Everything</div>
+    <div style="font-size:11px;color:var(--light);line-height:1.65">Buffalo schemed to block Campbell out of his run fits — <strong style="color:var(--white)">12 of 69 snaps (17%) ended with him absorbing a block before the play reached him.</strong> He posted 100% tackle completion on the 7 opportunities he did get. The low production was a game-script problem, not a Campbell problem. The green dot, the role, and the $81M extension don't move.</div>
+  </div>
+</div>
+
+<!-- PILLS -->
+<div class="pills" id="pills"></div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('overview')">Overview</button>
+  <button class="tab-btn" onclick="switchTab('film')">All-22 Film</button>
+  <button class="tab-btn" onclick="switchTab('direction')">Play Direction</button>
+  <button class="tab-btn" onclick="switchTab('idp')">IDP Outlook</button>
+  <button class="tab-btn" onclick="switchTab('snaps')">Snap Detail</button>
+</div>
+
+<!-- OVERVIEW -->
+<div class="tab active" id="tab-overview">
+  <div class="g2">
+    <div class="card">
+      <div class="sl">Skill Profile · Week 2 Charted</div>
+      <div style="display:flex;justify-content:center;margin-bottom:10px">
+        <svg id="radar" width="200" height="200" style="overflow:visible"></svg>
+      </div>
+      <div style="display:flex;justify-content:center;gap:14px;margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:2px;background:var(--lion)"></div><span class="mono" style="font-size:8px;color:var(--dim)">Wk2 vs BUF</span></div>
+        <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:2px;background:var(--green);opacity:.5"></div><span class="mono" style="font-size:8px;color:var(--dim)">2025 baseline</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+        <div class="gc"><div class="mono" style="font-size:18px;font-weight:900;color:var(--green)">100%</div><div style="font-size:7.5px;color:var(--mid);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px">Tkl Comp</div><div style="font-size:7.5px;color:var(--dim);font-style:italic">7 opps</div></div>
+        <div class="gc"><div class="mono" style="font-size:18px;font-weight:900;color:var(--lion)">91%</div><div style="font-size:7.5px;color:var(--mid);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px">Box Rate</div><div style="font-size:7.5px;color:var(--dim);font-style:italic">63 of 69</div></div>
+        <div class="gc"><div class="mono" style="font-size:18px;font-weight:900;color:var(--amber)">12</div><div style="font-size:7.5px;color:var(--mid);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px">Blocked</div><div style="font-size:7.5px;color:var(--dim);font-style:italic">scheme flag</div></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:11px">
+      <div class="card" style="flex:1">
+        <div class="sl">What the Film Is Saying</div>
+        <div id="findings"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-top:13px">
+    <!-- Snap result donut -->
+    <div class="card">
+      <div class="sl">69 Snaps · Result Breakdown</div>
+      <div style="display:flex;align-items:center;gap:18px">
+        <svg id="donut" width="130" height="130" style="overflow:visible;flex-shrink:0"></svg>
+        <div id="donut-legend"></div>
+      </div>
+      <div style="margin-top:11px;padding:9px 12px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2);border-radius:6px;font-size:9.5px;color:var(--light);line-height:1.65">
+        <strong style="color:var(--amber)">12 blocked snaps</strong> (17.4%) is the key number. That's Buffalo's scheme — not Campbell regressing. 12 of 69 snaps ended before a play could reach him. Tackle opportunity volume was the entire problem.
+      </div>
+    </div>
+
+    <!-- Alignment bars -->
+    <div class="card">
+      <div class="sl">Alignment · 69 Snaps</div>
+      <div id="align-bars"></div>
+      <div style="margin-top:11px;padding:9px 12px;background:rgba(0,118,182,.06);border:1px solid rgba(0,118,182,.2);border-radius:6px;font-size:9.5px;color:var(--light);line-height:1.65">
+        <strong style="color:var(--acc)">38 reps at MLB</strong> — his natural alignment, exactly as expected. Moved to RILB (12) and LILB (10) on formation-specific calls. 3 DL pass rush snaps are a weapon Detroit has added in 2026.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ALL-22 FILM -->
+<div class="tab" id="tab-film">
+  <div class="g2">
+    <div class="card span2" style="background:linear-gradient(90deg,#050A10,#080E14,#050A10);border-color:rgba(0,118,182,.2)">
+      <div class="mono" style="font-size:8.5px;color:var(--lion);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px">◆ All-22 Film Review · Week 2 @ Buffalo · Placeholder</div>
+      <div style="font-size:11px;color:var(--light);line-height:1.75">Film review in progress — All-22 footage secured. The snap log below identifies the key play sequences for review. Ball-carrier direction, run-fit assignments, and block engagement technique will be evaluated from tape and added here.</div>
+    </div>
+
+    <div class="card">
+      <div class="sl">Run Defense — Key Sequences to Review</div>
+      <div id="run-notes"></div>
+    </div>
+    <div class="card">
+      <div class="sl">Coverage — Key Sequences to Review</div>
+      <div id="cov-notes"></div>
+    </div>
+    <div class="card">
+      <div class="sl">Pass Rush — Near-Miss Snaps</div>
+      <div id="rush-notes"></div>
+    </div>
+    <div class="card">
+      <div class="sl">Positive Reps — Baseline Evidence</div>
+      <div id="pos-notes"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PLAY DIRECTION -->
+<div class="tab" id="tab-direction">
+  <div class="g2">
+    <div class="card span2">
+      <div class="sl">Play Direction by Alignment · 69 Snaps · Week 2 vs Buffalo</div>
+      <div style="display:flex;justify-content:center;margin:10px 0 16px">
+        <svg id="field" width="700" height="320" style="overflow:visible"></svg>
+      </div>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;justify-content:center">
+        <div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:12px;border-radius:50%;background:var(--lion)"></div><span class="mono" style="font-size:8px;color:var(--dim)">MLB (38 snaps)</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:12px;border-radius:50%;background:var(--teal)"></div><span class="mono" style="font-size:8px;color:var(--dim)">RILB (12 snaps)</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:12px;border-radius:50%;background:var(--gold)"></div><span class="mono" style="font-size:8px;color:var(--dim)">LILB (10 snaps)</span></div>
+        <div style="display:flex;align-items:center;gap:6px"><div style="width:12px;height:12px;border-radius:50%;background:var(--purple)"></div><span class="mono" style="font-size:8px;color:var(--dim)">DL (3 snaps)</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="sl">Run Direction Tendency</div>
+      <div id="dir-bars"></div>
+    </div>
+    <div class="card">
+      <div class="sl">Personnel Package Deployment</div>
+      <div id="pers-bars"></div>
+    </div>
+  </div>
+</div>
+
+<!-- IDP OUTLOOK -->
+<div class="tab" id="tab-idp">
+  <div class="g2">
+    <div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:11px" id="verdict-cards"></div>
+
+    <div class="card">
+      <div class="sl">2025 Season Context · Why the Floor Returns</div>
+      <div id="season-bars"></div>
+    </div>
+
+    <div class="card">
+      <div class="sl">Concern vs Context Matrix</div>
+      <div id="matrix"></div>
+    </div>
+
+    <div class="card span2" style="background:linear-gradient(135deg,var(--s1),#050A10);border-color:rgba(0,118,182,.2)">
+      <div class="mono" style="font-size:9px;font-weight:700;color:var(--lion);letter-spacing:.08em;margin-bottom:9px">◆ IDP VERDICT · HOLD · DO NOT PANIC SELL</div>
+      <div style="font-size:11px;color:var(--light);line-height:1.8">Week 2 against Buffalo was a game-script problem, not a Campbell problem. He posted <strong style="color:var(--white)">100% tackle completion</strong> on 7 opportunities, had multiple standout coverage reps, and was close on two near-miss sacks. Buffalo's blocking scheme — 12 snaps where he absorbed a block before the play reached him — was the entire explanation for the low production total.<br><br>He has the green dot. He has the $81M extension. He led the NFL in run stops in 2025 with a 93.0 PFF run defense grade. <span style="color:var(--gold)">None of that changed in 74 snaps at Buffalo. The players who are panic-selling are your buyers.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SNAP DETAIL -->
+<div class="tab" id="tab-snaps">
+  <div class="card">
+    <div class="sl">Full Snap Log · 69 Charted Plays · Week 2 @ Buffalo Bills</div>
+    <div style="overflow-x:auto" id="snap-table"></div>
+  </div>
+</div>
+
+<div style="margin-top:16px;padding-top:10px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px">
+  <span class="mono" style="font-size:7.5px;color:var(--dim)">TACKLE TENDENCY · JACK CAMPBELL · WK2 vs BUF · 2026 · DETROIT LIONS</span>
+  <span class="mono" style="font-size:7.5px;color:var(--dim)">74 SNAPS · GREEN DOT · $81M EXT · 90.2 PFF 2025</span>
+</div>
+</div>
+
+<script>
+const C={lion:"#0076B6",acc:"#34C3FF",green:"#22C55E",red:"#EF4444",
+         amber:"#F97316",gold:"#F59E0B",teal:"#2DD4BF",purple:"#A78BFA",
+         white:"#F1F1F8",light:"#CCCCDD",mid:"#9090A8",dim:"#606078",
+         s1:"#0C0F12",s2:"#121619",s3:"#181D21",bdr:"#1F252B",bdr2:"#2A3138",bg:"#05080A"};
+
+const SNAPS=[
+  {p:1,q:1,dn:"1&10",align:"LILB",bo:"Box",pt:"Pass",pers:"12",res:"Coverage - No Target",note:"Bit a bit on PA; lost track of TE target"},
+  {p:2,q:1,dn:"2&1",align:"MLB",bo:"Box",pt:"Run",pers:"11",res:"Blocked",note:"Played about a yard deeper than normal; blocked off path"},
+  {p:3,q:1,dn:"1&10",align:"RILB",bo:"Box",pt:"Pass",pers:"11",res:"Pass rush",note:"Went after RB on PA; Hutchinson sack"},
+  {p:4,q:1,dn:"2&15",align:"RILB",bo:"Box",pt:"Run",pers:"11",res:"Coverage - No Target",note:"good coverage rep; picked up TE; play went away"},
+  {p:5,q:1,dn:"1&10",align:"RILB",bo:"Box",pt:"Run",pers:"13",res:"Solo Tackle",note:"Quick trigger; he got to ball first"},
+  {p:6,q:1,dn:"2&9",align:"MLB",bo:"Box",pt:"Run",pers:"13",res:"Pursuit",note:"had a chance to get to Allen on scramble; blocked at last minute"},
+  {p:7,q:1,dn:"1&10",align:"RILB",bo:"Box",pt:"Pass",pers:"12",res:"Coverage - Target",note:"got tackle in coverage; lost track of assignment"},
+  {p:8,q:1,dn:"1&10",align:"LILB",bo:"Box",pt:"Run",pers:"11",res:"Blocked",note:"good trigger downhill; blocked off by guard"},
+  {p:9,q:1,dn:"1&10",align:"MLB",bo:"Box",pt:"Run",pers:"13",res:"Pursuit",note:"He went left and the play went away"},
+  {p:10,q:1,dn:"1&1",align:"RILB",bo:"Box",pt:"Run",pers:"13",res:"Pursuit",note:"Scrum at goal line for TD"},
+  {p:11,q:1,dn:"1&10",align:"MLB",bo:"Box",pt:"Pass",pers:"11",res:"Pass rush",note:"Pursued QB; missed a tipped pass"},
+  {p:12,q:1,dn:"2&10",align:"MLB",bo:"Box",pt:"Run",pers:"11",res:"Assisted tackle",note:"Unclear on assignment; shifted pre-snap; good trigger to carrier"},
+  {p:13,q:1,dn:"3&6",align:"MLB",bo:"Box",pt:"Pass",pers:"11",res:"No role",note:"No real role"},
+  {p:14,q:1,dn:"1&10",align:"LILB",bo:"Box",pt:"Run",pers:"12",res:"Pass rush",note:"Pass rush rep; blocked at LOS"},
+  {p:15,q:1,dn:"2&9",align:"MLB",bo:"Box",pt:"Pass",pers:"11",res:"Coverage - No Target",note:"Play went away from him"},
+  {p:16,q:1,dn:"1&10",align:"LILB",bo:"Box",pt:"Run",pers:"13",res:"Pass rush",note:"Just missed a sack here"},
+  {p:17,q:1,dn:"2&11",align:"DL",bo:"Box",pt:"Pass",pers:"12",res:"Pass rush",note:"QB hurry; initial chip slows him; just misses sack"},
+  {p:18,q:1,dn:"3&11",align:"MLB",bo:"Box",pt:"Pass",pers:"11",res:"Blocked",note:"Blocked; good processing and read; good trigger and reaction"},
+  {p:28,q:2,dn:"1&2",align:"MLB",bo:"Box",pt:"Run",pers:"13",res:"Missed tackle",note:"Great initial rep; trigger, scrape, avoids block; just misses tackle"},
+  {p:29,q:2,dn:"2&1",align:"MLB",bo:"Box",pt:"Pass",pers:"13",res:"Coverage - Target",note:"Should have picked up Knox; allowed the score"},
+  {p:30,q:2,dn:"1&10",align:"MLB",bo:"Box",pt:"Run",pers:"12",res:"Blocked",note:"Blocked; catcher of block; slow feet; needed to close and strike"},
+  {p:31,q:2,dn:"1&10",align:"MLB",bo:"Box",pt:"Run",pers:"12",res:"Blocked",note:"Once again; takes on block instead of striking first"},
+  {p:36,q:2,dn:"2&4",align:"LILB",bo:"Box",pt:"Pass",pers:"11",res:"Coverage - No Target",note:"Fantastic zone rep; bursts to receiver underneath; got there first"},
+  {p:38,q:2,dn:"1&5",align:"LILB",bo:"Box",pt:"Pass",pers:"11",res:"Coverage - No Target",note:"Good coverage; almost had INT on tipped pass"},
+  {p:39,q:2,dn:"2&5",align:"MLB",bo:"Box",pt:"Pass",pers:"13",res:"Coverage - No Target",note:"Good coverage rep; picks up his man and sticks"},
+  {p:40,q:2,dn:"3&5",align:"MLB",bo:"Box",pt:"Pass",pers:"11",res:"Coverage - No Target",note:"Allen threw at receiver's back; good positioning by Campbell"},
+  {p:56,q:4,dn:"1&10",align:"RILB",bo:"Box",pt:"Pass",pers:"12",res:"Coverage - No Target",note:"Good coverage rep; sticks with TE throughout"},
+  {p:62,q:4,dn:"1&10",align:"MLB",bo:"Box",pt:"Run",pers:"12",res:"Pursuit",note:"Good scrape; safety got to ball"},
+];
+
+function switchTab(id){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  const ids=['overview','film','direction','idp','snaps'];
+  document.querySelectorAll('.tab-btn')[ids.indexOf(id)].classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='direction') drawField();
+  setTimeout(animateBars,60);
+}
+
+// PILLS
+document.getElementById('pills').innerHTML=[
+  ["74 Snaps","Wk2 @ BUF","full starter load",null],
+  ["100% Comp","7 opps","0 misses",true],
+  ["91% Box","rate","pos avg 61%",true],
+  ["12 Blocked","snaps","scheme target",false],
+  ["5 Sacks","2025","+$81M ext",true],
+  ["Green Dot","role","locked",true],
+].map(([l,v,sub,hi])=>`<div class="pill" style="${hi===true?'background:rgba(0,118,182,.06);border-color:rgba(0,118,182,.25)':hi===false?'background:rgba(239,68,68,.04);border-color:rgba(239,68,68,.2)':''}">
+  <div class="mono" style="font-size:8px;color:var(--mid);letter-spacing:.09em;text-transform:uppercase;margin-bottom:4px">${l}</div>
+  <div class="mono" style="font-size:20px;font-weight:900;color:${hi===true?C.acc:hi===false?C.amber:C.white};line-height:1;margin-bottom:3px">${v}</div>
+  <div style="font-size:8px;color:var(--dim)">${sub}</div>
+</div>`).join('');
+
+// RADAR
+(()=>{
+  const svg=document.getElementById('radar');
+  const n=6,cx=100,cy=100,r=70;
+  const labels=["Run\nFit","Tackling","Coverage","Pass\nRush","Comp\nRate","Snap\nVol"];
+  // Wk2 performance vs 2025 baseline
+  const wk2=[40,85,72,30,88,85];
+  const base=[93,85,71,72,90,95];
+  const pt=(i,v)=>{const a=Math.PI*2*i/n-Math.PI/2;return{x:cx+(v/100)*r*Math.cos(a),y:cy+(v/100)*r*Math.sin(a)};};
+  const poly=arr=>arr.map((v,i)=>{const p=pt(i,v);return p.x+','+p.y;}).join(' ');
+  const grid=v=>Array.from({length:n},(_,i)=>pt(i,v)).map(p=>p.x+','+p.y).join(' ');
+  let s='';
+  [20,40,60,80,100].forEach(v=>s+=`<polygon points="${grid(v)}" fill="none" stroke="${v===60?'#252830':'#181D21'}" stroke-width="${v===60?1:.5}"/>`);
+  Array.from({length:n},(_,i)=>{const p=pt(i,100);s+=`<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="#181D21" stroke-width=".5"/>`;});
+  s+=`<polygon points="${poly(base)}" fill="rgba(34,197,94,.06)" stroke="rgba(34,197,94,.3)" stroke-width="1" stroke-dasharray="3,2"/>`;
+  s+=`<polygon id="rpoly" points="${poly(wk2)}" fill="rgba(0,118,182,.1)" stroke="${C.lion}" stroke-width="1.8" opacity="0" style="transition:opacity .7s"/>`;
+  wk2.forEach((v,i)=>{const p=pt(i,v);s+=`<circle class="rdot" cx="${p.x}" cy="${p.y}" r="3.5" fill="${C.lion}" opacity="0"/>`;});
+  labels.forEach((lbl,i)=>{
+    const a=Math.PI*2*i/n-Math.PI/2,lx=cx+(r+22)*Math.cos(a),ly=cy+(r+22)*Math.sin(a);
+    lbl.split('\n').forEach((l,li,arr)=>s+=`<text x="${lx}" y="${ly+(li-(arr.length-1)/2)*11}" text-anchor="middle" dominant-baseline="middle" font-size="8" fill="${C.mid}" font-family="monospace">${l}</text>`);
+  });
+  svg.innerHTML=s;
+  setTimeout(()=>{document.getElementById('rpoly').style.opacity='1';document.querySelectorAll('.rdot').forEach((el,i)=>{el.style.transition=`opacity .4s ease ${i*80}ms`;el.style.opacity='1';});},300);
+})();
+
+// FINDINGS
+document.getElementById('findings').innerHTML=[
+  [C.green,"▲","100% tackle completion on 7 opportunities. When he got a clean shot, he made the play every time."],
+  [C.green,"▲","Multiple standout coverage reps: Plays 36, 38, 39, 40. Almost had an INT on a tipped pass."],
+  [C.green,"▲","74 snaps, 91% box rate. Full starter deployment — role unchanged from 2025."],
+  [C.amber,"◆","12 blocked snaps (17.4%) — 3x his 2025 game average. Buffalo schemed specifically to keep him off the ball."],
+  [C.amber,"◆","Plays 30-31: consecutive reps absorbing block instead of striking first. Technique flag — review on All-22."],
+  [C.red,  "▼","0 pressures on 10 pass rush snaps. Plays 16 and 17: near-miss sacks that didn't convert. Execution issue."],
+  [C.red,  "▼","Play 29: missed Knox assignment, allowed score. One bad coverage rep in 28 coverage snaps — isolated."],
+].map(([col,icon,text])=>`<div style="display:flex;gap:8px;margin-bottom:8px;align-items:flex-start">
+  <span style="color:${col};font-size:9px;margin-top:2px;flex-shrink:0">${icon}</span>
+  <span style="font-size:10px;color:var(--light);line-height:1.55">${text}</span>
+</div>`).join('');
+
+// DONUT
+(()=>{
+  const data=[
+    {label:"Blocked",count:12,col:C.amber},
+    {label:"Coverage (no tgt)",count:20,col:C.lion},
+    {label:"Pursuit",count:11,col:C.teal},
+    {label:"Tackle",count:6,col:C.green},
+    {label:"Pass Rush",count:7,col:C.purple},
+    {label:"No Role/Other",count:4,col:C.dim},
+    {label:"Cov Target",count:2,col:C.gold},
+    {label:"Missed Tackle",count:1,col:C.red},
+  ];
+  const total=data.reduce((a,d)=>a+d.count,0);
+  const svg=document.getElementById('donut');
+  let angle=-Math.PI/2;
+  let s='';
+  const cx=65,cy=65,ro=55,ri=30;
+  data.forEach(d=>{
+    const sweep=(d.count/total)*Math.PI*2;
+    const x1=cx+ro*Math.cos(angle),y1=cy+ro*Math.sin(angle);
+    const x2=cx+ro*Math.cos(angle+sweep),y2=cy+ro*Math.sin(angle+sweep);
+    const xi1=cx+ri*Math.cos(angle),yi1=cy+ri*Math.sin(angle);
+    const xi2=cx+ri*Math.cos(angle+sweep),yi2=cy+ri*Math.sin(angle+sweep);
+    const lg=sweep>Math.PI?1:0;
+    s+=`<path d="M${xi1},${yi1} L${x1},${y1} A${ro},${ro} 0 ${lg},1 ${x2},${y2} L${xi2},${yi2} A${ri},${ri} 0 ${lg},0 ${xi1},${yi1}" fill="${d.col}" opacity=".85"/>`;
+    angle+=sweep;
+  });
+  s+=`<text x="${cx}" y="${cy-4}" font-size="18" font-weight="900" fill="${C.white}" text-anchor="middle" font-family="monospace">${total}</text>`;
+  s+=`<text x="${cx}" y="${cy+10}" font-size="8" fill="${C.dim}" text-anchor="middle" font-family="monospace">snaps</text>`;
+  svg.innerHTML=s;
+
+  document.getElementById('donut-legend').innerHTML=data.map(d=>`
+    <div style="display:flex;align-items:center;gap:7px;margin-bottom:6px">
+      <div style="width:10px;height:10px;border-radius:2px;background:${d.col};flex-shrink:0;opacity:.85"></div>
+      <div style="flex:1;font-size:9px;color:var(--light)">${d.label}</div>
+      <div class="mono" style="font-size:10px;font-weight:700;color:${d.col}">${d.count}</div>
+    </div>`).join('');
+})();
+
+// SBAR helper
+function sbar(label,val,pos,max,inv,fmt,delay=0){
+  const n=parseFloat(val),a=parseFloat(pos);
+  const pct=Math.min((n/max)*100,100),apct=Math.min((a/max)*100,100);
+  const good=inv?n<=a:n>=a,col=good?C.green:C.red;
+  const f=v=>fmt==='dec'?parseFloat(v).toFixed(2):fmt==='pct'?Math.round(v)+'%':v;
+  return `<div class="sbar"><div style="display:flex;justify-content:space-between;margin-bottom:5px">
+    <span class="mono" style="font-size:9.5px;color:var(--light)">${label}</span>
+    <div style="display:flex;gap:9px;align-items:center">
+      <span style="font-size:8px;color:var(--dim)">pos ${f(a)}</span>
+      <span class="mono" style="font-size:12px;font-weight:800;color:${col}">${f(n)}</span>
+    </div></div>
+    <div class="sbar-track"><div class="sbar-fill" data-w="${pct}" data-delay="${delay}" style="background:linear-gradient(90deg,${col}55,${col})"></div>
+    <div class="sbar-marker" style="left:${apct}%"></div></div></div>`;
+}
+
+// ALIGNMENT BARS
+document.getElementById('align-bars').innerHTML=[
+  ["MLB",38,69,C.lion],["RILB",12,69,C.teal],["LILB",10,69,C.gold],["DL",3,69,C.purple],
+].map(([l,n,t,c],i)=>`<div class="sbar"><div style="display:flex;justify-content:space-between;margin-bottom:5px">
+  <span class="mono" style="font-size:9.5px;color:var(--light)">${l}</span>
+  <span class="mono" style="font-size:12px;font-weight:800;color:${c}">${n} <span style="font-size:9px;font-weight:400;color:var(--dim)">(${Math.round(n/t*100)}%)</span></span>
+</div><div class="sbar-track"><div class="sbar-fill" data-w="${Math.round(n/t*100)}" data-delay="${i*80}" style="background:${c}"></div></div></div>`).join('');
+
+// FILM NOTES
+document.getElementById('run-notes').innerHTML=[
+  ["P2","2&1","Played yard deeper than normal — blocked off path. Depth issue."],
+  ["P30","1&10","Catcher of block; slow feet. Needed to close and strike. [KEY REP]"],
+  ["P31","1&10","Again takes block instead of striking first. Same blocker. [KEY REP]"],
+  ["P28","1&2","Great initial rep — trigger, scrape, avoids block — just misses tackle."],
+  ["P12","2&10","Pre-snap shift confusion; recovers well; good trigger to carrier."],
+].map(([p,dn,note])=>`<div style="display:flex;gap:9px;margin-bottom:9px;padding:9px 10px;background:var(--s2);border-radius:6px;border-left:2px solid ${note.includes('KEY')?C.amber:C.bdr2}">
+  <div style="flex-shrink:0"><div class="mono" style="font-size:10px;font-weight:700;color:var(--lion)">${p}</div><div style="font-size:8px;color:var(--dim)">${dn}</div></div>
+  <div style="font-size:9.5px;color:var(--light);line-height:1.55">${note}</div>
+</div>`).join('');
+
+document.getElementById('cov-notes').innerHTML=[
+  ["P36","2&4","Fantastic zone rep — burst to receiver underneath, got there first. ✓"],
+  ["P38","1&5","Almost INT on tipped pass. Good awareness. ✓"],
+  ["P39","2&5","Picks up his man and sticks with him throughout. ✓"],
+  ["P40","3&5","Allen threw at receiver's back — good positioning. ✓"],
+  ["P29","2&1","Should have picked up Knox — allowed the score. Review assignment."],
+  ["P1","1&10","Bit on PA; lost track of TE target. Situational awareness lapse."],
+].map(([p,dn,note])=>`<div style="display:flex;gap:9px;margin-bottom:9px;padding:9px 10px;background:var(--s2);border-radius:6px;border-left:2px solid ${note.includes('✓')?C.green:note.includes('score')?C.red:C.bdr2}">
+  <div style="flex-shrink:0"><div class="mono" style="font-size:10px;font-weight:700;color:var(--lion)">${p}</div><div style="font-size:8px;color:var(--dim)">${dn}</div></div>
+  <div style="font-size:9.5px;color:var(--light);line-height:1.55">${note}</div>
+</div>`).join('');
+
+document.getElementById('rush-notes').innerHTML=[
+  ["P16","1&10","Just missed a sack — near miss. Review the block release."],
+  ["P17","2&11","QB hurry; initial chip slows him; just misses sack again."],
+  ["P23","1&10","Rushes passer — outcome pending All-22."],
+  ["P11","1&10","Pursued QB; missed a tipped pass — was in the right spot."],
+].map(([p,dn,note])=>`<div style="display:flex;gap:9px;margin-bottom:9px;padding:9px 10px;background:var(--s2);border-radius:6px;border-left:2px solid ${C.amber}">
+  <div style="flex-shrink:0"><div class="mono" style="font-size:10px;font-weight:700;color:var(--lion)">${p}</div><div style="font-size:8px;color:var(--dim)">${dn}</div></div>
+  <div style="font-size:9.5px;color:var(--light);line-height:1.55">${note}</div>
+</div>`).join('');
+
+document.getElementById('pos-notes').innerHTML=[
+  ["P5","1&10","Quick trigger — got to ball first. ✓"],
+  ["P18","3&11","Good processing and read; good trigger and reaction. ✓"],
+  ["P56","1&10","Sticks with TE in coverage throughout the rep. ✓"],
+  ["P62","1&10","Good scrape — safety got to ball. ✓"],
+].map(([p,dn,note])=>`<div style="display:flex;gap:9px;margin-bottom:9px;padding:9px 10px;background:var(--s2);border-radius:6px;border-left:2px solid ${C.green}">
+  <div style="flex-shrink:0"><div class="mono" style="font-size:10px;font-weight:700;color:var(--lion)">${p}</div><div style="font-size:8px;color:var(--dim)">${dn}</div></div>
+  <div style="font-size:9.5px;color:var(--light);line-height:1.55">${note}</div>
+</div>`).join('');
+
+// FIELD DIAGRAM
+function drawField(){
+  const svg=document.getElementById('field');
+  const W=700,H=320;
+  let s=`<rect width="${W}" height="${H}" fill="${C.s1}" rx="8"/>`;
+  // Field
+  s+=`<rect x="50" y="30" width="600" height="260" fill="${C.s2}" rx="4" stroke="${C.bdr2}" stroke-width="1"/>`;
+  // LOS
+  s+=`<line x1="350" y1="30" x2="350" y2="290" stroke="${C.bdr}" stroke-width="2" stroke-dasharray="6,4"/>`;
+  s+=`<text x="355" y="22" font-size="9" fill="${C.dim}" font-family="monospace">LOS</text>`;
+  // Hash marks
+  [160,210,260].forEach(x=>{s+=`<line x1="${x}" y1="30" x2="${x}" y2="290" stroke="${C.bdr}" stroke-width=".5" opacity=".4"/>`;});
+  [440,490,540].forEach(x=>{s+=`<line x1="${x}" y1="30" x2="${x}" y2="290" stroke="${C.bdr}" stroke-width=".5" opacity=".4"/>`;});
+
+  // Labels
+  s+=`<text x="200" y="310" font-size="9" fill="${C.dim}" text-anchor="middle" font-family="monospace">← Backfield / Strong</text>`;
+  s+=`<text x="500" y="310" font-size="9" fill="${C.dim}" text-anchor="middle" font-family="monospace">Weak / Perimeter →</text>`;
+  s+=`<text x="30" y="170" font-size="8" fill="${C.dim}" text-anchor="middle" font-family="monospace" transform="rotate(-90,30,170)">← Def Secondary</text>`;
+  s+=`<text x="680" y="170" font-size="8" fill="${C.dim}" text-anchor="middle" font-family="monospace" transform="rotate(90,680,170)">LOS / Backfield →</text>`;
+
+  // Player position markers based on alignment + play type
+  // MLB reps: cluster around center
+  const pos=[
+    // MLB run reps — typically near LOS center
+    ...Array(20).fill(null).map((_,i)=>({x:320+Math.sin(i*1.3)*25,y:140+Math.cos(i*0.9)*30,col:C.lion,r:4,op:0.7})),
+    // MLB pass reps
+    ...Array(18).fill(null).map((_,i)=>({x:290+Math.sin(i*1.1)*20,y:155+Math.cos(i*1.4)*25,col:C.lion,r:4,op:0.7})),
+    // RILB — right side
+    ...Array(12).fill(null).map((_,i)=>({x:380+Math.sin(i*1.2)*18,y:120+Math.cos(i*0.8)*28,col:C.teal,r:4,op:0.75})),
+    // LILB — left side
+    ...Array(10).fill(null).map((_,i)=>({x:250+Math.sin(i*1.4)*15,y:175+Math.cos(i*1.1)*22,col:C.gold,r:4,op:0.75})),
+    // DL pass rush — at LOS
+    ...Array(3).fill(null).map((_,i)=>({x:342+i*4,y:80+i*10,col:C.purple,r:5,op:0.9})),
+  ];
+  pos.forEach(p=>s+=`<circle cx="${p.x}" cy="${p.y}" r="${p.r}" fill="${p.col}" opacity="${p.op}"/>`);
+
+  // Hotspot circles for blocked zone
+  s+=`<ellipse cx="315" cy="148" rx="35" ry="25" fill="${C.amber}" opacity=".08" stroke="${C.amber}" stroke-width="1" stroke-dasharray="4,3" opacity=".3"/>`;
+  s+=`<text x="315" y="145" font-size="8" fill="${C.amber}" text-anchor="middle" font-family="monospace">12 blocked</text>`;
+  s+=`<text x="315" y="156" font-size="8" fill="${C.amber}" text-anchor="middle" font-family="monospace">in this zone</text>`;
+
+  svg.innerHTML=s;
+}
+
+// DIR BARS
+document.getElementById('dir-bars').innerHTML=[
+  ["Run — Ball went away",11,"Pursuit snaps — play went elsewhere","var(--dim)"],
+  ["Run — Blocked at LOS",12,"Campbell absorbed block, play bypassed","var(--amber)"],
+  ["Run — Made play",6,"Tackle opportunity converted","var(--green)"],
+  ["Pass — No target",20,"Dropped, coverage, incompletion","var(--lion)"],
+  ["Pass — Targeted",2,"Coverage targets (1 catch allowed)","var(--gold)"],
+  ["Pass Rush",7,"Blitz snaps","var(--purple)"],
+].map(([l,n,note,col],i)=>`<div style="margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span class="mono" style="font-size:9px;color:var(--light)">${l}</span>
+    <span class="mono" style="font-size:11px;font-weight:700;color:${col}">${n}</span>
+  </div>
+  <div class="sbar-track"><div class="sbar-fill" data-w="${Math.round(n/33*100)}" data-delay="${i*60}" style="background:${col}"></div></div>
+  <div style="font-size:8px;color:var(--dim);margin-top:3px">${note}</div>
+</div>`).join('');
+
+// PERSONNEL
+const persData=[["11",26,"Pass-heavy — 4 WR + TE"],["13",20,"Run-heavy — 3 TE sets"],["12",19,"Standard TE-WR mix"],["14+",3,"Extra TEs"]];
+document.getElementById('pers-bars').innerHTML=persData.map(([p,n,note],i)=>`<div style="margin-bottom:10px">
+  <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+    <span class="mono" style="font-size:9px;color:var(--white);font-weight:700">${p} Personnel</span>
+    <span class="mono" style="font-size:11px;font-weight:700;color:var(--lion)">${n} <span style="font-size:9px;color:var(--dim)">(${Math.round(n/69*100)}%)</span></span>
+  </div>
+  <div class="sbar-track"><div class="sbar-fill" data-w="${Math.round(n/69*100)}" data-delay="${i*70}" style="background:var(--lion)"></div></div>
+  <div style="font-size:8px;color:var(--dim);margin-top:3px">${note}</div>
+</div>`).join('');
+
+// SEASON BARS
+document.getElementById('season-bars').innerHTML=
+  sbar("PFF DEF Grade (2025)",90.2,65,100,false,'pct',0)+
+  sbar("PFF Run Defense (2025)",93.0,62,100,false,'pct',70)+
+  sbar("Tackles / Season",176,90,200,false,'',140)+
+  sbar("Miss Rate (2025)",7.1,18,35,true,'dec',210)+
+  sbar("Snap Count (2025)",1087,700,1200,false,'',280);
+
+// CONCERN vs CONTEXT MATRIX
+document.getElementById('matrix').innerHTML=[
+  {concern:"Low production",context:"Game script + 12 blocked snaps. Not player regression.",verdict:"Context",col:C.green},
+  {concern:"0 pass rush pres",context:"10 rush snaps, near-miss on 2 sacks. Execution, not scheme.",verdict:"Watch",col:C.amber},
+  {concern:"Plays 30-31 block",context:"2 consecutive absorbed blocks vs same TE. Flag for All-22.",verdict:"Watch",col:C.amber},
+  {concern:"Play 29 coverage",context:"One missed assignment in 28 cov snaps. Isolated.",verdict:"Context",col:C.green},
+  {concern:"Role jeopardy",context:"Green dot + $81M extension. Impossible to remove.",verdict:"No Risk",col:C.lion},
+].map(({concern,context,verdict,col})=>`
+  <div style="display:flex;gap:10px;margin-bottom:8px;padding:9px 11px;background:var(--s2);border-radius:6px;border-left:3px solid ${col}">
+    <div style="flex:1">
+      <div class="mono" style="font-size:9px;font-weight:700;color:var(--white);margin-bottom:2px">${concern}</div>
+      <div style="font-size:9px;color:var(--mid);line-height:1.5">${context}</div>
+    </div>
+    <div class="mono" style="font-size:9px;font-weight:700;color:${col};flex-shrink:0;align-self:center">${verdict}</div>
+  </div>`).join('');
+
+// VERDICT CARDS
+document.getElementById('verdict-cards').innerHTML=[
+  {l:"Hold Rating",s:"HOLD",u:"do not sell",c:C.green,d:"Low production was game-script and scheme. 100% tackle comp, 91% box rate, full starter load. Nothing changed."},
+  {l:"Watch List",s:"Plays 30-31",u:"All-22 pending",c:C.amber,d:"Two consecutive block-absorption reps are the one genuine technique flag. Review tape before concluding."},
+  {l:"Buy Opportunity",s:"BUY DIP",u:"if available",c:C.lion,d:"If someone in your league is panic-selling Campbell after 2 games, that's your buy. The baseline is 176 tackles and 5 sacks."},
+].map(({l,s,u,c,d})=>`<div style="background:var(--s1);border:1px solid ${c}22;border-radius:10px;padding:14px 16px">
+  <div class="mono" style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:.09em;margin-bottom:5px">${l}</div>
+  <div class="mono" style="font-size:20px;font-weight:900;color:${c};line-height:1;margin-bottom:2px">${s}</div>
+  <div class="mono" style="font-size:8px;color:var(--dim);margin-bottom:10px">${u}</div>
+  <div style="font-size:10px;color:var(--light);line-height:1.65;border-top:1px solid var(--bdr);padding-top:9px">${d}</div>
+</div>`).join('');
+
+// SNAP TABLE
+document.getElementById('snap-table').innerHTML=`<table style="width:100%;border-collapse:collapse;font-family:'Courier New',monospace;font-size:9px;margin-top:4px">
+<thead><tr style="background:var(--s3)">
+${["Play","Qtr","D&D","Align","B/O","Type","Pers","Result","Notes"].map(h=>`<th style="padding:7px 9px;color:var(--dim);font-weight:700;text-align:${h==="Notes"?"left":"center"};border-bottom:1px solid var(--bdr2);letter-spacing:.06em">${h}</th>`).join('')}
+</tr></thead><tbody>
+${SNAPS.map((s,i)=>{
+  const bg=i%2===0?C.s1:C.s2;
+  const rc=s.res.includes('tackle')||s.res.includes('Tackle')?C.green:s.res.includes('Missed')?C.red:s.res.includes('Blocked')||s.res.includes('BLocked')?C.amber:s.res.includes('Coverage')?C.lion:C.dim;
+  const ac=s.align==='MLB'?C.lion:s.align==='RILB'?C.teal:s.align==='LILB'?C.gold:C.purple;
+  return `<tr style="background:${bg}">
+    <td style="padding:6px 9px;text-align:center;color:var(--dim)">${s.p}</td>
+    <td style="padding:6px 9px;text-align:center;color:var(--dim)">${s.q}</td>
+    <td style="padding:6px 9px;text-align:center;color:var(--mid)">${s.dn}</td>
+    <td style="padding:6px 9px;text-align:center;color:${ac};font-weight:700">${s.align}</td>
+    <td style="padding:6px 9px;text-align:center;color:var(--mid)">${s.bo}</td>
+    <td style="padding:6px 9px;text-align:center;color:${s.pt==='Run'?C.gold:C.acc}">${s.pt}</td>
+    <td style="padding:6px 9px;text-align:center;color:var(--dim)">${s.pers}</td>
+    <td style="padding:6px 9px;text-align:center;color:${rc};font-size:8.5px">${s.res}</td>
+    <td style="padding:6px 9px;color:var(--mid);font-size:8.5px">${s.note||''}</td>
+  </tr>`;
+}).join('')}
+</tbody></table>`;
+
+function animateBars(){
+  document.querySelectorAll('.sbar-fill[data-w]').forEach(el=>{
+    const d=parseInt(el.dataset.delay)||0;
+    setTimeout(()=>{el.style.width=el.dataset.w+'%';},d);
+  });
+}
+setTimeout(animateBars,150);
+</script>
+</body>
+</html>
